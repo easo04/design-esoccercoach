@@ -1,0 +1,43 @@
+@import 'variables';
+
+.modal{
+    .modal-content{
+
+        button{
+            &:focus{
+                outline: none;
+            }
+        }
+
+        .modal-body{
+            .form-control{
+                border: none;
+                border-bottom: 2px solid $color-soccer-coach;
+                border-right: 1px solid $gris-soccer-coach ;
+                border-left:1px solid $gris-soccer-coach;
+                border-radius: 0;
+
+                &:focus{
+                    outline:none;
+                    box-shadow:0 0 0 0.1rem rgba(3, 172, 164, .2)
+                }
+            }
+        }
+        .modal-footer{
+            .btn{
+                background-color: $color-action;
+                color:white;     
+                border-radius: 1.2rem;
+                width: 100px;
+                &:hover{
+                    background-color: $color-action-selected;
+                }
+
+                &:focus{
+                    box-shadow: none;
+                }
+                
+            }
+        }
+    }
+}

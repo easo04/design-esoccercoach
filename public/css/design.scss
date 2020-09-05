@@ -1,0 +1,527 @@
+
+@import 'variables';
+
+.design-component{
+
+    .block-p{
+        background-color: white;
+        padding:10px;
+    }
+
+    .conteneur{
+        
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-right: 5px;
+        margin-left: 5px;
+        width: auto;
+        background-color: white;
+        position: relative;
+
+        .spinner{
+            background-color: black;
+            opacity: 0.5;
+            color:white;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 500;
+            position: absolute;
+            width: 100%;
+            flex-wrap: wrap;
+
+            .v-spinner{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }   
+        }
+
+        .content-design{
+            z-index: 300;
+        }
+
+    }
+
+    .square{
+        width: 200px;
+        height: 200px;
+        border:3px solid white;
+    }
+
+    .rectangle{
+        width: 300px;
+        height: 200px;
+        border:3px solid white;
+    }
+
+    .circle{
+        width: 200px;
+        height: 200px;
+        border:3px solid white;
+        border-radius: 50%;
+    }
+
+    .triangle{
+        width: 0;
+        height: 0;
+        border-left: 100px solid transparent;
+        border-right: 100px solid transparent;
+        border-bottom: 200px solid white;
+        &:after{
+            content:'';
+            position:absolute;
+            top:5px;
+            left:-45px;
+            width: 0;
+            height: 0;
+            border-left: 45px solid transparent;
+            border-right: 45px solid transparent;
+            border-bottom: 92px solid red;
+        }
+    } 
+
+    .drag {
+        width: 22px;
+        height: 22px;
+        /*min-height: 6.5em;*/
+        margin: 1%;
+        background-color: #1a1a1a;
+        color: white;
+        border-radius: 50%;
+        margin:3px;
+        /*border:1px solid #679403;*/
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        z-index: 3;
+
+        &:hover{
+            border:2px solid white;
+        }
+    }
+
+    .max-taille {
+        img{
+            width: 60px;
+            height: 60px;
+        }
+    }
+
+    .nav-tabs{
+        .nav-link {
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+            font-size: 1rem;
+            &.active{
+                font-weight: 500;
+            }
+            &:focus, &:hover{
+                border-color: transparent;   
+            }
+        }
+    }
+
+    .drag-outil{ 
+        position: absolute;
+        -webkit-transform: translate(0px, 0px);
+        transform: translate(0px, 0px);
+        z-index: 25;
+    }
+
+    .drag-forme{ 
+        position: absolute;
+        -webkit-transform: translate(0px, 0px);
+        transform: translate(0px, 0px);
+        z-index: 20;
+        outline: none;
+    }
+
+    .drag-text{
+        position: absolute;
+        -webkit-transform: translate(0px, 0px);
+        transform: translate(0px, 0px);
+        z-index: 30;
+
+        &.drag-rotate {
+            width: 200px;
+            height: 50px;
+        }
+
+        .text-input{
+            input{
+                background: transparent;
+                border:none;
+                text-align:center;
+                &:focus {
+                    outline: none;
+                    border:1px solid black;
+                    background-color: rgba(170, 170, 170, 0.2);
+                }
+            } 
+        }
+        
+    }
+
+    .drag-rotate{
+        width: 100px;
+        height: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .rotate{
+            position: absolute;
+            top:-29px;
+            cursor: pointer;
+            color: black;
+            width: 25px;
+            height: 25px;
+            border: 1px solid black;
+            border-radius: 40px;
+            background-color: rgba(170, 170, 170, 0.4);
+            i{
+                margin-left: 3px;
+            }
+
+            &:hover{
+                background-color: rgba(170, 170, 170, 0.8);
+            }
+        }
+    }
+    
+    .drag-joueur{
+        position: absolute;
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        z-index: 30;
+
+        height: 50px;
+        width: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        .text-player{
+            position: absolute;
+            color:white;
+        }
+
+        img{
+            &:hover{
+                width: inherit + 1;
+                height: inherit + 1;
+            }
+        }
+
+        p{
+            text-align: center;
+            font-weight: bold;
+            color:black;
+        }
+    }
+
+    .terrain{
+        border: 1px solid black;
+        padding: 5px;
+        width: 60%;
+    }
+
+    .outils{
+        border: 1px solid black;
+        padding-right: 5px;
+        padding-left: 5px;
+        width: 20%;
+    }
+
+    .icons-soccer{
+        margin-top: 10px;
+        i{
+            cursor: pointer;
+            font-size: 20px;
+            color: $color-action;
+            &:hover{
+                color: $color-action-selected;
+                font-size: 21px;
+            }
+        }
+    }
+
+    .select-opacity{
+        .slider{
+            -webkit-appearance: none;  /* Override default CSS styles */
+            appearance: none;
+            background: #d3d3d3;        
+            height: 10px;      
+            border-radius: 5px;  
+            outline: none; /* Remove outline */
+            -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1; /* Fully shown on mouse-over */
+        }
+
+        /* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none; /* Override default look */
+            appearance: none;
+            width: 20px; /* Set a specific slider handle width */
+            height: 20px; /* Slider handle height */ 
+            border-radius: 50%; 
+            background: $color-soccer-coach; /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+
+        .slider::-moz-range-thumb {
+            width: 20px; /* Set a specific slider handle width */
+            height: 20px; /* Slider handle height */       
+            border-radius: 50%; 
+            background: $color-soccer-coach; /* Green background */
+            cursor: pointer; /* Cursor on hover */
+        }
+    }
+    
+    .actions-icons{
+        float: right;
+        i{
+            padding-left: 10px;
+        }
+    }
+
+    .color-icons{
+        float: left;
+        width: 50%;
+    }
+
+    .editeur-text-icons{
+        float: left;
+        i{
+            padding-right: 10px;
+        }
+    }
+
+    .color-outil{
+        width: 20px;
+        height: 20px;
+        border: 1px solid black;
+        cursor: pointer;
+        float: left;
+        margin-right: 10px;
+
+        &:hover{
+            border: 2px solid black;
+            width: 21px;
+            height: 21px;
+        }
+    }
+
+    .color-outil-selected{
+        border: 2px solid black;
+    }
+
+    .action{
+        height: 50px;
+        width: 100%;
+        padding-right: 20px;
+        padding-left: 24px;
+    }
+
+    .content-design{
+        display: flex;
+        height: 532px;
+    }
+    
+    
+    .terrain-space{
+        position: relative;
+        height: 472px;
+        border: 1px solid black;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        background-image: url('/images/terrain/terrain11.png');
+        background-repeat: no-repeat;
+        /*background-size: cover;*/
+        background-size: 100% 472px;
+    }
+
+    .list-joueur-add{
+        display: flex;
+    }
+
+    .joueur-add{
+        img{
+            &:hover{
+                cursor: pointer;
+                width: 31px;
+                height: 31px;
+            }
+        }
+    }
+
+    .with-text{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .txt{
+            position: absolute;
+            color:white;
+            cursor: pointer;
+        }
+    }
+
+    .outils-terrains{
+        margin-top:10px;
+        border-top:1px solid $color-border;
+        padding-top: 5px;
+    }
+    
+    .list-terrain-add{
+        padding-left: 0px;
+        padding-right: 0px;
+        overflow: scroll;
+        height: 380px;
+        overflow-x: hidden;
+    }
+    
+    .list-group-custom{
+        display: grid;
+        grid:auto / auto auto auto;
+    }
+    
+    .list-group-item{
+
+        &:first-child{
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+    }
+
+    .tab-onglet{
+        padding-left: 0px;
+        padding-right: 0px;
+        overflow: scroll;
+        height: 475px;
+        overflow-x: hidden;
+    }
+    
+    .center {
+        margin: auto;
+        width: 50%;
+        display: block;
+    }
+    
+    .terrain-li{
+        padding: 0px !important;
+        .terrain-li-div{
+            cursor: pointer;
+            height: 180px;
+            width:100%;
+
+            img{
+                width: inherit;
+                height: 178px;
+            }
+        }
+    }
+
+    .joueur-li{
+        padding: 10px;
+    }
+
+    
+    .joueurs-li-div{
+        cursor: pointer;
+        height: 100px;
+        border:1px solid black;
+    }
+    
+    .outil-li{
+        padding: 10px;    
+    }
+
+    .outil-li-div{
+        cursor: pointer;
+    }
+
+    .drag-outil-list{
+        margin: 1%;
+        margin-top: 15px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .drag-forme-list{
+        margin: 1%;
+        margin-top: 15px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .ligne-li{
+        padding: 0 !important;
+    }
+
+    .ligne-li-div-sm{
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .ligne-li-div{
+        cursor: pointer;
+        height: 180px;
+        width: 100%;
+        img{ 
+            width: inherit;
+            height: 178px;
+        }
+    }
+
+    .object-selected{
+        border:1px solid white;
+    }
+    
+    .object-selected-img{
+        width: auto;
+        height: 58px;
+    }
+    
+    .object-selected-outil {
+        //img{
+            border: 1px dashed black;
+        //}
+    }
+
+    .action-selected{
+        color: $color-action-selected;
+    }
+    
+    .action-selected-form{
+        color: $color-action-selected;
+    }
+    
+    #select-transparence{
+        margin-left: 10px;
+    }
+
+    .btnNext{
+        margin-top: 40px;
+        padding-left: 0px;
+        padding-right: 0px;
+        margin-right: auto;
+        margin-left: auto;
+    }
+    
+    .btnNext .btnNextAction{
+        float: right;
+    }
+
+    .resize-drag-form img{
+        width: inherit;
+        height: inherit;
+    }
+}

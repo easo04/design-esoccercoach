@@ -1,0 +1,585 @@
+<template>
+    <div class="design-component">
+        <div class="block-p" v-if="showPubSection"></div>
+        <div class="conteneur">
+            <div class="spinner" v-if="showSpinner">
+                <div class="spinner-load">
+                    <pulse-loader color="#8a2539"></pulse-loader>  
+                    <h3 class="texte-spinner">{{textSpinner}}</h3>
+                </div>
+            </div>
+            <div class="content-design">
+                <div class="outils">
+                    <div class="outils-joueurs"> 
+                        <h5>Joueurs</h5>
+                        <div class="list-joueur-add">  
+                            <div class="joueur-add">
+                                <img id="player1" src="../../public/images/joueurs/player1-red.png" @click="addPlayerByColor('red')">
+                            </div> 
+                            <div class="joueur-add">
+                                <img id="player2" src="../../public/images/joueurs/player1-blue-claro.png" @click="addPlayerByColor('blue-claro')">
+                            </div> 
+                            <div class="joueur-add">
+                                <img id="player3" src="../../public/images/joueurs/player1-yellow.png" @click="addPlayerByColor('yellow')">
+                            </div>
+                            <div class="joueur-add">
+                                <img id="player4" src="../../public/images/joueurs/player1-black.png" @click="addPlayerByColor('black')">
+                            </div>
+                        </div>
+                        <div class="list-joueur-add">  
+                            <div class="joueur-add with-text">
+                                <img id="player1A" src="../../public/images/joueurs/player1-red.png" @click="addPlayerWithTextByColor('red')">
+                                <div class="txt">
+                                    <i class="fas fa-font" @click="addPlayerWithTextByColor('red')"></i>
+                                </div> 
+                            </div> 
+                            <div class="joueur-add with-text">
+                                <img id="player2A" src="../../public/images/joueurs/player1-blue-claro.png" @click="addPlayerWithTextByColor('blue-claro')">
+                                <div class="txt">
+                                    <i class="fas fa-font" @click="addPlayerWithTextByColor('blue-claro')"></i>
+                                </div> 
+                            </div> 
+                            <div class="joueur-add with-text">
+                                <img id="player3A" src="../../public/images/joueurs/player1-yellow.png" @click="addPlayerWithTextByColor('yellow')">
+                                <div class="txt">
+                                    <i class="fas fa-font" @click="addPlayerWithTextByColor('yellow')"></i>
+                                </div> 
+                            </div>
+                            <div class="joueur-add with-text">
+                                <img id="player4A" src="../../public/images/joueurs/player1-black.png" @click="addPlayerWithTextByColor('black')">
+                                <div class="txt">
+                                    <i class="fas fa-font"  @click="addPlayerWithTextByColor('black')"></i>
+                                </div> 
+                            </div>
+                        </div>  
+                    </div>
+                    <div class="outils-terrains">
+                        <h5>Terrains</h5>
+                        <div class="list-terrain-add">
+                            <div class="list-group-item terrain-li" v-for="(terrain, index) in listeTerrains" :key="index">
+                                <div class="terrain-li-div" @click="changerTerrainImg(terrain.image, terrain.name)">
+                                    <img :src="'images/terrain/' + terrain.image" :title="terrain.name"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div> 
+                <div class="terrain">
+                    <div class="terrain-act action">
+                        <div class="color-icons icons-soccer" v-if="showColorActions">
+                            <div class="color-outil color-red action-outil" id="color-red" @click="changerCouleurOutil('red');"></div>
+                            <div class="color-outil color-blue-claro action-outil" id="color-blue-claro" @click="changerCouleurOutil('bleu');"></div>
+                            <div class="color-outil color-yellow action-outil" id="color-yellow" @click="changerCouleurOutil('yellow');"></div>
+                            <div class="color-outil color-black action-outil" id="color-white" @click="changerCouleurOutil('black');"></div>           
+                            <div class="color-outil color-transparent action-outil" id="color-white" @click="changerCouleurOutil('transparent');"></div>
+                            <div class="select-opacity">
+                                10% <input type="range" id="range-opacity" min="10" max="100" class="slider" name="range" value="100" v-model="rangeOpacity" @change="editOpacityForme()"> 100%
+                            </div>
+                        </div>
+
+                        <div class="actions-icons icons-soccer">
+                            <i class="fas fa-font" id="addText" @click="addText()"></i>
+                            <i class="fas fa-plus action-outil" id="btnZoomPlus" @click="zoomPlus()" v-if="showActionForms"></i>
+                            <i class="fas fa-minus action-outil" id="btnZoomMoins" @click="zoomMoins()" v-if="showActionForms"></i>
+                            <i class="fas fa-fill-drip action-outil" id="btnColor" @click="setShowColorActions()"  v-if="showBtnRemplir"></i>
+                            <i class="fa fa-file-image-o" id=savePng @click="savePNG()"></i>
+                            <i class="fa fa-file-pdf-o" id=savePdf @click="savePdf()"></i>
+                            <i class="fa fa-eraser" @click="deleteObject()" id="supprimerObject" v-if="showActionsObject"></i>
+                            <i class="fa fa-trash" data-toggle="modal" data-target="#modalDeleteAll" id="deleteAll" v-if="showDeleteAll"></i>
+                        </div>
+                    </div>
+                    <div class="row terrain-space" id="terrainSoccer">
+                        <div v-for="(object, indexObj) in lstObjectsDraggable" :key="indexObj" :id="object.id" class="draggable" :class="object.class"  @click="selectObject(object.id, indexObj)">
+                            <img :id="object.image.id" :src="object.image.src" v-if="object.type !== 'drag-text' && (!object.forme || object.forme === '')">
+                            <div class="text-input" v-if="object.type === 'drag-text'">
+                                <input type="text" :id="'input-text' + indexObj" v-model="object.text" name="name" autocomplete="off" @blur="verifyText(indexObj)">
+                            </div>
+                            <div :id="object.image.id" :class="object.forme" v-if="object.forme && object.forme !== ''"></div>
+                            <div class="rotate" v-if="indexObj === lastIndexObjectSelected && object.canRotate" @click="rotate()">
+                                <i class="fa fa-rotate-right"></i>
+                            </div>
+                            <div class="text-player" v-if="object.textObject && object.textObject !== ''">
+                                {{object.textObject}}
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+                <div class="outils">
+                    <div class="outils-onglets-content">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" data-toggle="tab" href="#outilsDiv" @click="initButtons(false);initButtonsFormes(false);">Outils</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#lignesDiv" @click="initButtons(false);">Lignes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" data-toggle="tab" href="#formsDiv" @click="initButtons(false);initButtonsFormes(true);">Formes</a>
+                            </li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active container tab-onglet" id="outilsDiv">
+                                <div class="list-group list-group-custom" id="liste-outils">
+                                    <div class="outil-li-div" v-for="(outil, indexO) in listeOutils" :key="indexO" @click="ajouterOutil(outil.name, outil.image)">
+                                        <div class="drag-outil-list">
+                                            <img :src="'images/outils/outils_list/' + outil.image" :alt="outil.name" class="center" :title="outil.name">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane container tab-onglet" id="lignesDiv">
+                                <div class="list-group" id="liste-lignes">
+                                    <div class="list-group-item ligne-li" v-for="(ligne, indexL) in lstLigneFiltred" :key="indexL">
+                                        <div class="ligne-li-div" @click="changerLigneImg(ligne.image, ligne.name)">
+                                            <img :src="'images/lignes/' + ligne.image" width="293px" height="178px" :title="ligne.name"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane container tab-onglet" id="formsDiv">
+                                <div class="list-group list-group-custom" id="liste-formes">
+                                    <div class="ligne-li-div-sm" v-for="(forme, indexF) in listeFormes" :key="indexF" @click="ajouterForm(forme.name, forme.image, forme.forme)">
+                                        <div class="drag-forme-list">
+                                            <img :src="'images/formes/forme_list/' + forme.image" :alt="forme.name" :title="forme.name" class="center">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="styles-lignes"></div>
+
+            <!-- Modals -->
+            <div class="modal fade" id="modalAddText" role="dialog">
+                <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Ajouter le nom du joueur</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <input type="text" class="form-control" id="nomJoueur" v-model="textPlayer" autocomplete="off" placeholder="Ex: Messi">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" @click="addPlayerWithText()">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="modalDeleteAll" role="dialog">
+                <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Tout supprimer</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <p>Voulez-vous tout supprimer?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal" @click="deleteAll()">Oui</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+<script>
+
+import { mapState, mapGetters, mapMutations } from 'vuex';
+import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+export default {
+    name:"Design",
+    components: {
+        PulseLoader
+    },
+    data(){
+        return{
+            terrainSelected:'terrain11',
+            lstObjectsDraggable:[],
+            formeSelected:undefined,
+            typeFormeSelected:undefined,
+            objectSelected:undefined,
+            lastIndexObjectSelected:undefined,
+            ligneSelected:undefined,
+            showActionsTerrain:false,
+            showColorActions:false,
+            showPubSection:false,
+            showActionForms:false,
+            showActionsObject:false,
+            showBtnRemplir:false,
+            showSpinner:false,
+            textSpinner:'',
+            textPlayer:undefined,
+            colorPlayer:undefined,
+            rangeOpacity:100,
+            lstFormes : ['square', 'rectangle', 'triangle', 'circle'],
+
+        }
+    },
+    computed:{
+        lstLigneFiltred(){
+            return this.listeLignes.filter(i => i.terrain === this.terrainSelected);
+        },
+        showRotate(){
+            if(this.lastIndexObjectSelected || this.lastIndexObjectSelected === 0){
+                return this.lstObjectsDraggable[this.lastIndexObjectSelected].canRotate;
+            }
+
+            return false;     
+        },
+        widthFormeInit(){
+            return this.typeFormeSelected === 'square' ? 200 : 300;
+        },
+        showDeleteAll(){
+            return this.lstObjectsDraggable.length > 0;
+        },
+        ...mapState(['listeTerrains', 'listeJoueurs', 'listeOutils', 'listeLignes', 'listeFormes'])
+    },
+    watch:{
+    },
+    methods:{
+        addObjectToList(type, idImage, srcImage, canRotate, textObject, formeObject){
+            let noObject = this.lstObjectsDraggable.length + 1;
+            let object = {
+                id:type + '-' + noObject,
+                type: type,
+                select:false,
+                dataX:0,
+                dataY:0,
+                rotate:0,
+                canRotate:canRotate,
+                class: canRotate ? type + ' drag-rotate': type,
+                text:'Text ...',
+                textObject:textObject,
+                forme:formeObject,
+                image:{
+                    id:idImage + '-' + noObject,
+                    src:srcImage,
+                    size:undefined,
+                }
+            };
+            this.lstObjectsDraggable.push(object);
+
+            this.deselectionner();
+        },
+        addPlayerByColor(color){
+            this.addObjectToList('drag-joueur', color, 'images/joueurs/player1-' + color + '.png', false);
+        },
+        addPlayerWithTextByColor(color){
+            this.colorPlayer = color;
+            $("#modalAddText").modal();
+        },
+        addPlayerWithText(){
+            this.addObjectToList('drag-joueur', this.colorPlayer, 'images/joueurs/player1-' + this.colorPlayer + '.png', false, this.textPlayer);
+            this.textPlayer = '';
+        },
+        ajouterOutil(outilName, outilImage) {
+            let canRotate = outilName.includes('but');
+            this.addObjectToList('drag-outil', outilName, 'images/outils/' + outilImage, canRotate);
+        },
+        ajouterForm(formeName, formeImage, formeObject) {
+            this.formeSelected = formeName;
+            let canRotate = formeName.includes('arrow');
+            this.addObjectToList('drag-forme', formeName, 'images/formes/' + formeImage, canRotate, undefined, formeObject);
+        },
+        changerTerrainImg(img, name){
+            $('.terrain-space').css('background-image', 'url(images/terrain/' + img + ')');
+            $('.terrain-space').css('background-repeat', 'no-repeat');
+            this.terrainSelected = name;
+        },
+        changerLigneImg(img, name){
+            this.ligneSelected = name;
+            this.updateTerrain(img);
+        },
+        updateTerrain(img){
+            $('.terrain-space').css('background-image', 'url(images/lignes/' + img + ')');
+            $('.terrain-space').css('background-repeat', 'no-repeat');
+        },
+        initButtonsFormes(showBtns){
+            if(showBtns) {
+                $('#btnSquare').show();
+                $('#btnCircle').show();
+                $('#btnMakeCopy').hide();
+                $('#select-transparence').hide();
+                $('#btnRotate').hide();
+            }else{
+                $('#btnSquare').hide();
+                $('#btnCircle').hide();
+                $('#btnMakeCopy').hide();
+                $('#select-transparence').hide();
+                $('#btnRotate').hide();  
+            }
+
+            $('#btnCircle').removeClass('action-selected-form');
+            $('#btnBorderForme').removeClass('action-selected-form');
+            $('#btnMakeCopy').removeClass('action-selected-form');
+            $('#btnSquare').addClass('action-selected-form');
+        },
+        initButtons(showColors) {
+            
+            this.showActionsObject = true;
+            this.showColorActions = false;
+
+            //vérifier s'il y a un objet sélectionné
+            if(this.objectSelected && this.objectSelected[0]){
+                this.showActionForms = this.objectSelected.hasClass('drag-forme');
+            }else{
+                this.showActionsObject = false;
+                this.showActionForms = false;
+            }
+        },
+        changerCouleurOutil(color){
+            let image = this.objectSelected[0].children[0];
+            let colorBackground;
+            switch (color) {
+                case 'red':
+                    colorBackground = '#be030a';
+                    break;
+                case 'bleu':
+                    colorBackground = '#03beb7';
+                break;
+                case 'yellow':
+                    colorBackground = '#ffff00';
+                break;
+                case 'black':
+                    colorBackground = 'black';
+                break; 
+                default:
+                    colorBackground = 'transparent';
+                    break;
+            }
+            image.style.backgroundColor = colorBackground;
+            //image.src = 'images/formes/' + this.typeFormeSelected + '-' + color + '.png';
+        },
+        zoomPlus(){
+            if(this.objectSelected){
+                let image = this.objectSelected[0].children[0];
+                let isArrow = image.id.includes('arrow');
+                if(isArrow){
+
+                    //obtenir la prochaine taille
+                    let sizeObjectSelected = this.lstObjectsDraggable[this.lastIndexObjectSelected]?.size;
+                    let taille;
+                    switch (sizeObjectSelected) {
+                        case 'sm':
+                            taille = 'md';
+                            break;
+                        case 'md':
+                            taille = 'lg';
+                            break;
+                        case 'lg':
+                            taille = 'lg';
+                            break;
+                        default:
+                            taille = 'sm';
+                            break;
+                    }
+                    this.lstObjectsDraggable[this.lastIndexObjectSelected].size = taille;
+
+                    //remplacer src de l'image
+                    image.src = image.src.replace(sizeObjectSelected ? '-' + sizeObjectSelected + '.png' : '.png', '-' + taille + '.png') ;
+                }else{
+                    let height = image.style.height.replace('px', '');
+                    let width = image.style.width.replace('px', '');
+
+                    height = height !== '' ? parseInt(height) : 200;
+                    width = width !== '' ? parseInt(width) : this.widthFormeInit;
+                    if(height < 300){
+                        image.style.height = (height + 10) + 'px'; 
+                        image.style.width = (width + 10) + 'px'; 
+                    }
+                }
+                
+            }
+        },
+        zoomMoins(){
+            if(this.objectSelected){
+                let image = this.objectSelected[0].children[0];
+                let isArrow = image.id.includes('arrow');
+                if(isArrow){
+
+                    //obtenir la prochaine taille
+                    let sizeObjectSelected = this.lstObjectsDraggable[this.lastIndexObjectSelected]?.size;
+                    let taille;
+                    switch (sizeObjectSelected) {
+                        case 'lg':
+                            taille = 'md';
+                            break;
+                        case 'md':
+                            taille = 'sm';
+                            break;
+                        case 'sm':
+                            taille = '';
+                            break;
+                        default:
+                            taille = '';
+                            break;
+                    }
+                    this.lstObjectsDraggable[this.lastIndexObjectSelected].size = taille;
+
+                    //remplacer src de l'image
+                    let searchvalue = sizeObjectSelected ? '-' + sizeObjectSelected + '.png' : '.png';
+                    let newvalue = taille === '' ? '.png' : '-' + taille + '.png';
+                    image.src = image.src.replace(searchvalue, newvalue) ;
+                }else{
+
+                    let height = image.style.height.replace('px', '');
+                    let width = image.style.width.replace('px', '');
+
+                    height = height !== '' ? parseInt(height) : 200;
+                    width = width !== '' ? parseInt(width) : this.widthFormeInit;
+                    if(height > 180){
+                        image.style.height = (height - 10) + 'px'; 
+                        image.style.width = (width - 10) + 'px'; 
+                    }
+                }
+            }
+        },
+        selectObject(dragId, indexObj){
+            this.objectSelected = $('#' + dragId);
+            this.lastIndexObjectSelected = indexObj;
+
+            //INITALISER LES BOUTONS D'ACTIONS
+            this.initButtons(true);
+
+            //TOUT DESELECTIONNER
+            let lastObjectSelected = $('.object-selected-outil');
+            lastObjectSelected?.removeClass('object-selected-outil');
+
+            let lastObject = this.lstObjectsDraggable.find(o => o.select);
+            if(lastObject){
+                lastObject.select = false;
+            }
+
+            this.lstObjectsDraggable[indexObj].select = true;
+
+            //ADD CLASS OBJECT-SELECT
+            this.objectSelected.addClass('object-selected-outil');
+
+            if(dragId.includes('drag-text')){
+                document.getElementById('input-text' + indexObj).focus();
+            }
+
+            //vérifier si c'est une forme pour afficher les couleurs
+            this.typeFormeSelected = this.lstFormes.find(f => this.objectSelected[0].children[0].id.includes(f));
+            this.showBtnRemplir = this.typeFormeSelected ? true : false;
+            
+            //vérifier si la forme a une opacité
+            this.rangeOpacity = this.typeFormeSelected && this.objectSelected[0].children[0].style.opacity !== '' ? (parseFloat(this.objectSelected[0].children[0].style.opacity) * 100) : 100;
+        },
+        setShowColorActions(){
+            this.showColorActions = true;
+        },
+        editOpacityForme(){
+            let image = this.objectSelected[0].children[0];
+            image.style.opacity = this.rangeOpacity / 100;
+        },
+        deselectionner(){
+            let lastObjectSelected = $('.object-selected-outil');
+            lastObjectSelected?.removeClass('object-selected-outil');
+
+            this.objectSelected = null;
+            this.showActionForms = false;
+            this.showActionsObject = false; 
+            this.showBtnRemplir = false;
+            this.showColorActions = false;
+            this.lastIndexObjectSelected = undefined;
+        },
+        savePNG(){
+            this.deselectionner();
+            this.textSpinner = 'Téléchargement de l\'image en cours';
+            this.showSpinner = true;
+            const dowloadImage = new Promise((resolve, reject) => {    
+                let domElement = document.getElementById("terrainSoccer");
+                html2canvas(domElement, {
+                    onrendered: function(canvas) {
+                        Canvas2Image.saveAsPNG(canvas); 
+                        resolve("Create");
+                    }
+                });
+            });
+
+            dowloadImage.then(val=>{
+                this.showSpinner = false;
+            });
+        },
+        savePdf(){
+            html2canvas(document.getElementById("terrainSoccer"), {
+                onrendered: function(canvas) {
+                    //canvas.height = 600;
+                    //canvas.width = 600;
+                    var img = canvas.toDataURL('image/png');
+                    var doc = new jsPDF();
+                    doc.text("Exercice 1 - ESCoach", 10, 10);
+                    doc.addImage(img, 'JPEG', 20, 20);
+                    doc.addHTML(canvas);
+                    doc.save('exercice.pdf');
+                }
+            });
+        },
+        deleteObject() {
+            this.objectSelected.remove();
+            this.lstObjectsDraggable.splice(this.lastIndexObjectSelected, 1);
+            this.objectSelected = undefined;
+            this.initButtons(false);
+        },
+        deleteAll(){
+            $('.terrain-space').empty();
+            this.objectSelected = null;
+            this.initButtons(false);
+            this.initButtonsFormes(true);
+            this.lstObjectsDraggable = [];
+        },
+        rotate(){
+            if(this.objectSelected){
+                let rotate = this.objectSelected[0].children[0]?.getAttribute('data-rotate');
+
+                let deg = rotate ? parseInt(rotate, 10) : 0;
+                deg = deg < 360 ? deg + 10 : 10;
+
+                this.objectSelected[0].children[0].style.webkitTransform = 
+                    this.objectSelected[0].children[0].style.transform = 'rotate(' + deg + 'deg)';
+
+                this.objectSelected[0].children[0].setAttribute('data-rotate', deg); 
+            }
+        },
+        addText(){
+            this.addObjectToList('drag-text', undefined, undefined, true);
+        },
+        verifyText(indexObj){
+            let value = this.lstObjectsDraggable[indexObj].text;
+            if(!value || value === ''){
+                this.deleteObject();
+            }
+        },
+    },
+    created(){
+    },
+    mounted(){
+        let globalThis = this;
+        this.initButtons(false);
+        this.initButtonsFormes(false);
+
+        //detecter tous les clicks qui se font dans terrainSoccer
+        $('#terrainSoccer').click(event =>{
+            if(event.target.id === 'terrainSoccer'){
+                globalThis.deselectionner();  
+            }
+        });
+    }
+}
+</script>
+<style lang="scss" scoped>
+    @import '../../public/css/design';
+    @import '../../public/css/modal';  
+</style>

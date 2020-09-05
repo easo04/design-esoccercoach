@@ -1,0 +1,70 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+// Colors
+$blue: #3490dc;
+$indigo: #6574cd;
+$purple: #9561e2;
+$pink: #f66d9b;
+$red: #e3342f;
+$orange: #f6993f;
+$yellow: #ffed4a;
+$green: #38c172;
+$teal: #4dc0b5;
+$cyan: #6cb2eb;
+
+//CUSTOM COLORS
+//$color-soccer-coach: #17b87d;
+$color-soccer-coach: #03aca4;
+$color-soccer-coach-selected: #1b534f;
+$gris-soccer-coach: #F3F3F3;
+$gris-obscur-soccer-coach:#919191;
+$gris-clair-soccer-coach:#aaaaaa;
+$color-border: #ced4da;
+//$color-action:#b81752;
+$color-action:#8a2539;
+$color-action-selected: #45191f;
+$color-bougth: #370028;
+$color-bougth-action: #572947;
+$box-shadow-color:rgba(23, 184, 125, 0.2);
+$color-succes:#0bac03;
+$color-red:#ac030b;
+
+$color-blue-formes: #03beb7;
+$color-red-formes:#be030a;
+$color-yellow-formes:#ffff00;
+
+
+// Extra small screen / phone
+//** Deprecated `$screen-xs` as of v3.0.1
+$screen-xs:                  480px !default;
+//** Deprecated `$screen-xs-min` as of v3.2.0
+$screen-xs-min:              $screen-xs !default;
+//** Deprecated `$screen-phone` as of v3.0.1
+$screen-phone:               $screen-xs-min !default;
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+//** Deprecated `$screen-tablet` as of v3.0.1
+$screen-tablet:              $screen-sm-min !default;
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md:                  992px !default;
+$screen-md-min:              $screen-md !default;
+//** Deprecated `$screen-desktop` as of v3.0.1
+$screen-desktop:             $screen-md-min !default;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg:                  1200px !default;
+$screen-lg-min:              $screen-lg !default;
+//** Deprecated `$screen-lg-desktop` as of v3.0.1
+$screen-lg-desktop:          $screen-lg-min !default;

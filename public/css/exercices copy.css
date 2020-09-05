@@ -1,0 +1,537 @@
+body{
+    background-color: #F3F3F3;
+}
+
+a{
+    color:#03aca4;
+}
+
+.block-p{
+    width: 100%;
+    height: 50px;
+}
+
+.drag {
+    width: 22px;
+    height: 22px;
+    /*min-height: 6.5em;*/
+    margin: 1%;
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 50%;
+    margin:3px;
+    /*border:1px solid #679403;*/
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+    z-index: 3;
+}
+
+#star-demo {
+    display: block;
+    margin: auto;
+    touch-action: none;
+    max-height: 100%;
+}
+
+.drag:hover{
+    border:2px solid white;
+}
+
+.drag-player-list{
+    width: 40px;
+    height: 40px;
+    /*min-height: 6.5em;*/
+    margin: 1%;
+    background-color: #1a1a1a;
+    color: white;
+    border-radius: 2em;
+    margin-top: 23px;
+    margin-left: auto;
+    margin-right: auto;
+    /*border:1px solid #679403; */
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+}
+
+.nav-tabs .nav-link {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    font-size: 1rem;
+}
+
+.nav-link.active{
+
+    font-weight: 500;
+}
+
+.nav-tabs .nav-link:focus, .nav-tabs .nav-link:hover {
+    border-color: transparent;
+}
+
+.drag-player-list-img{
+    width: 80px;
+    height: 80px;
+    margin-top: 16px;
+    margin-left: auto;
+    margin-right: auto;
+    color:red;
+}
+
+.drag-outil{ 
+    position: absolute;
+    /*height: 80px;
+    width: 100px;*/
+    /*width: auto;
+    height: max-content;*/
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+    z-index: 25;
+}
+
+.drag-forme{ 
+    position: absolute;
+    /*height: 80px;
+    width: 100px;*/
+    /*width: auto;
+    height: max-content;*/
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+    z-index: 20;
+}
+
+.drag-joueur{
+    position: absolute;
+    /*height: max-content;*/
+    /*min-height: 6.5em;*/
+    /*margin: 1%;*/
+    -webkit-transform: translate(0px, 0px);
+            transform: translate(0px, 0px);
+    z-index: 30;
+}
+
+
+.max-taille img{
+    width: 60px;
+    height: 60px;
+}
+
+.drag-joueur img:hover{
+    width: inherit + 1;
+    height: inherit + 1;
+}
+
+.drag-joueur p{
+    text-align: center;
+    font-weight: bold;
+    color:black;
+}
+
+#drag-me::before {
+    content: "#" attr(id);
+    font-weight: bold;
+}
+
+.terrain{
+    border: 1px solid black;
+    padding: 5px;
+    width: 60%;
+}
+
+.outils{
+    border: 1px solid black;
+    padding-right: 5px;
+    padding-left: 5px;
+    width: 20%;
+}
+
+.icons-soccer{
+    margin-top: 10px;
+}
+
+.actions-icons{
+    float: right;
+}
+
+.icons-soccer i{
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.icons-soccer i:hover{
+    color: red;
+    font-size: 21px;
+}
+
+.actions-icons i{
+    padding-left: 10px;
+}
+
+.color-icons{
+    float: left;
+}
+
+.color-outil{
+    width: 20px;
+    height: 20px;
+    border: 1px solid black;
+    cursor: pointer;
+    float: left;
+    margin-right: 10px;
+}
+
+.color-outil-selected{
+    border: 2px solid black;
+}
+
+.color-outil:hover{
+    border: 2px solid black;
+    width: 21px;
+    height: 21px;
+}
+
+.conteneur{
+    margin-top: 5px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: 5px;
+    margin-left: 5px;
+    height: auto;
+    width: auto;
+    background-color: white;
+}
+
+.outils{
+    width: 20%;
+}
+
+.terrain{
+    width: 60%;
+}
+
+.action{
+    height: 50px;
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 24px;
+}
+
+.content-design{
+    display: flex;
+    height: 532px;
+}
+
+
+.terrain-space{
+    position: relative;
+    height: 472px;
+    border: 1px solid black;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    background-image: url('../images/terrain/terrain11.png');
+    background-repeat: no-repeat;
+    /*background-size: cover;*/
+    background-size: 100% 472px;
+}
+
+.list-joueur-add{
+    display: flex;
+}
+
+.joueur-add img:hover{
+    cursor: pointer;
+    width: 31px;
+    height: 31px;
+}
+
+.outils-terrains{
+    margin-top:10px;
+}
+
+.list-terrain-add{
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow: scroll;
+    height: 400px;
+    overflow-x: hidden;
+}
+
+.list-group-custom{
+    display: grid;
+    grid:auto / auto auto auto;
+}
+
+.list-group-item:first-child{
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+@media screen and (min-width: 1440px) {
+    /*.conteneur{
+        width: 60%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .terrain{
+        width: 765px;
+    }
+
+    .outils{
+        width: 221px;
+    }*/
+}
+
+.tab-onglet{
+    padding-left: 0px;
+    padding-right: 0px;
+    overflow: scroll;
+    height: 465px;
+    overflow-x: hidden;
+}
+
+.center {
+    margin: auto;
+    width: 50%;
+    display: block;
+}
+
+.terrain-li{
+    padding: 0px !important;
+}
+
+.terrain-li-div{
+    cursor: pointer;
+    height: 180px;
+    width:100%;
+}
+
+.terrain-li-div img{
+    width: inherit;
+    height: 178px;
+}
+
+.joueur-li{
+    padding: 10px;
+}
+
+.joueurs-li-div{
+    cursor: pointer;
+    height: 100px;
+    border:1px solid black;
+}
+
+.outil-li{
+    padding: 10px;
+}
+
+.outil-li-div{
+    cursor: pointer;
+}
+
+.drag-outil-list{
+    margin: 1%;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.drag-forme-list{
+    margin: 1%;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ligne-li{
+    padding: 0 !important;
+}
+
+.ligne-li-div{
+    cursor: pointer;
+    height: 180px;
+    width: 100%;
+}
+
+.ligne-li-div img{ 
+    width: inherit;
+    height: 178px;
+}
+
+.ligne-li-div-sm{
+    cursor: pointer;
+}
+
+.terrain-green{
+    background-color: #00923f;
+}
+
+.terrain-blue{
+    background-color: #1a75ff;
+}
+
+.terrain-white{
+    background-color: #ffffff;
+}
+
+.object-selected{
+    border:1px solid white;
+}
+
+.object-selected-img{
+    width: auto;
+    height: 58px;
+}
+
+.object-selected-outil img{
+    border: 1px dashed black;
+}
+
+.action-selected{
+    color: red;
+}
+
+.action-selected-form{
+    color: red;
+}
+
+#select-transparence{
+    margin-left: 10px;
+}
+
+.lgn-canvas{
+    width: 100%;
+    height: 75px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+.rectangle-bleu{
+    margin-top: 18px;
+    width: 60px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #29e;
+    border-radius: 0;
+    /*border:1px solid #679403; */
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+}
+
+.rectangle-rouge{
+    margin-top: 18px;
+    width: 60px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: red;
+    border-radius: 0;
+    /*border:1px solid #679403; */
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+}
+
+.rectangle-border-simple{
+    margin-top: 18px;
+    width: 100px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0;
+    border-style: solid;
+    /*border:1px solid #679403; */
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+}
+
+.rectangle-border{
+    margin-top: 18px;
+    width: 100px;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius:0;
+    border-style: dashed;
+    /*border:1px solid #679403; */
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+}
+
+.btnNext{
+    margin-top: 40px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.btnNext .btnNextAction{
+    float: right;
+}
+
+#myCanvas{
+    width: 100%;
+    height: inherit;
+}
+
+.styles-lignes{
+    border:1px solid black;
+    margin-top: 30px;
+    height: 130px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 20px;   
+    overflow: auto;
+    white-space: nowrap;
+    padding: 12px;
+}
+
+.styles-lignes div {
+    display: inline-block;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.style-option-ligne{
+    width: 130px;
+    height: 80px;
+
+}
+
+.style-option-ligne img{
+    width: inherit;
+    height: inherit;
+    border:1px solid black;
+}
+
+.style-option-forme{
+    width: 100px;
+    height: 60px;
+}
+
+.style-option-forme img{
+    width: inherit;
+    height: inherit;
+    border:1px solid black;
+    vertical-align: inherit!important;
+}
+
+.style-option-forme:hover{
+    width: 100px;
+    height: 61px;
+}
+
+
+.resize-drag-form img{
+    width: inherit;
+    height: inherit;
+}
+
+
+
+
+
