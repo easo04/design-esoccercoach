@@ -7,9 +7,11 @@ export default new Vuex.Store({
   state: {
     listeTerrains : [
       {'name': 'terrain11', 'color': '', 'image': 'terrain11.png'},	
-      {'name': 'terrain10', 'color': '', 'image': 'terrain10.png'},
+      {'name': 'terrain10', 'color': '', 'image': 'terrain10.png'},    
+      {'name': 'terrain17', 'color': '', 'image': 'terrain17.png'},
       {'name': 'terrain1', 'color': '', 'image': 'terrain1.png'},
       {'name': 'terrain14', 'color': '', 'image': 'terrain14.png'},
+      {'name': 'terrain16', 'color': '', 'image': 'terrain16.png'},
       {'name': 'terrain13', 'color': '', 'image': 'terrain13.png'},
     ],
     listeJoueurs : [
@@ -44,7 +46,8 @@ export default new Vuex.Store({
       {'name': 'hurdles-red', 'image': 'hurdles-red.png'},
       {'name': 'blocking', 'image': 'blocking.png'},
       {'name': 'blocking-red', 'image': 'blocking-red.png'},
-      {'name': 'pick', 'image': 'pick.png'},
+      {'name': 'pick', 'image': 'pick.png'},   
+      {'name': 'pic-red', 'image': 'pick-red.png'},
     ],
     listeLignes : [
       {'name': 'terrain7-2lignes', 'image': 'terrain7-2lignes.png', 'options':[{'image':'terrain7-2lignes_2color'}], 'terrain':'terrain7'}, 
@@ -82,8 +85,6 @@ export default new Vuex.Store({
     listeFormes : [
       {'name': 'square-transparent', 'image': 'square-transparent.png', 'forme': 'square'},
       {'name': 'rectangle-black', 'image': 'rectangle-black.png', 'forme': 'rectangle'},
-      {'name': 'triangle-black', 'image': 'triangle-black.png', 'forme': 'triangle'},
-      {'name': 'circle', 'image': 'circle.png', 'forme': 'circle'},
       {'name': 'arrow6', 'image': 'arrow6.png', 'forme': ''},
       {'name': 'arrow15', 'image': 'arrow15.png', 'forme': ''},
       {'name': 'arrow29', 'image': 'arrow29.png', 'forme': ''},
@@ -100,11 +101,15 @@ export default new Vuex.Store({
       {'name': 'line1-left', 'image': 'line1-left.png', 'forme': ''},
       {'name': 'line2', 'image': 'line2.png', 'forme': ''},
       {'name': 'line2-left', 'image': 'line2-left.png', 'forme': ''},
-    ]
+    ],
+    modePresentation:false
   },
   getters:{
   },
   mutations: {
+    setModePresentationStore(store, value){
+      store.modePresentation = value;
+    }
   },
   actions: {
   },

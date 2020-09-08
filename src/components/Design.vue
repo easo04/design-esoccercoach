@@ -78,23 +78,32 @@
                         </div>
 
                         <div class="actions-icons icons-soccer">
-                            <i class="fas fa-font" id="addText" @click="addText()"></i>
                             <i class="fas fa-plus action-outil" id="btnZoomPlus" @click="zoomPlus()" v-if="showActionForms"></i>
                             <i class="fas fa-minus action-outil" id="btnZoomMoins" @click="zoomMoins()" v-if="showActionForms"></i>
                             <i class="fas fa-fill-drip action-outil" id="btnColor" @click="setShowColorActions()"  v-if="showBtnRemplir"></i>
-                            <i class="fa fa-file-image-o" id=savePng @click="savePNG()"></i>
-                            <i class="fa fa-file-pdf-o" id=savePdf @click="savePdf()"></i>
                             <i class="fa fa-eraser" @click="deleteObject()" id="supprimerObject" v-if="showActionsObject"></i>
                             <i class="fa fa-trash" data-toggle="modal" data-target="#modalDeleteAll" id="deleteAll" v-if="showDeleteAll"></i>
+                            <i class="fas fa-font" id="addText" @click="addText()"></i>
+                            <i class="fa fa-circle add-number" id="addNumber" @click="addNumber()">
+                                <span class="fa-stack-1x">1</span>
+                            </i>
+                            <i class="fa fa-download" id=savePng @click="savePNG()"></i>
+                            <!--<i class="fa fa-file-pdf-o" id=savePdf @click="savePdf()"></i>-->
                         </div>
                     </div>
                     <div class="row terrain-space" id="terrainSoccer">
                         <div v-for="(object, indexObj) in lstObjectsDraggable" :key="indexObj" :id="object.id" class="draggable" :class="object.class"  @click="selectObject(object.id, indexObj)">
-                            <img :id="object.image.id" :src="object.image.src" v-if="object.type !== 'drag-text' && (!object.forme || object.forme === '')">
+                            <img :id="object.image.id" :src="object.image.src" v-if="object.type !== 'drag-text' && object.type !== 'drag-number' && (!object.forme || object.forme === '')">
                             <div class="text-input" v-if="object.type === 'drag-text'">
                                 <input type="text" :id="'input-text' + indexObj" v-model="object.text" name="name" autocomplete="off" @blur="verifyText(indexObj)">
                             </div>
-                            <div :id="object.image.id" :class="object.forme" v-if="object.forme && object.forme !== ''"></div>
+                            <div :id="object.image.id" :class="object.forme" v-if="object.forme && object.forme !== ''">        
+                            </div>
+                            <div class="number-object" v-if="object.type === 'drag-number'">
+                                <i class="fa fa-circle add-number" :id="'i-number-'+indexObj">
+                                    <span class="fa-stack-1x">{{object.number}}</span>
+                                </i>
+                            </div>
                             <div class="rotate" v-if="indexObj === lastIndexObjectSelected && object.canRotate" @click="rotate()">
                                 <i class="fa fa-rotate-right"></i>
                             </div>
@@ -223,6 +232,7 @@ export default {
             colorPlayer:undefined,
             rangeOpacity:100,
             lstFormes : ['square', 'rectangle', 'triangle', 'circle'],
+            numberSuite:0,
 
         }
     },
@@ -243,12 +253,12 @@ export default {
         showDeleteAll(){
             return this.lstObjectsDraggable.length > 0;
         },
-        ...mapState(['listeTerrains', 'listeJoueurs', 'listeOutils', 'listeLignes', 'listeFormes'])
+        ...mapState(['listeTerrains', 'listeJoueurs', 'listeOutils', 'listeLignes', 'listeFormes', 'modePresentation'])
     },
     watch:{
     },
     methods:{
-        addObjectToList(type, idImage, srcImage, canRotate, textObject, formeObject){
+        addObjectToList(type, idImage, srcImage, canRotate, textObject, formeObject, numberObject){
             let noObject = this.lstObjectsDraggable.length + 1;
             let object = {
                 id:type + '-' + noObject,
@@ -262,6 +272,7 @@ export default {
                 text:'Text ...',
                 textObject:textObject,
                 forme:formeObject,
+                number:numberObject,
                 image:{
                     id:idImage + '-' + noObject,
                     src:srcImage,
@@ -394,7 +405,7 @@ export default {
 
                     height = height !== '' ? parseInt(height) : 200;
                     width = width !== '' ? parseInt(width) : this.widthFormeInit;
-                    if(height < 300){
+                    if(width < 300){
                         image.style.height = (height + 10) + 'px'; 
                         image.style.width = (width + 10) + 'px'; 
                     }
@@ -438,7 +449,7 @@ export default {
 
                     height = height !== '' ? parseInt(height) : 200;
                     width = width !== '' ? parseInt(width) : this.widthFormeInit;
-                    if(height > 180){
+                    if(width > 180){
                         image.style.height = (height - 10) + 'px'; 
                         image.style.width = (width - 10) + 'px'; 
                     }
@@ -463,8 +474,10 @@ export default {
 
             this.lstObjectsDraggable[indexObj].select = true;
 
-            //ADD CLASS OBJECT-SELECT
-            this.objectSelected.addClass('object-selected-outil');
+            //add class object-select-outil si ce n'est pas mode presentation
+            if(!this.modePresentation){
+                this.objectSelected.addClass('object-selected-outil');
+            }
 
             if(dragId.includes('drag-text')){
                 document.getElementById('input-text' + indexObj).focus();
@@ -485,8 +498,10 @@ export default {
             image.style.opacity = this.rangeOpacity / 100;
         },
         deselectionner(){
-            let lastObjectSelected = $('.object-selected-outil');
-            lastObjectSelected?.removeClass('object-selected-outil');
+            if(!this.modePresentation){
+                let lastObjectSelected = $('.object-selected-outil');
+                lastObjectSelected?.removeClass('object-selected-outil');
+            }
 
             this.objectSelected = null;
             this.showActionForms = false;
@@ -528,9 +543,15 @@ export default {
             });
         },
         deleteObject() {
+            //vérifier si l'objet est de type number
+            if(this.lstObjectsDraggable[this.lastIndexObjectSelected].type === 'drag-number'){
+                this.numberSuite--;
+            }
+
             this.objectSelected.remove();
             this.lstObjectsDraggable.splice(this.lastIndexObjectSelected, 1);
             this.objectSelected = undefined;
+            this.lastIndexObjectSelected =undefined;
             this.initButtons(false);
         },
         deleteAll(){
@@ -539,6 +560,8 @@ export default {
             this.initButtons(false);
             this.initButtonsFormes(true);
             this.lstObjectsDraggable = [];
+            this.lastIndexObjectSelected = undefined;
+            this.numberSuite = 0;
         },
         rotate(){
             if(this.objectSelected){
@@ -555,6 +578,10 @@ export default {
         },
         addText(){
             this.addObjectToList('drag-text', undefined, undefined, true);
+        },
+        addNumber(){
+            this.numberSuite++;
+            this.addObjectToList('drag-number', undefined, undefined, false, undefined, undefined, this.numberSuite);
         },
         verifyText(indexObj){
             let value = this.lstObjectsDraggable[indexObj].text;

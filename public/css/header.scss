@@ -1,0 +1,49 @@
+
+@import 'variables';
+
+.header-page{
+    color:white;
+    font-size: 0.8rem;
+    height: 47px;
+    background-color:$color-soccer-coach;
+    width: 100%;
+    opacity: 0.8;
+    margin-bottom: 5px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .logo{
+        height: 44px; 
+        margin-left: 5px;
+    }
+
+    .actions-header{
+        margin-left: auto;
+        margin-right: 5px;
+        font-size: 18px;
+        border: 2px solid white;
+        width: 38px;
+        height: 38px;
+        border-radius: 50%;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+
+        &.mode-presentation{
+            color:#101d29;
+            font-size: 16px;            
+            border: 2px solid #101d29;
+            &:hover{
+                font-size: 17px;          
+            }
+        }
+
+        &:hover{
+            font-size: 17px;
+        }
+    }
+}
