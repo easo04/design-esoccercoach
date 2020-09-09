@@ -18,26 +18,6 @@
         background-color: white;
         position: relative;
 
-        .spinner{
-            background-color: black;
-            opacity: 0.5;
-            color:white;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 500;
-            position: absolute;
-            width: 100%;
-            flex-wrap: wrap;
-
-            .v-spinner{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }   
-        }
-
         .content-design{
             z-index: 300;
         }
@@ -204,6 +184,26 @@
 
             &:hover{
                 background-color: rgba(170, 170, 170, 0.8);
+            }
+        }
+    }
+
+    .drag-joueur-img{
+        position: absolute;
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        z-index: 30;
+
+        height: 85px;
+        width: 85px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            &:hover{
+                width: inherit + 1;
+                height: inherit + 1;
             }
         }
     }
@@ -389,6 +389,29 @@
         }
     }
 
+    .list-joueurs-img{
+        display: flex;     
+        flex-wrap: wrap;
+        height: 150px;
+        overflow: scroll;
+        overflow-x: hidden;
+        border-top: 1px solid $color-border;
+        padding-top: 5px;
+        margin-top:5px;
+
+        .joueur-add-img{
+            img{
+                height: 50px;
+                height: 50px;
+                &:hover{
+                    cursor: pointer;
+                    width: 51px;
+                    height: 51px;
+                }
+            }
+        }
+    }
+    
     .with-text{
         display: flex;
         justify-content: center;
@@ -401,7 +424,7 @@
     }
 
     .outils-terrains{
-        margin-top:10px;
+        margin-top:5px;
         border-top:1px solid $color-border;
         padding-top: 5px;
     }
@@ -410,7 +433,7 @@
         padding-left: 0px;
         padding-right: 0px;
         overflow: scroll;
-        height: 380px;
+        height: 230px;
         overflow-x: hidden;
     }
     

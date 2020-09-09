@@ -15,10 +15,33 @@ export default new Vuex.Store({
       {'name': 'terrain13', 'color': '', 'image': 'terrain13.png'},
     ],
     listeJoueurs : [
-      {'name': 'player1', 'image': 'player1.png'}, 
-      {'name': 'player5', 'image': 'player5.png'},
-      {'name': 'player6', 'image': 'player6.png'},
-      {'name': 'player6', 'image': 'player6.png'}
+      {'name': 'player7-red', 'image': 'player7-red.png'},
+      {'name': 'player7-blue', 'image': 'player7-blue.png'},
+      {'name': 'player7-yellow', 'image': 'player7-yellow.png'},  
+      {'name': 'player7-black', 'image': 'player7-black.png'},
+      {'name': 'player6-red', 'image': 'player6-red.png'},
+      {'name': 'player6-blue', 'image': 'player6-blue.png'},
+      {'name': 'player6-yellow', 'image': 'player6-yellow.png'},  
+      {'name': 'player6-black', 'image': 'player6-black.png'},
+      {'name': 'player8-red', 'image': 'player8-red.png'},
+      {'name': 'player8-blue', 'image': 'player8-blue.png'},
+      {'name': 'player8-yellow', 'image': 'player8-yellow.png'},  
+      {'name': 'player8-black', 'image': 'player8-black.png'},
+      {'name': 'player9-red', 'image': 'player9-red.png'},
+      {'name': 'player9-blue', 'image': 'player9-blue.png'},
+      {'name': 'player9-yellow', 'image': 'player9-yellow.png'},  
+      {'name': 'player9-black', 'image': 'player9-black.png'},
+      {'name': 'player13-red', 'image': 'player13-red.png'},
+      {'name': 'player13-blue', 'image': 'player13-blue.png'},
+      {'name': 'player13-yellow', 'image': 'player13-yellow.png'},  
+      {'name': 'player13-black', 'image': 'player13-black.png'},    
+      {'name': 'player14-red', 'image': 'player14-red.png'},
+      {'name': 'player14-blue', 'image': 'player14-blue.png'},
+      {'name': 'player14-yellow', 'image': 'player14-yellow.png'},  
+      {'name': 'player14-black', 'image': 'player14-black.png'},   
+      {'name': 'player10', 'image': 'player10.png'},
+      {'name': 'player11', 'image': 'player11.png'},
+      {'name': 'player12', 'image': 'player12.png'},
     ],
     listeOutils : [
       {'name': 'ballon', 'image': 'ballon.png'}, 
@@ -102,13 +125,23 @@ export default new Vuex.Store({
       {'name': 'line2', 'image': 'line2.png', 'forme': ''},
       {'name': 'line2-left', 'image': 'line2-left.png', 'forme': ''},
     ],
-    modePresentation:false
+    modePresentation:false,
+    spinner:{
+      showSpinner:false,
+      textSpinner:'Téléchargement de l\'image en cours ...',
+    }
   },
   getters:{
   },
   mutations: {
     setModePresentationStore(store, value){
       store.modePresentation = value;
+    },
+    setShowSpinner(store, value){
+      store.spinner.showSpinner = value;
+    },
+    setTextSpinner(store, value){
+      store.spinner.textSpinner = value;
     }
   },
   actions: {

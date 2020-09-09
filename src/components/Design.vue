@@ -2,12 +2,6 @@
     <div class="design-component">
         <div class="block-p" v-if="showPubSection"></div>
         <div class="conteneur">
-            <div class="spinner" v-if="showSpinner">
-                <div class="spinner-load">
-                    <pulse-loader color="#8a2539"></pulse-loader>  
-                    <h3 class="texte-spinner">{{textSpinner}}</h3>
-                </div>
-            </div>
             <div class="content-design">
                 <div class="outils">
                     <div class="outils-joueurs"> 
@@ -51,6 +45,11 @@
                                     <i class="fas fa-font"  @click="addPlayerWithTextByColor('black')"></i>
                                 </div> 
                             </div>
+                        </div>  
+                        <div class="list-joueur-add list-joueurs-img">  
+                            <div class="joueur-add joueur-add-img" v-for="(playerImg, indexPlayerIndex) in listeJoueurs" :key="indexPlayerIndex">
+                                <img :id="'player-img-' + playerImg.name" :src="'images/joueurs/' + playerImg.image" @click="addPlayerImg(playerImg.image, playerImg.name)">
+                            </div> 
                         </div>  
                     </div>
                     <div class="outils-terrains">
@@ -117,13 +116,13 @@
                     <div class="outils-onglets-content">
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#outilsDiv" @click="initButtons(false);initButtonsFormes(false);">Outils</a>
+                                <a class="nav-link active" data-toggle="tab" href="#outilsDiv" @click="initButtons();initButtonsFormes(false);">Outils</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#lignesDiv" @click="initButtons(false);">Lignes</a>
+                                <a class="nav-link" data-toggle="tab" href="#lignesDiv" @click="initButtons();">Lignes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#formsDiv" @click="initButtons(false);initButtonsFormes(true);">Formes</a>
+                                <a class="nav-link" data-toggle="tab" href="#formsDiv" @click="initButtons();initButtonsFormes(true);">Formes</a>
                             </li>
                         </ul>
 
@@ -205,17 +204,14 @@
 <script>
 
 import { mapState, mapGetters, mapMutations } from 'vuex';
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
 export default {
     name:"Design",
     components: {
-        PulseLoader
     },
     data(){
         return{
             terrainSelected:'terrain11',
             lstObjectsDraggable:[],
-            formeSelected:undefined,
             typeFormeSelected:undefined,
             objectSelected:undefined,
             lastIndexObjectSelected:undefined,
@@ -226,8 +222,6 @@ export default {
             showActionForms:false,
             showActionsObject:false,
             showBtnRemplir:false,
-            showSpinner:false,
-            textSpinner:'',
             textPlayer:undefined,
             colorPlayer:undefined,
             rangeOpacity:100,
@@ -283,8 +277,11 @@ export default {
 
             this.deselectionner();
         },
-        addPlayerByColor(color){
+        addPlayerByColor(color, ){
             this.addObjectToList('drag-joueur', color, 'images/joueurs/player1-' + color + '.png', false);
+        },
+        addPlayerImg(img, name){
+            this.addObjectToList('drag-joueur-img', name, 'images/joueurs/' + img, false);
         },
         addPlayerWithTextByColor(color){
             this.colorPlayer = color;
@@ -299,7 +296,6 @@ export default {
             this.addObjectToList('drag-outil', outilName, 'images/outils/' + outilImage, canRotate);
         },
         ajouterForm(formeName, formeImage, formeObject) {
-            this.formeSelected = formeName;
             let canRotate = formeName.includes('arrow');
             this.addObjectToList('drag-forme', formeName, 'images/formes/' + formeImage, canRotate, undefined, formeObject);
         },
@@ -336,7 +332,7 @@ export default {
             $('#btnMakeCopy').removeClass('action-selected-form');
             $('#btnSquare').addClass('action-selected-form');
         },
-        initButtons(showColors) {
+        initButtons() {
             
             this.showActionsObject = true;
             this.showColorActions = false;
@@ -370,7 +366,6 @@ export default {
                     break;
             }
             image.style.backgroundColor = colorBackground;
-            //image.src = 'images/formes/' + this.typeFormeSelected + '-' + color + '.png';
         },
         zoomPlus(){
             if(this.objectSelected){
@@ -461,10 +456,15 @@ export default {
             this.lastIndexObjectSelected = indexObj;
 
             //INITALISER LES BOUTONS D'ACTIONS
-            this.initButtons(true);
+            this.initButtons();
 
             //TOUT DESELECTIONNER
             let lastObjectSelected = $('.object-selected-outil');
+
+            //vérifier si c'est un objet joueur avec image
+            //let isPlayerImg = this.lstObjectsDraggable[indexObj].isPlayerImg;
+            //let className = isPlayerImg ? 'object-selected-outil-img' : 'object-selected-outil';
+
             lastObjectSelected?.removeClass('object-selected-outil');
 
             let lastObject = this.lstObjectsDraggable.find(o => o.select);
@@ -512,9 +512,22 @@ export default {
         },
         savePNG(){
             this.deselectionner();
-            this.textSpinner = 'Téléchargement de l\'image en cours';
-            this.showSpinner = true;
-            const dowloadImage = new Promise((resolve, reject) => {    
+            this.setTextSpinner('Téléchargement de l\'image en cours ...');
+            this.setShowSpinner(true);
+
+            let globalThis = this;
+
+            setTimeout(() => {
+                let domElement = document.getElementById("terrainSoccer");
+                html2canvas(domElement, {
+                    onrendered: function(canvas) {
+                        Canvas2Image.saveAsPNG(canvas); 
+                        globalThis.setShowSpinner(false);
+                    }
+                });
+            }, 5 * 1000);
+
+            /*const dowloadImage = new Promise((resolve) => {    
                 let domElement = document.getElementById("terrainSoccer");
                 html2canvas(domElement, {
                     onrendered: function(canvas) {
@@ -525,8 +538,8 @@ export default {
             });
 
             dowloadImage.then(val=>{
-                this.showSpinner = false;
-            });
+                this.setShowSpinner(false);
+            });*/
         },
         savePdf(){
             html2canvas(document.getElementById("terrainSoccer"), {
@@ -552,12 +565,12 @@ export default {
             this.lstObjectsDraggable.splice(this.lastIndexObjectSelected, 1);
             this.objectSelected = undefined;
             this.lastIndexObjectSelected =undefined;
-            this.initButtons(false);
+            this.initButtons();
         },
         deleteAll(){
             $('.terrain-space').empty();
             this.objectSelected = null;
-            this.initButtons(false);
+            this.initButtons();
             this.initButtonsFormes(true);
             this.lstObjectsDraggable = [];
             this.lastIndexObjectSelected = undefined;
@@ -589,12 +602,13 @@ export default {
                 this.deleteObject();
             }
         },
+        ...mapMutations(['setShowSpinner', 'setTextSpinner'])
     },
     created(){
     },
     mounted(){
         let globalThis = this;
-        this.initButtons(false);
+        this.initButtons();
         this.initButtonsFormes(false);
 
         //detecter tous les clicks qui se font dans terrainSoccer
