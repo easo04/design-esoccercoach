@@ -77,16 +77,16 @@
                         </div>
 
                         <div class="actions-icons icons-soccer">
-                            <i class="fas fa-plus action-outil" id="btnZoomPlus" @click="zoomPlus()" v-if="showActionForms"></i>
-                            <i class="fas fa-minus action-outil" id="btnZoomMoins" @click="zoomMoins()" v-if="showActionForms"></i>
-                            <i class="fas fa-fill-drip action-outil" id="btnColor" @click="setShowColorActions()"  v-if="showBtnRemplir"></i>
-                            <i class="fa fa-eraser" @click="deleteObject()" id="supprimerObject" v-if="showActionsObject"></i>
-                            <i class="fa fa-trash" data-toggle="modal" data-target="#modalDeleteAll" id="deleteAll" v-if="showDeleteAll"></i>
-                            <i class="fas fa-font" id="addText" @click="addText()"></i>
-                            <i class="fa fa-circle add-number" id="addNumber" @click="addNumber()">
+                            <i class="fas fa-plus action-outil" id="btnZoomPlus" @click="zoomPlus()" title="Zoom +" v-if="showActionForms"></i>
+                            <i class="fas fa-minus action-outil" id="btnZoomMoins" @click="zoomMoins()" title="Zoom -" v-if="showActionForms"></i>
+                            <i class="fas fa-fill-drip action-outil" id="btnColor" @click="setShowColorActions()" title="Remplir avec couleur" v-if="showBtnRemplir"></i>
+                            <i class="fa fa-eraser" @click="deleteObject()" id="supprimerObject" title="Effacer" v-if="showActionsObject"></i>
+                            <i class="fa fa-trash" data-toggle="modal" data-target="#modalDeleteAll" id="deleteAll" title="Tout supprimer" v-if="showDeleteAll"></i>
+                            <i class="fas fa-font" id="addText" @click="addText()" title="Ajouter texte"></i>
+                            <i class="fa fa-circle add-number" id="addNumber" @click="addNumber()" title="Ajouter compteur">
                                 <span class="fa-stack-1x">1</span>
                             </i>
-                            <i class="fa fa-download" id=savePng @click="savePNG()"></i>
+                            <i class="fa fa-download" id=savePng @click="savePNG()" title="Télécharger"></i>
                             <!--<i class="fa fa-file-pdf-o" id=savePdf @click="savePdf()"></i>-->
                         </div>
                     </div>
@@ -602,7 +602,7 @@ export default {
                 this.deleteObject();
             }
         },
-        ...mapMutations(['setShowSpinner', 'setTextSpinner'])
+        ...mapMutations(['setShowSpinner', 'setTextSpinner', 'setShowModePresentation'])
     },
     created(){
     },
@@ -610,6 +610,7 @@ export default {
         let globalThis = this;
         this.initButtons();
         this.initButtonsFormes(false);
+        this.setShowModePresentation(true);
 
         //detecter tous les clicks qui se font dans terrainSoccer
         $('#terrainSoccer').click(event =>{
@@ -617,7 +618,10 @@ export default {
                 globalThis.deselectionner();  
             }
         });
-    }
+    },
+    beforeDestroy(){   
+        this.setShowModePresentation(false);
+    },
 }
 </script>
 <style lang="scss" scoped>

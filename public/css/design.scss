@@ -2,6 +2,34 @@
 @import 'variables';
 
 .design-component{
+    margin-top: 5px;
+
+    h5{
+        color: #3d3b3b;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    
+    }
+        /* Track */
+    ::-webkit-scrollbar-track {
+        //background: #f1f1f1; 
+        background:$gris-clair-soccer-coach;
+        //background: rgba($color: #193045, $alpha: 0.7);
+        border-radius: 10px;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: $color-action;    
+        border-radius: 10px;
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: $color-action-selected; 
+    }
 
     .block-p{
         background-color: white;
@@ -85,20 +113,6 @@
         img{
             width: 60px;
             height: 60px;
-        }
-    }
-
-    .nav-tabs{
-        .nav-link {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            font-size: 1rem;
-            &.active{
-                font-weight: 500;
-            }
-            &:focus, &:hover{
-                border-color: transparent;   
-            }
         }
     }
 
@@ -243,14 +257,66 @@
         border: 1px solid black;
         padding: 5px;
         width: 60%;
+        background-color: rgba($color: #193045, $alpha: 0.7);
     }
 
     .outils{
         border: 1px solid black;
-        padding-right: 5px;
-        padding-left: 5px;
+        padding:5px;
         width: 20%;
+        background-color: $color-border;
     }
+
+    .outils-joueurs, .outils-terrains{
+        background-color: white;
+        padding: 3px;
+        border-radius: 0.25rem;
+    }
+
+    .outils-onglets-content{
+        .nav{     
+            &.nav-tabs{  
+                border-top-left-radius: 0.25rem;
+                border-top-right-radius: 0.25rem;
+                background-color: rgba($color: #193045, $alpha: 0.7);
+                color:white;
+                .nav-item{
+                    border-right: 1px solid white;
+                    &:last-child{     
+                        border-right: none;
+                    }
+                    .nav-link{       
+                        border-top-left-radius: 0;
+                        border-top-right-radius: 0;  
+                        font-size: 1rem;      
+                        color: white;
+                        
+                        &:first-child{
+                            &.active{  
+                                border-top-left-radius: 0.25rem !important;
+                            }
+                        }
+                        &.active{                           
+                            font-weight: 500;
+                            color:$color-text-p;   
+                            border-color: transparent;  
+                        }
+                        
+                        &:focus, &:hover{
+                            border-color: transparent;   
+                        }
+                    }
+                }
+            }
+        } 
+        .tab-content{  
+            padding: 3px;
+            background-color: white;
+            border-bottom-left-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+        }
+    }
+
 
     .icons-soccer{
         margin-top: 10px;
@@ -354,6 +420,10 @@
         width: 100%;
         padding-right: 20px;
         padding-left: 24px;
+        background-color:$color-border;
+        border-top:1px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
     }
 
     .content-design{
@@ -400,6 +470,7 @@
         margin-top:5px;
 
         .joueur-add-img{
+            border-bottom: 1px solid rgba($color: #ced4da, $alpha: 0.3);
             img{
                 height: 50px;
                 height: 50px;
@@ -426,14 +497,13 @@
     .outils-terrains{
         margin-top:5px;
         border-top:1px solid $color-border;
-        padding-top: 5px;
     }
     
     .list-terrain-add{
         padding-left: 0px;
         padding-right: 0px;
         overflow: scroll;
-        height: 230px;
+        height: 222px;
         overflow-x: hidden;
     }
     
@@ -454,7 +524,7 @@
         padding-left: 0px;
         padding-right: 0px;
         overflow: scroll;
-        height: 475px;
+        height: 471px;
         overflow-x: hidden;
     }
     
@@ -495,18 +565,21 @@
 
     .outil-li-div{
         cursor: pointer;
+        border-bottom: 1px solid rgba($color: #ced4da, $alpha: 0.3);
     }
 
     .drag-outil-list{
         margin: 1%;
-        margin-top: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         margin-left: auto;
         margin-right: auto;
     }
     
     .drag-forme-list{
         margin: 1%;
-        margin-top: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -520,6 +593,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        border-bottom: 1px solid rgba($color: #ced4da, $alpha: 0.3);
     }
 
     .ligne-li-div{

@@ -126,6 +126,7 @@ export default new Vuex.Store({
       {'name': 'line2-left', 'image': 'line2-left.png', 'forme': ''},
     ],
     modePresentation:false,
+    showModePresentation:false,
     spinner:{
       showSpinner:false,
       textSpinner:'Téléchargement de l\'image en cours ...',
@@ -136,6 +137,9 @@ export default new Vuex.Store({
   mutations: {
     setModePresentationStore(store, value){
       store.modePresentation = value;
+    },
+    setShowModePresentation(store, value){
+      store.showModePresentation = value;
     },
     setShowSpinner(store, value){
       store.spinner.showSpinner = value;

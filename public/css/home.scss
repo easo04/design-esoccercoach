@@ -1,0 +1,237 @@
+@import 'variables';
+
+.home{
+    font-family: "Lato",sans-serif;
+    min-height: 500px;
+    
+    h2{
+        text-align: center;
+        color:$color-action;
+        //font-weight: 500;
+    }
+    .section-outil-design{
+        .outil-design{
+            display: flex;
+            height: 670px;
+            background-color: #d9d9d9;
+            &.left{
+                .image-section{
+                    border-right: 2px solid $gris-soccer-coach;
+                }
+                .text-section{    
+                    border-right: none;
+                    .text{
+                        h2{
+                            text-align: right;
+                        }
+                        p{
+                            text-align: right;
+                        }
+                    }
+                }
+            }
+            .text-section, .image-section{
+                width: 50%;
+            }
+            .text-section{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .text{
+                    h2{
+                        text-align: left;
+                        font-size: 3rem;
+                    }
+                    p{
+                        color:$color-text-p;
+                        font-size: 24px;
+                    }
+                }
+                padding: 100px;
+                border-right: 2px solid $gris-soccer-coach;
+            }
+            .image-section{
+                padding: 20px;
+                img{
+                    width: 100%;
+                    border-radius: 0.25rem;
+                }
+            }
+        }
+    }
+    .section-message{
+        height: 650px;
+        width: 100%;
+        background: url('../../public/images/infos/soccer3.jpg');     
+        background-repeat: no-repeat;     
+        background-size: 100% 650px;
+        .message{
+            height: 100%;
+            width: 100%;
+            padding: 60px;
+            background-color: rgba($color: #193045, $alpha: 0.7);
+            h2{
+                color:white;
+                font-size: 3rem;
+                span{
+                    font-weight: bold;
+                }
+            }
+            p{
+                color:white;
+                padding-left: 150px;
+                padding-right: 150px;
+                font-size: 1.5rem;         
+                text-align: center;      
+                margin-top: 50px;
+            }
+
+            
+            .compteur{
+                color:white;
+                font-family: "Lato",sans-serif;
+                .exercices-compteur{
+                    span{
+                        font-size: 1.5rem;
+                        &.number{
+                            font-weight: 500;
+                            font-size: 3rem;
+                        }
+                    }
+                    
+                    text-align: center;
+                }
+            }
+
+            .message-btn{
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                .btn{
+                    font-family: "Lato",sans-serif;
+                    height: auto;
+                    width: auto;
+                    padding: 15px;
+                    background-color: $color-action;
+                    color: white;
+                    letter-spacing: 1px;
+                    font-weight: 700;
+                    font-size: 15px;   
+                    &:hover{
+                        background-color: $color-action-selected;
+                    }
+                    &:focus{
+                        box-shadow: none
+                    }
+                }
+            }
+        }
+    }
+    .section-info{
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        padding: 50px;
+        //background-color: lawngreen;
+        background: url('../../public/images/infos/image-background2.jpg');     
+        background-repeat: no-repeat;     
+        background-size: 100% 100vh;
+
+        .information{
+            width: 50%;
+            color:white;
+
+            .division{
+                width: 60px;
+                height: 4px;
+                background-color: $color-action;
+                margin-bottom: 10px;
+            }
+
+            p{
+                font-family: Georgia, serif;
+                font-style: italic;
+                font-size: 1.5rem;
+            }
+
+            .btn{
+                height: auto;
+                width: auto;
+                padding: 15px;
+                background-color: $color-action;
+                color: white;
+                font-family: "Lato",sans-serif;
+                letter-spacing: 1px;
+                font-weight: 700;
+                font-size: 15px;   
+                &:hover{
+                    background-color: $color-action-selected;
+                }
+                &:focus{
+                    box-shadow: none
+                }
+            }
+        }
+
+        .image-info{
+            width: 50%;
+
+            img{
+                width: 100%;
+            }
+        }
+    }
+    .services{
+        margin-top:30px;
+        height: 500px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .section-btns{     
+            margin-top: 30px;
+            height: 300px;
+            .section{
+                width: 200px;
+                height: 200px;
+                border:3px solid $color-action;
+                border-radius: 30px;
+                margin-right: 20px;
+                background-color: $color-soccer-coach;
+                color:white;
+                opacity: 0.8;
+                box-shadow: 5px 6px 10px 1px #888888;
+                padding-top: 30px;
+                font-weight: 600;
+                &:hover{
+                    background-color: $color-soccer-coach-hover;
+                }
+            }
+        }
+    }
+
+    .contact{
+        text-align: center;
+        height: 150px;
+        background-color:$color-action;
+        color:$gris-soccer-coach;
+        padding:20px 0;
+        h2{
+            color:$gris-soccer-coach;
+        }
+        span{
+            font-family: Georgia, serif;
+            font-size: 1.25rem;
+            &.email{   
+                font-style: italic;
+            }
+            a{
+                color:$gris-soccer-coach;
+            }
+        }
+
+        .reseaux-sociaux{
+            color:white;
+        }
+    }
+
+}

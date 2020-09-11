@@ -1,7 +1,7 @@
 <template>
     <div class="header-page">
         <a href="/"><img class="logo" src="images/logo.png"></a>
-        <div class="actions-header" :title="textTitle" :class="{'mode-presentation':modePresentation}" @click="setModePresentation()">
+        <div class="actions-header" :title="textTitle" v-if="showModePresentation" :class="{'mode-presentation':modePresentation}" @click="setModePresentation()">
             <i class="fa fa-desktop"></i>
         </div>
     </div>
@@ -16,7 +16,7 @@ export default {
         }
     },
     computed:{
-        ...mapState(['modePresentation'])
+        ...mapState(['modePresentation', 'showModePresentation'])
     },
     methods:{
         setModePresentation(){

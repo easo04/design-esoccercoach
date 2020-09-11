@@ -1,0 +1,34 @@
+@import 'variables';
+
+.carousel{
+    width: 100%;
+    position: relative;
+    border:1px solid $color-action;
+    border-radius: .25rem;
+    box-shadow: 5px 6px 10px 1px;
+    .slide-text{
+        position: absolute;   
+        bottom: 0;
+        z-index:30;   
+        background-color: $color-soccer-coach;
+        opacity: 0.8;
+        width: 100%;
+        height: 50px;
+        color: white;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        font-family: Georgia, serif;
+        font-style: italic;
+    }
+    .slide{ 
+        position: relative;
+        z-index:20;   
+        width: inherit;
+        img{
+            width: 100%;   
+            border-radius: .25rem;
+        }
+    }
+}

@@ -8,18 +8,16 @@
       </div>
     </div>
     <HeaderPage/>
-    <Design/>
+    <router-view></router-view>
 </div>
 </template>
 <script>
   import { mapState, mapGetters, mapMutations } from 'vuex'
-  import Design from './components/Design'
   import HeaderPage from './components/HeaderComponent'
   import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
   export default {
   name:"app",
   components:{
-    Design,
     HeaderPage,
     PulseLoader
   },
