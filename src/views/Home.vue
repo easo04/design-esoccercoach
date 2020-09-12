@@ -42,6 +42,7 @@
           <div class="text">     
             <h2>EXERCICES</h2>
             <p>La préparation des exercices est très importante dans la <strong>planification</strong> d'une séance d'entraînement. <br><br>Avec notre <strong>créateur d'exercices</strong>, vous pouvez créer vos exercices d'une façon très simple et les télécharger en image.</p>
+            <a class="btn" @click="gotToExercices()">CRÉEZ VOTRE EXERCICE</a>
           </div> 
         </div> 
         <div class="image-section">
@@ -56,6 +57,7 @@
           <div class="text">     
             <h2>SÉANCES</h2>
             <p>Vous avez un entraînement aujourd'hui?<br><br> Planifiez votre <strong>séance d'entraînement</strong> avec notre créateur de séances.</p>
+            <a class="btn" @click="goToSeances()">CRÉEZ VOTRE SÉANCE</a>
           </div> 
         </div>
       </div> 
@@ -64,6 +66,7 @@
           <div class="text">     
             <h2>ALIGNEMENTS</h2>
             <p>Faites l'alignement de votre équipe d'une façon <strong>simple</strong> et <strong>rapide</strong> <br><br> Choisisez votre système, ajoutez vos joueurs et téléchargez votre alignement.</p>
+            <a class="btn" @click="goToAlignements()">CRÉEZ VOTRE ALIGNEMENT</a>
           </div> 
         </div>
         <div class="image-section">
@@ -123,7 +126,7 @@ export default {
       this.$router.push({path: '/create-exercice'});
     },
     goToAlignements(){
-      this.$router.push({path: '/create-exercice'});
+      this.$router.push({path: '/create-alignement'});
     }
   }
 }

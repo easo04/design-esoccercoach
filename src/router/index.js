@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Design from '../components/Design.vue'
+import DesignAlignement from '../components/DesignAlignement.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ Vue.use(VueRouter)
     path: '/create-exercice',
     name: 'Design',
     component: Design
+  },
+  {
+    path: '/create-alignement',
+    name: 'DesignAlignement',
+    component: DesignAlignement
   },
   {
     path: '/about',

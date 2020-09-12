@@ -9,6 +9,25 @@
         color:$color-action;
         //font-weight: 500;
     }
+    .btn{
+        height: auto;
+        width: auto;
+        padding: 15px;
+        background-color: $color-action;
+        color: white;
+        font-family: "Lato",sans-serif;
+        letter-spacing: 1px;
+        font-weight: 700;
+        font-size: 15px;   
+        &:hover{
+            background-color: $color-action-selected;
+            color:white;
+        }
+        &:focus{
+            box-shadow: none
+        }
+    }
+
     .section-outil-design{
         .outil-design{
             display: flex;
@@ -26,6 +45,9 @@
                         }
                         p{
                             text-align: right;
+                        }
+                        .btn{
+                            float: right;
                         }
                     }
                 }
@@ -54,6 +76,7 @@
                 padding: 20px;
                 img{
                     width: 100%;
+                    height: 100%;
                     border-radius: 0.25rem;
                 }
             }
@@ -153,24 +176,6 @@
                 font-style: italic;
                 font-size: 1.5rem;
             }
-
-            .btn{
-                height: auto;
-                width: auto;
-                padding: 15px;
-                background-color: $color-action;
-                color: white;
-                font-family: "Lato",sans-serif;
-                letter-spacing: 1px;
-                font-weight: 700;
-                font-size: 15px;   
-                &:hover{
-                    background-color: $color-action-selected;
-                }
-                &:focus{
-                    box-shadow: none
-                }
-            }
         }
 
         .image-info{
@@ -183,7 +188,7 @@
     }
     .services{
         margin-top:30px;
-        height: 500px;
+        height: 100vh;
         display: flex;
         justify-content: center;
         align-items: center;
