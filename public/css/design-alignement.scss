@@ -1,0 +1,408 @@
+
+@import 'variables';
+
+.design-alignement{
+    .outils-joueurs{
+        height: 40%;
+        .list-joueurs-img{
+            .joueur-add-img{
+                img{
+                    height: 60px;
+                    width: 100%;
+                    object-fit: contain;
+                }
+            }
+            
+        } 
+    }
+
+    .outils-terrains{
+        height: 59%;
+    }
+
+    .list-joueurs-img{
+        height:165px;
+    }
+
+    .list-terrain-add{
+        height: 265px;
+    }
+
+    .remplacant-list{
+        min-height: 200px;
+        &.vide{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .aucun-remplacant{
+            color:$color-border;
+        }
+        .remplacant-item{
+            padding: 5px;
+            width: 100%;
+            height: 50px;
+            position: relative;
+            border-bottom: 1px solid $color-border;
+            span{
+                color:$color-text-p;
+                font-weight: 600;
+                margin-top: 10px;
+            }
+            .delete-remplacant{
+                color:$color-action;
+                position: absolute;
+                right: 0;
+                &:hover{
+                    color:$color-action-selected;
+                }
+            }
+        }
+    }
+
+    .outils-equipe-content{
+        background-color: white;
+        border-radius: 0.25rem;
+        height: 100%;
+        padding: 3px;
+        position: relative;
+
+        .options-checkbox{
+            position: absolute;
+            bottom: 0;
+        }
+
+        &>div{
+            margin-bottom: 10px;
+        }
+
+        label{
+            margin-left: 5px;          
+            //font-size: 1em;
+            //font-weight: 600;
+        }
+
+        input[type='text']{
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-bottom: 3px solid $color-soccer-coach-opacy;
+            border-right: 1px solid $color-soccer-coach-opacy;
+            border-left:1px solid $color-soccer-coach-opacy;
+
+            &:focus{
+                outline:none;
+                box-shadow:0 0 0 0.1rem $color-soccer-coach-opacy;
+            }
+        }
+
+        .container-checkbox {
+            display: block;
+            position: relative;
+            padding-left: 35px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            input {
+                position: absolute;
+                opacity: 0;
+                cursor: pointer;
+                height: 0;
+                width: 0;
+                &:checked ~ .checkmark {
+                    background-color: $color-soccer-coach-opacy;
+                }
+                &:checked ~ .checkmark:after {
+                    display: block;
+                }
+            }
+
+            .checkmark {
+                position: absolute;
+                top: 0;
+                left: 0;
+                height: 25px;
+                width: 25px;
+                background-color: $gris-obscur-soccer-coach;
+                border-radius: 0.25rem;
+                &:after {
+                    content: "";
+                    position: absolute;
+                    display: none;
+                }
+                &:after {
+                    left: 9px;
+                    top: 5px;
+                    width: 5px;
+                    height: 10px;
+                    border: solid white;
+                    border-width: 0 3px 3px 0;
+                    -webkit-transform: rotate(45deg);
+                    -ms-transform: rotate(45deg);
+                    transform: rotate(45deg);
+                }
+            }
+
+            &:hover input ~ .checkmark {
+                background-color:$color-soccer-coach-opacy;
+            }
+        }
+
+        .system-select{
+            width: 100%;
+            height: 40px;
+            border-bottom: 3px solid $color-soccer-coach-opacy;
+            border-right: 1px solid $color-soccer-coach-opacy;
+            border-left:1px solid $color-soccer-coach-opacy;
+            option{
+                &:hover{
+                    background-color: $color-border;
+                }
+            }
+            &:focus{
+                outline:none;
+                box-shadow:0 0 0 0.1rem $color-soccer-coach-opacy;
+            }
+        }
+
+        .btn-add-remplacant{
+            margin-top: 5px;
+            padding: 10px;
+            background-color: #8a2539;
+            color: white;
+            font-family: "Lato", sans-serif;
+            letter-spacing: 1px;
+            font-weight: 600;
+            font-size: 13px;
+            width: 100%; 
+            margin-bottom: 10px;
+            &:hover{
+                background-color: $color-action-selected;
+            }
+        }
+
+        .delete-remplacant{
+            color:$color-action;
+            text-decoration: underline;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            &:hover{
+                color:$color-action-selected;
+            }
+        }
+
+    }
+
+    .terrain{
+        .terrain-act{
+            position: relative;
+            .add-players{
+                height: 470px;
+                width: 200px;
+                position: absolute;
+                right: 0;
+                top: 50px;
+                z-index: 900;
+                background-color: #ced4da;
+                border: 1px solid black;
+                .btn-add-player{
+                    padding: 10px;
+                    background-color: #8a2539;
+                    color: white;
+                    font-family: "Lato", sans-serif;
+                    letter-spacing: 1px;
+                    font-weight: 600;
+                    font-size: 13px;
+                    width: 100%; 
+                    margin-bottom: 10px;
+                    border-radius: 0;
+                    &:hover{
+                        background-color: $color-action-selected;
+                    }
+                }
+                .lst-joueurs{
+                    padding: 5px;                
+                    .item-joueur{
+                        padding: 5px;
+                        border-bottom: 1px solid $color-border;
+                        text-align: center;
+                        display: flex;
+                        background-color: white;
+                        .name{
+                            cursor: pointer;
+                            width: 70%;
+                        }
+                        .edit{
+                            cursor: pointer;
+                            width: 30%;
+                            color:$color-action;
+                            &:hover{
+                                font-size: inherit+1;
+                                color:$color-action-selected;
+                            }
+                        }
+
+                    }
+                }
+            }
+        }
+        .terrain-space{ 
+            padding: 10px;
+            display: grid;
+            grid-row-gap: 5px;
+            grid-template-rows: 20px auto 20px;
+
+            .nom-equipe{
+                h5{
+                    color: $gris-soccer-coach;
+                }
+            }
+
+            .reserve{
+                color: #363535;
+                font-size: 1.25rem;
+                font-weight: 600;
+                .remplacants{
+                    color:$color-text-p;
+                }
+            }
+            
+            .terrain-grid{
+                display: grid;
+                grid-row-gap: 20px;
+                grid-row-gap: 10px;
+                grid-template-rows: repeat(4, 90px);
+                //grid-template-rows: 60px;
+    
+                .div-g{    
+                    display: grid;
+                    grid-column-gap: 80px;
+                    justify-content: center;
+                }
+    
+                &.terrain-4-4-2{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: auto auto;
+                        }
+                        &.div-milieux{
+                            grid-template-columns: auto auto auto auto;
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: auto auto auto auto;
+                        }
+                    }
+                }
+                &.terrain-3-5-2{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: auto auto;
+                        }
+                        &.div-milieux{
+                            grid-template-columns: auto auto auto auto auto;
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: auto auto auto;
+                        }
+                    }
+                }
+                &.terrain-4-3-3{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: auto auto auto;
+                        }
+                        &.div-milieux{
+                            grid-template-columns: auto auto auto;
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: auto auto auto auto;
+                        }
+                    }
+                }
+                &.terrain-3-4-3{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: auto auto auto;
+                        }
+                        &.div-milieux{
+                            grid-template-columns: auto auto auto auto;
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: auto auto auto;
+                        }
+                    }
+                }
+                &.terrain-4-5-1{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: auto;
+                        }
+                        &.div-milieux{
+                            grid-template-columns: auto auto auto auto auto;
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: auto auto auto auto;
+                        }
+                    }
+                }
+                &.terrain-5-3-2{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: auto auto;
+                        }
+                        &.div-milieux{
+                            grid-template-columns: auto auto auto;
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: auto auto auto auto auto;
+                        }
+                    }
+                }
+                &.terrain-4-2-4{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: auto auto auto auto;
+                        }
+                        &.div-milieux{
+                            grid-template-columns: auto auto;
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: auto auto auto auto;
+                        }
+                    }
+                }
+    
+                .player{
+                    width: 60px;
+                    height: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-wrap: wrap;
+                    position: relative;
+                    .name-player{
+                        position: absolute;
+                        bottom: -10px;
+                        color: white;
+                        font-size: 1rem;
+                        font-weight: 600;
+                    }
+                    .item-g{
+                        &.player-bottom{
+                            align-self: flex-end;
+                        }
+                        &.player-top{
+                            align-self: flex-start;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
