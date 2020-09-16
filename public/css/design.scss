@@ -149,6 +149,19 @@
         }
     }
 
+    .text-input{
+        input{
+            background: transparent;
+            border:none;
+            text-align:center;
+            &:focus {
+                outline: none;
+                border:1px solid black;
+                background-color: rgba(170, 170, 170, 0.2);
+            }
+        } 
+    }
+
     .drag-text{
         position: absolute;
         -webkit-transform: translate(0px, 0px);
@@ -158,19 +171,6 @@
         &.drag-rotate {
             width: 200px;
             height: 50px;
-        }
-
-        .text-input{
-            input{
-                background: transparent;
-                border:none;
-                text-align:center;
-                &:focus {
-                    outline: none;
-                    border:1px solid black;
-                    background-color: rgba(170, 170, 170, 0.2);
-                }
-            } 
         }
         
     }
@@ -257,7 +257,7 @@
         border: 1px solid black;
         padding: 5px;
         width: 60%;
-        background-color: rgba($color: #193045, $alpha: 0.7);
+        background-color: $color-soccer-coach-opacy;
     }
 
     .outils{
@@ -278,7 +278,7 @@
             &.nav-tabs{  
                 border-top-left-radius: 0.25rem;
                 border-top-right-radius: 0.25rem;
-                background-color: rgba($color: #193045, $alpha: 0.7);
+                background-color: $color-soccer-coach-opacy;
                 color:white;
                 .nav-item{
                     border-right: 1px solid white;

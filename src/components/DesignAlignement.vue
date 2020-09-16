@@ -14,9 +14,9 @@
                     <div class="outils-terrains">
                         <h5>Terrains</h5>
                         <div class="list-terrain-add">
-                            <div class="list-group-item terrain-li" v-for="(terrain, index) in listeTerrains" :key="index">
+                            <div class="list-group-item terrain-li" v-for="(terrain, index) in listeTerrainsAlig" :key="index">
                                 <div class="terrain-li-div" @click="changerTerrainImg(terrain.image, terrain.name)">
-                                    <img :src="'images/terrain/' + terrain.image" :title="terrain.name"/>
+                                    <img :src="'images/terrain/alignement/' + terrain.image" :title="terrain.name"/>
                                 </div>
                             </div>
                         </div>
@@ -26,7 +26,6 @@
                     <div class="terrain-act action">
                         <div class="color-icons icons-soccer">
                         </div>
-
                         <div class="actions-icons icons-soccer">
                             <i class="fa fa-download" id=savePng @click="savePNG()" title="Télécharger"></i>
                         </div>
@@ -40,6 +39,10 @@
                             </div>
                         </div> 
                     </div>
+                    <div class="publi-bandeaux" v-if="showPubli">
+                        <div class="publi1"><img src="../../public/images/logo-es.png"></div>
+                        <div class="publi2"><img src="../../public/images/logo-es.png"></div>
+                    </div>
                     <div class="row terrain-space" id="terrainSoccer">
                         <div class="nom-equipe">
                             <h5>{{nameTeam}}</h5>
@@ -50,24 +53,36 @@
                                     <div class="item-g" :class="{'player-top' : isBottomPlayer(lstAttaquants, indexObj)}">
                                         <img :src="'images/joueurs/alignement/'+playerTypeSelect">
                                     </div>
-                                    <div class="name-player">{{indexObj}}</div>
+                                    <div class="name-player">
+                                        <div class="text-input">
+                                            <input type="text" :id="'input-text-a-' + indexObj" v-model="object.name" :name="'name-a-'+indexObj" autocomplete="off">
+                                        </div>
+                                    </div>
                                 </div>
                             </div> 
                             <div class="div-milieux div-g">
 
-                                <div v-for="(object, indexObj) in lstMilieux" :key="indexObj" :id="'player' + indexObj" class="draggable player"  @click="selectObject(object.id, indexObj)">
-                                    <div class="item-g" :class="{'player-bottom' : isBottomPlayer(lstMilieux, indexObj)}">
+                                <div v-for="(object, indexObj) in lstMilieux" :key="indexObj" :id="'player' + indexObj" class="draggable player" :class="{'player-bottom' : isBottomPlayer(lstMilieux, indexObj)}"  @click="selectObject(object.id, indexObj)">
+                                    <div class="item-g">
                                         <img :src="'images/joueurs/alignement/'+playerTypeSelect">
                                     </div>
-                                    <div class="name-player">{{indexObj}}</div>
+                                    <div class="name-player">                          
+                                        <div class="text-input">
+                                            <input type="text" :id="'input-text-m-' + indexObj" v-model="object.name" :name="'name-m-'+indexObj" autocomplete="off">
+                                        </div>
+                                    </div>
                                 </div>
                             </div> 
                             <div class="div-defenseurs div-g">
-                                <div v-for="(object, indexObj) in lstDefenseurs" :key="indexObj" :id="'player' + indexObj" class="draggable player"  @click="selectObject(object.id, indexObj)">
-                                    <div class="item-g" :class="{'player-bottom' : isBottomPlayer(lstDefenseurs, indexObj)}">
+                                <div v-for="(object, indexObj) in lstDefenseurs" :key="indexObj" :id="'player' + indexObj" class="draggable player"  :class="{'player-bottom' : isBottomPlayer(lstDefenseurs, indexObj)}" @click="selectObject(object.id, indexObj)">
+                                    <div class="item-g">
                                         <img :src="'images/joueurs/alignement/'+playerTypeSelect">
                                     </div>
-                                    <div class="name-player">{{indexObj}}</div>
+                                    <div class="name-player">                                     
+                                        <div class="text-input">
+                                            <input type="text" :id="'input-text-d-' + indexObj" v-model="object.name" :name="'name-d-'+indexObj" autocomplete="off">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="div-gardien div-g">
@@ -75,7 +90,11 @@
                                     <div class="item-g">
                                         <img src="images/joueurs/alignement/gardien.png">
                                     </div>
-                                    <div class="name-player">{{gardienName}}</div>
+                                    <div class="name-player">             
+                                        <div class="text-input">
+                                            <input type="text" id="input-text-gardienne" v-model="gardienName" name="name-g" autocomplete="off">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div> 
@@ -92,7 +111,7 @@
                     <div class="outils-equipe-content">
                         <div class="outil-nom-equipe">
                             <h5>Nom d'équipe</h5>
-                            <input type="text" v-model="nameTeam" placeholder="Nom d'équipe ...">
+                            <input type="text" v-model="nameTeam" placeholder="Nom d'équipe ..." autocomplete="off">
                         </div> 
                         <div class="outil-nb-joueurs">
                             <h5>Nombre de joueurs</h5>
@@ -112,7 +131,7 @@
                         </div>
                         <div class="outil-nom-equipe">
                             <h5>Ajouter remplaçant</h5>
-                            <input type="text" v-model="nameRemplacant" placeholder="Nom du remplaçant ...">
+                            <input type="text" v-model="nameRemplacant" placeholder="Nom du remplaçant ..." autocomplete="off">
                             <a class="btn btn-add-remplacant" @click="addRemplacant()">Ajouter</a>
                             <a class="delete-remplacant" data-toggle="modal" data-target="#modalDeleteRemplacants">Supprimer remplaçants</a>
                         </div> 
@@ -171,16 +190,31 @@
                 showGardien:true,
                 showRemplacants:true,
                 showLstJoueurs:false,
+                showPubli:true,
+                terrainSelected:'terrain1',
                 lstJoueurs:[],
-                lstSystemes:[{'systeme':'4-4-2','att':2,'mc':4, 'def':4},
-                    {'systeme':'3-5-2','att':2,'mc':5, 'def':3}, {'systeme':'4-3-3','att':3,'mc':3, 'def':4}, {'systeme':'3-4-3','att':3,'mc':4, 'def':3}, {'systeme':'4-5-1','att':1,'mc':5, 'def':4},
+                lstSystemes:[],
+                lstSystemes11Players:[{'systeme':'4-4-2','att':2,'mc':4, 'def':4},
+                    {'systeme':'3-5-2','att':2,'mc':5, 'def':3}, {'systeme':'4-3-3','att':3,'mc':3, 'def':4},
+                    {'systeme':'3-4-3','att':3,'mc':4, 'def':3}, {'systeme':'4-5-1','att':1,'mc':5, 'def':4},
                     {'systeme':'5-3-2','att':2,'mc':3, 'def':5}, {'systeme':'4-2-4','att':4,'mc':2, 'def':4}],
+                lstSystemes9Players:[{'systeme':'3-3-2','att':2,'mc':3, 'def':3},
+                    {'systeme':'3-4-1','att':1,'mc':4, 'def':3}, {'systeme':'3-2-3','att':3,'mc':2, 'def':3}, 
+                    {'systeme':'4-3-1','att':1,'mc':3, 'def':4}, {'systeme':'4-2-2','att':2,'mc':2, 'def':4},
+                    {'systeme':'5-2-1','att':1,'mc':2, 'def':5}, {'systeme':'5-1-2','att':2,'mc':1, 'def':5}],
+                lstSystemes7players:[{'systeme':'2-3-1','att':1,'mc':3, 'def':2},
+                    {'systeme':'2-2-2','att':2,'mc':2, 'def':2}, {'systeme':'2-1-3','att':3,'mc':1, 'def':2}, 
+                    {'systeme':'3-1-2','att':2,'mc':1, 'def':3}, {'systeme':'3-2-1','att':1,'mc':2, 'def':3},
+                    {'systeme':'1-4-1','att':1,'mc':4, 'def':1}, {'systeme':'1-3-2','att':2,'mc':3, 'def':1}],
+                lstSysteme5players:[{'systeme':'2-2','att':2,'mc':0, 'def':2},
+                    {'systeme':'2-1-1','att':1,'mc':1, 'def':2}, {'systeme':'3-1','att':1,'mc':0, 'def':3},
+                    {'systeme':'1-3','att':3,'mc':0, 'def':1}, {'systeme':'1-2-1','att':1,'mc':2, 'def':1}],
                 systemeSelect:{'systeme':'4-4-2','att':2,'mc':4, 'def':4},
-                lstNbJoueurs:[11,10,9,8,7,5],
+                lstNbJoueurs:[11,9,7,5],
                 nbJoueursSelect:11,
                 nameTeam:'Nom d\'équipe',
                 nameRemplacant:'',
-                gardienName:'Charlotte',
+                gardienName:'Nom',
                 playerTypeSelect:'player1.png'
             }
         },
@@ -188,13 +222,13 @@
             classSysteme(){
                 return this.systemeSelect.systeme;
             },
-            ...mapState(['listeTerrains', 'listeJoueurAlig', 'modePresentation'])
+            ...mapState(['listeTerrainsAlig', 'listeJoueurAlig', 'modePresentation'])
         },
         watch:{
         },
         methods:{
             selectObject(id, index){
-                this.showLstJoueurs = true;
+                //this.showLstJoueurs = true;
             },
             selectJoueur(){
                 this.showLstJoueurs = false;
@@ -204,6 +238,11 @@
                     this.lstRemplacants.push(this.nameRemplacant);
                     this.nameRemplacant = '';
                 }
+            },
+            changerTerrainImg(img, name){
+                $('.terrain-space').css('background-image', 'url(images/terrain/alignement/' + img + ')');
+                $('.terrain-space').css('background-repeat', 'no-repeat');
+                this.terrainSelected = name;
             },
             addPlayer(){
                 if(this.lstJoueurs.length < this.nbJoueursSelect){  
@@ -234,24 +273,40 @@
                     for(let i = 0; i < this.systemeSelect.att; i++){
                         let player = {
                             noPlayer: i+1,
+                            name:'Nom'
                         };
                         this.lstAttaquants.push(player);
                     }
                     for(let i = 0; i < this.systemeSelect.mc; i++){
                         let player = {
                             noPlayer: i+1,
+                            name:'Nom'
                         };
                         this.lstMilieux.push(player);
                     }
                     for(let i = 0; i < this.systemeSelect.def; i++){
                         let player = {
                             noPlayer: i+1,
+                            name:'Nom'
                         };
                         this.lstDefenseurs.push(player);
                     }
             },
             changeNbJoueurs(){
-                
+                if(this.nbJoueursSelect === 11){   
+                    this.lstSystemes = this.lstSystemes11Players;
+                    this.systemeSelect = {'systeme':'4-4-2','att':2,'mc':4, 'def':4};
+                }else if(this.nbJoueursSelect === 9){
+                    this.lstSystemes = this.lstSystemes9Players;
+                    this.systemeSelect = {'systeme':'3-3-2','att':2,'mc':3, 'def':3}
+                }else if(this.nbJoueursSelect === 7){
+                    this.lstSystemes = this.lstSystemes7players;
+                    this.systemeSelect = {'systeme':'2-3-1','att':1,'mc':3, 'def':2};
+                }else if(this.nbJoueursSelect === 5){
+                    this.lstSystemes = this.lstSysteme5players;
+                    this.systemeSelect = {'systeme':'2-2','att':2,'mc':0, 'def':2}
+                }
+                this.changeSysteme();
             },
             savePNG(){
                 let globalThis = this;
@@ -268,6 +323,7 @@
         },
         mounted(){
             this.changeSysteme();
+            this.lstSystemes = this.lstSystemes11Players;
         }
     }
 </script>

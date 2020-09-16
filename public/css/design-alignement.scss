@@ -199,7 +199,39 @@
 
     }
 
+    .text-input{
+        input{
+            color: $color-text-p;
+            font-size: 1.1rem;
+            font-weight: 700;
+            width: 110px;
+        } 
+    }
+
     .terrain{
+        
+        position: relative;
+        .publi-bandeaux{
+            position: absolute;
+            width: 100%;
+            height: 40px;
+            top:61.5px;
+            z-index: 800;
+            display: grid;
+            grid-template-columns: repeat(2, 100px);
+            grid-column-gap: 300px;          
+            justify-content: center;
+            //display: flex;
+            &>div{
+                //width: 50%;
+                background-color: rgba($color: white, $alpha: 0.9);
+                height: inherit;
+                text-align: center;
+                img{
+                    height: inherit;
+                }
+            }
+        }
         .terrain-act{
             position: relative;
             .add-players{
@@ -256,7 +288,8 @@
             padding: 10px;
             display: grid;
             grid-row-gap: 5px;
-            grid-template-rows: 20px auto 20px;
+            grid-template-rows: 20px auto 20px;        
+            background-image: url('/images/terrain/alignement/terrain2.png');
 
             .nom-equipe{
                 h5{
@@ -285,7 +318,7 @@
                     grid-column-gap: 80px;
                     justify-content: center;
                 }
-    
+                //soccer 11
                 &.terrain-4-4-2{
                     .div-g{    
                         &.div-attaquants{
@@ -377,6 +410,256 @@
                         }
                     }
                 }
+                //soccer 9
+                &.terrain-3-3-2{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: auto auto;
+                        }
+                        &.div-milieux{
+                            grid-template-columns: auto auto auto;
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: auto auto auto;
+                        }
+                    }
+                }
+                &.terrain-3-4-1{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: auto;
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(4, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(3, auto);
+                        }
+                    }
+                }
+                &.terrain-3-2-3{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(3, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(3, auto);
+                        }
+                    }
+                }
+                &.terrain-4-2-1{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(4, auto);
+                        }
+                    }
+                }
+                &.terrain-4-2-2{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(4, auto);
+                        }
+                    }
+                }
+                &.terrain-5-2-1{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(5, auto);
+                        }
+                    }
+                }
+                &.terrain-5-1-2{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(5, auto);
+                        }
+                    }
+                }
+                //soccer 7
+                &.terrain-2-3-1{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(3, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                    }
+                }
+                &.terrain-2-2-2{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                    }
+                }
+                &.terrain-2-1-3{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(3, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                    }
+                }
+                &.terrain-3-1-2{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(3, auto);
+                        }
+                    }
+                }
+                &.terrain-3-2-1{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(3, auto);
+                        }
+                    }
+                }
+                &.terrain-1-4-1{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(4, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                    }
+                }
+                &.terrain-1-3-2{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(3, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                    }
+                }
+                //soccer 5
+                &.terrain-2-2{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                    }
+                }
+                &.terrain-2-1-1{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                    }
+                }
+                &.terrain-3-1{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(3, auto);
+                        }
+                    }
+                }
+                &.terrain-1-3{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(3, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                    }
+                }
+                &.terrain-1-2-1{
+                    .div-g{    
+                        &.div-attaquants{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                        &.div-milieux{
+                            grid-template-columns: repeat(2, auto);
+                        }
+                        &.div-defenseurs{
+                            grid-template-columns: repeat(1, auto);
+                        }
+                    }
+                }
     
                 .player{
                     width: 60px;
@@ -386,17 +669,22 @@
                     align-items: center;
                     flex-wrap: wrap;
                     position: relative;
-                    .name-player{
-                        position: absolute;
-                        bottom: -10px;
-                        color: white;
-                        font-size: 1rem;
-                        font-weight: 600;
-                    }
-                    .item-g{
-                        &.player-bottom{
+                    &.player-bottom{
+                        .item-g{
                             align-self: flex-end;
                         }
+                        .name-player{
+                            bottom: -24px;
+                        }
+                    }
+                    .name-player{
+                        position: absolute;
+                        bottom: -12px;
+                        color: $color-text-p;
+                        font-size: 1.1rem;
+                        font-weight: 700;
+                    }
+                    .item-g{
                         &.player-top{
                             align-self: flex-start;
                         }
