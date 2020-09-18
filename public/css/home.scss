@@ -14,6 +14,7 @@
         width: auto;
         padding: 15px;
         background-color: $color-action;
+        border-bottom: 5px solid $color-action-margin-bottom;
         color: white;
         font-family: "Lato",sans-serif;
         letter-spacing: 1px;
@@ -21,6 +22,7 @@
         font-size: 15px;   
         &:hover{
             background-color: $color-action-selected;
+            border-bottom: 5px solid $color-action-selected;
             color:white;
         }
         &:focus{

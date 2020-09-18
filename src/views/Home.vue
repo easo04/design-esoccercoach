@@ -123,7 +123,7 @@ export default {
         this.$router.push({path: '/create-exercice'});
     },
     goToSeances(){
-      this.$router.push({path: '/create-exercice'});
+      this.$router.push({path: '/create-seance'});
     },
     goToAlignements(){
       this.$router.push({path: '/create-alignement'});

@@ -1,0 +1,363 @@
+@import 'variables';
+
+.design-seance{
+    padding: 5px 30px;
+    display: flex;
+    justify-content: center;
+
+    .errors{
+        color:red;
+        margin-bottom: 10px;
+        font-weight: 600;
+        span{
+            display: block;
+            margin-top: 5px;
+        }
+    }
+
+    //style image input
+    .image-upload{
+        background-color: $gris-obscur-soccer-coach;
+        height: 104px;
+        width: 100%;
+        position: relative;
+        padding: 10px;
+        border-radius: 0.25rem;
+
+        &:hover{
+            background-color: $gris-clair-soccer-coach;
+        }
+
+
+        .file-upload{
+            position: absolute;
+            opacity: 0;
+            height: 100%;
+            width: 100%;
+            cursor: pointer;
+            z-index: 50;
+            top: 0;
+            left: 0;
+        }
+
+        .file-upload-message{
+            position: relative;
+            z-index: 20;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            font-size: 1rem;
+            color: $color-soccer-coach-opacy;
+            font-weight: 600;
+            border:3px dashed $color-soccer-coach-opacy;
+            border-radius: 0.25rem;
+            p{
+                padding-bottom: 0;
+                margin-bottom: 0;
+                width: 100%;
+                text-align: center;
+            }
+            .preview-image{
+                color:$color-border;
+            }
+        }
+    }
+
+    .btn{
+        padding: 10px;
+        background-color: $color-action;
+        color: white;
+        border-bottom: 5px solid $color-action-margin-bottom;
+        //font-family: "Lato", sans-serif;
+        letter-spacing: 1px;
+        font-weight: 600;
+        font-size: 13px;
+        width: 100%; 
+        text-transform : uppercase;
+        &:hover{
+            background-color: $color-action-selected;
+            border-bottom: 5px solid $color-action-selected;
+            color:white;
+        }
+        &:focus{
+            outline:none;
+            box-shadow:none;
+        }
+    }
+
+    .titre{
+        font-weight: 700;
+    }
+
+    .infos-exercices{
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 50%);
+        grid-row-gap: 5px;
+        grid-column-gap: 5px;
+        margin-bottom: 10px;
+    }
+
+    .input-control{
+        margin-bottom: 5px;
+        width: 100%;
+        margin-right: 1px;
+        label{
+            display: block;
+            font-weight: 600;
+        }
+        input[type='text']{
+            width: 100%;
+            height: 40px;
+            border: none;
+            border-bottom: 3px solid $color-soccer-coach-opacy;
+            border-right: 1px solid $color-soccer-coach-opacy;
+            border-left:1px solid $color-soccer-coach-opacy;
+            border-radius: 0.25rem;
+
+            &:focus{
+                outline:none;
+                box-shadow:0 0 0 0.1rem $color-soccer-coach-opacy;
+            }
+        }
+
+        textarea{
+            width: 100%;
+            border: none;
+            border-bottom: 3px solid $color-soccer-coach-opacy;
+            border-right: 1px solid $color-soccer-coach-opacy;
+            border-left:1px solid $color-soccer-coach-opacy;
+            border-radius: 0.25rem;
+
+            &:focus{
+                outline:none;
+                box-shadow:0 0 0 0.1rem $color-soccer-coach-opacy;
+            }
+        }
+    }
+
+    .creation-seance-infos{
+        background-color: white;
+        padding: 20px;
+        width: 100%;
+        margin-bottom: 10px;
+        height: auto;
+        h3{
+            margin-bottom: 20px;
+            color:$color-action;
+        }
+
+        .btns{
+            margin-top: 30px;
+            height: 60px;
+            width: 100%;
+            .btn{
+                width: 200px;
+                float: right;
+            }
+        }
+        .infos-base{
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(2, 50%);
+            grid-row-gap: 5px;
+            grid-column-gap: 5px;
+            margin-bottom: 10px;
+        }
+
+        .infos-exercices-list{
+            .actions{
+                height: 50px;
+                padding: 2px;
+                .add-exercice{
+                    float: right;
+                    width: 50px;
+                }
+            }
+            
+            .lst-exercices{
+                min-height: 400px;
+                background-color: $color-border;
+                border-radius: 5px;
+                padding: 5px;
+                .exercice-item{
+                    display: flex;
+                    width: 100%;
+                    border-top:1px solid $color-border;
+                    padding: 5px;
+                    position: relative;
+                    background-color: white;
+                    min-height: 100px;
+                    &:first-child{
+                        border-top:none;
+                    }
+                    &.not-image{
+                        .infos{
+                            width: 100%;
+                            padding: 0;
+                        }
+                    }
+                    .infos{
+                        width: 50%;
+                        padding: 0px 10px;
+                        border-left: 2px solid $color-border;
+                        &.infos-without-img{
+                            width: 100%;
+                            border-left: none;
+                            h5{
+                                margin-left: 20px;
+                            }
+                        }
+                        h5{
+                            margin-top: 0;
+                            width: 90%;
+                        }
+                    }
+                    .img{
+                        width: 50%;
+                        img{
+                            width: 100%;
+                            object-fit: contain;
+                        }
+                    }
+                    .no-exercice{
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 30px;
+                        height: 30px;
+                        background-color: $color-action;
+                        color: white;
+                        text-align: center;
+                        font-weight: 700;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        font-size: 12px;
+                    }
+                    .actions{
+                        position: absolute;
+                        top: 0;
+                        right: 0;
+                        width: 45px;
+                        height: 40px;
+                        .btn{
+                            height: inherit;
+                        }
+                    }
+                }
+            }
+            
+            .vide{
+                padding: 10px;
+                .liste-vide{    
+                    height: 380px;
+                    border: 4px dashed $color-soccer-coach-opacy;
+                    border-radius: 5px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    font-size: 1.25rem;
+                    color: $color-soccer-coach-opacy;
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+    
+
+
+    .seance{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        min-height: 800px;
+        width: 720px;
+        //border: 2px solid $color-text-p;
+        background-color: white;
+        color:black;
+
+        .actions{
+            height: 60px;
+            padding: 5px;
+            border-bottom: 2px solid $color-border;
+            .btn{
+                width: auto;
+            }
+
+            .btn-telecharger{
+                float: right;
+            }
+        }
+
+        .logo{
+            img{
+                width: 250px;
+            }
+        }
+
+        .info-seance{
+            padding: 5px;
+            display: grid;
+            grid-template-columns: repeat(3, 30%);
+            grid-template-rows: repeat(2, auto);
+            grid-row-gap: 5px;
+            grid-column-gap: 5px;
+            .titre{
+                font-weight: 600;
+            }
+        }
+
+        .lstExercices{
+            .exercice{
+                display: flex;
+                width: 100%;
+                border-top:1px solid $color-text-p;
+                padding: 5px;
+                position: relative;
+                &.not-image{
+                    .infos{
+                        width: 100%;
+                        padding: 0;
+                    }
+                }
+                .infos{
+                    width: 50%;
+                    padding: 0px 10px;
+                    h5{
+                        margin-top: 0;
+                        width: 90%;
+                    }
+                }
+                .img{
+                    width: 50%;
+                    img{
+                        width: 100%;
+                        object-fit: contain;
+                    }
+                }
+                .no-exercice{
+                    position: absolute;
+                    top:0;
+                    right:0;
+                    width: 30px;
+                    height: 30px;
+                    background-color: $color-action;
+                    color:white;
+                    text-align: center;
+                    font-weight: 700;
+                }
+            }
+        }
+
+        .footer-seance{
+            margin-top: 10px;
+            padding: 5px;
+            font-size: 13px;
+            color:$color-text-p;
+        }
+    }
+}
