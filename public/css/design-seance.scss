@@ -24,6 +24,10 @@
         padding: 10px;
         border-radius: 0.25rem;
 
+        &.image-saved{
+            background-color: $color-soccer-coach-opacy;
+        }
+
         &:hover{
             background-color: $gris-clair-soccer-coach;
         }
@@ -54,14 +58,19 @@
             font-weight: 600;
             border:3px dashed $color-soccer-coach-opacy;
             border-radius: 0.25rem;
+        
             p{
                 padding-bottom: 0;
                 margin-bottom: 0;
                 width: 100%;
                 text-align: center;
+                i{
+                    font-size: 1.5rem;
+                }
             }
             .preview-image{
                 color:$color-border;
+                font-size: 0.5rem;
             }
         }
     }
@@ -90,6 +99,9 @@
 
     .titre{
         font-weight: 700;
+        i{
+            color:$color-action;
+        }
     }
 
     .infos-exercices{
@@ -99,6 +111,26 @@
         grid-row-gap: 5px;
         grid-column-gap: 5px;
         margin-bottom: 10px;
+
+        .image-exercice{
+            display: grid;
+            grid-template-columns: 50% 50%;
+            grid-column-gap: 2px;
+            width: 100%;
+
+            .outil-designer{
+                button{
+                    position: absolute;
+                    opacity: 0;
+                    height: 100%;
+                    width: 100%;
+                    cursor: pointer;
+                    z-index: 50;
+                    top: 0;
+                    left: 0;
+                }
+            }
+        }
     }
 
     .input-control{
@@ -131,6 +163,7 @@
             border-right: 1px solid $color-soccer-coach-opacy;
             border-left:1px solid $color-soccer-coach-opacy;
             border-radius: 0.25rem;
+            resize: none;
 
             &:focus{
                 outline:none;
@@ -214,6 +247,11 @@
                         h5{
                             margin-top: 0;
                             width: 90%;
+                            word-wrap: break-word;
+                        }
+                        p{
+                            word-wrap: break-word;
+                            width: 90%;
                         }
                     }
                     .img{
@@ -246,6 +284,9 @@
                         height: 40px;
                         .btn{
                             height: inherit;
+                        }
+                        .btn-update-exercice{
+                            margin-top: 2px;
                         }
                     }
                 }
@@ -327,9 +368,13 @@
                 .infos{
                     width: 50%;
                     padding: 0px 10px;
+                    p{
+                        word-wrap: break-word;
+                    }
                     h5{
                         margin-top: 0;
                         width: 90%;
+                        word-wrap: break-word;
                     }
                 }
                 .img{

@@ -65,6 +65,9 @@
                 </div> 
                 <div class="terrain">
                     <div class="terrain-act action">
+                        <div class="back icons-soccer" v-if="!isSavePNG">
+                            <i class="fa fa-arrow-left" @click="back()" title="Retourner"></i>
+                        </div>
                         <div class="color-icons icons-soccer" v-if="showColorActions">
                             <div class="color-outil color-red action-outil" id="color-red" @click="changerCouleurOutil('red');"></div>
                             <div class="color-outil color-blue-claro action-outil" id="color-blue-claro" @click="changerCouleurOutil('bleu');"></div>
@@ -86,7 +89,8 @@
                             <i class="fa fa-circle add-number" id="addNumber" @click="addNumber()" title="Ajouter compteur">
                                 <span class="fa-stack-1x">1</span>
                             </i>
-                            <i class="fa fa-download" id=savePng @click="savePNG()" title="Télécharger"></i>
+                            <i class="fa fa-download" id=savePng @click="savePNG()" v-if="isSavePNG" title="Télécharger"></i>
+                            <i class="fas fa-save" id=savePng @click="saveImage()" v-else title="Sauvegarder"></i>
                             <!--<i class="fa fa-file-pdf-o" id=savePdf @click="savePdf()"></i>-->
                         </div>
                     </div>
@@ -208,6 +212,7 @@ export default {
     name:"Design",
     components: {
     },
+    props:['fromCreateSeance'],
     data(){
         return{
             terrainSelected:'terrain11',
@@ -227,7 +232,7 @@ export default {
             rangeOpacity:100,
             lstFormes : ['square', 'rectangle', 'triangle', 'circle'],
             numberSuite:0,
-
+            isSavePNG: this.fromCreateSeance ? false : true,
         }
     },
     computed:{
@@ -526,34 +531,32 @@ export default {
                     }
                 });
             }, 5 * 1000);
+        },
+        saveImage(){
+            this.deselectionner();
+            let globalThis = this;
 
-            /*const dowloadImage = new Promise((resolve) => {    
+            const dowloadImage = new Promise((resolve) => {    
                 let domElement = document.getElementById("terrainSoccer");
                 html2canvas(domElement, {
                     onrendered: function(canvas) {
-                        Canvas2Image.saveAsPNG(canvas); 
+                        var img = canvas.toDataURL('image/png');
+                        globalThis.setImageBase64(img);
                         resolve("Create");
                     }
                 });
             });
 
             dowloadImage.then(val=>{
-                this.setShowSpinner(false);
-            });*/
-        },
-        savePdf(){
-            html2canvas(document.getElementById("terrainSoccer"), {
-                onrendered: function(canvas) {
-                    //canvas.height = 600;
-                    //canvas.width = 600;
-                    var img = canvas.toDataURL('image/png');
-                    var doc = new jsPDF();
-                    doc.text("Exercice 1 - ESCoach", 10, 10);
-                    doc.addImage(img, 'JPEG', 20, 20);
-                    doc.addHTML(canvas);
-                    doc.save('exercice.pdf');
-                }
+
+                 //goToDesignSeance
+                this.$router.push({name: 'DesignSeance', params:{'fromDesign' : true}});
             });
+        },
+        back(){
+
+            //go To DesignSeance
+            this.$router.push({name: 'DesignSeance', params:{'fromDesign' : true}});
         },
         deleteObject() {
             //vérifier si l'objet est de type number
@@ -602,7 +605,7 @@ export default {
                 this.deleteObject();
             }
         },
-        ...mapMutations(['setShowSpinner', 'setTextSpinner', 'setShowModePresentation'])
+        ...mapMutations(['setShowSpinner', 'setTextSpinner', 'setShowModePresentation', 'setImageBase64'])
     },
     created(){
     },
@@ -618,9 +621,15 @@ export default {
                 globalThis.deselectionner();  
             }
         });
+
+        //vérifier s'il y a une seance dans le locale storage
+        if(localStorage.getItem('isCreateSeance')){
+            this.isSavePNG = false;
+        }
     },
     beforeDestroy(){   
         this.setShowModePresentation(false);
+        localStorage.removeItem('isCreateSeance');
     },
 }
 </script>

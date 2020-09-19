@@ -335,7 +335,7 @@
         .slider{
             -webkit-appearance: none;  /* Override default CSS styles */
             appearance: none;
-            background: #d3d3d3;        
+            background: white;        
             height: 10px;      
             border-radius: 5px;  
             outline: none; /* Remove outline */
@@ -386,6 +386,7 @@
 
     .color-icons{
         float: left;
+        margin-left: 10px;
         width: 50%;
     }
 
@@ -424,6 +425,10 @@
         border-top:1px solid black;
         border-left: 1px solid black;
         border-right: 1px solid black;
+
+        .back{
+            float: left;
+        }
     }
 
     .content-design{

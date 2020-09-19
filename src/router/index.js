@@ -16,7 +16,8 @@ Vue.use(VueRouter)
   {
     path: '/create-exercice',
     name: 'Design',
-    component: Design
+    component: Design,
+    props: true
   },
   {
     path: '/create-alignement',
@@ -26,7 +27,8 @@ Vue.use(VueRouter)
   {
     path: '/create-seance',
     name: 'DesignSeance',
-    component: DesignSeance
+    component: DesignSeance,
+    props: true
   },
   {
     path: '/about',

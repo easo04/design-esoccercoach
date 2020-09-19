@@ -176,7 +176,8 @@ export default new Vuex.Store({
     spinner:{
       showSpinner:false,
       textSpinner:'Téléchargement de l\'image en cours ...',
-    }
+    },
+    imageBase64:undefined,
   },
   getters:{
   },
@@ -192,6 +193,9 @@ export default new Vuex.Store({
     },
     setTextSpinner(store, value){
       store.spinner.textSpinner = value;
+    },
+    setImageBase64(store, image){
+      store.imageBase64 = image;
     }
   },
   actions: {
