@@ -19,7 +19,13 @@
         font-family: "Lato",sans-serif;
         letter-spacing: 1px;
         font-weight: 700;
-        font-size: 15px;   
+        font-size: 15px; 
+
+        @media screen and (max-width: $screen-xs) {
+            width: 100%;
+            font-size: 12px;
+        }  
+
         &:hover{
             background-color: $color-action-selected;
             border-bottom: 5px solid $color-action-selected;
@@ -33,9 +39,11 @@
     .section-outil-design{
         .outil-design{
             display: flex;
-            height: 670px;
+            min-height: 670px;
             background-color: #d9d9d9;
+
             &.left{
+                
                 .image-section{
                     border-right: 2px solid $gris-soccer-coach;
                 }
@@ -50,6 +58,22 @@
                         }
                         .btn{
                             float: right;
+                        }
+                    }
+                }
+
+                @media screen and (max-width: $screen-xs) {
+                    .text-section{    
+                        .text{
+                            h2{
+                                text-align: left;
+                            }
+                            p{
+                                text-align: left;
+                            }
+                            .btn{
+                                float: left;
+                            }
                         }
                     }
                 }
@@ -74,6 +98,45 @@
                 padding: 100px;
                 border-right: 2px solid $gris-soccer-coach;
             }
+
+            @media screen and (max-width: $screen-xs) {
+                display: block;
+                min-height: 350px;
+                border-bottom: 2px solid $gris-soccer-coach;
+                
+                /*background: url('../../public/images/infos/outil-design-custom.png');     
+                background-repeat: no-repeat;     
+                background-size: 100% 650px;
+                opacity: 0.5;*/
+
+                .text-section, .image-section{
+                    width: 100% !important;
+                }
+
+                .text-section{
+                    padding: 15px;
+                    height: 350px;
+                    .text{
+                        position: relative;
+                        height: inherit;
+                        padding-top: 5px;
+                        h2{
+                            font-size: 2rem;
+                        }
+                        p{
+                            font-size: 20px;
+                        }
+                        .btn{
+                            position: absolute;
+                            bottom: 5px;
+                        }
+                    }
+                }
+                .image-section{
+                    display: none;
+                }
+            }
+
             .image-section{
                 padding: 20px;
                 img{
@@ -90,6 +153,7 @@
         background: url('../../public/images/infos/soccer3.jpg');     
         background-repeat: no-repeat;     
         background-size: 100% 650px;
+        
         .message{
             height: 100%;
             width: 100%;
@@ -151,6 +215,26 @@
                 }
             }
         }
+
+        @media screen and (max-width: $screen-xs) {
+            height: auto;
+            .message{
+                padding: 15px;
+                h2{
+                    font-size: 2rem;
+                }
+                p{
+                    padding-left: 0;
+                    padding-right: 0;
+                    font-size: 1.25rem;
+                }
+
+                .btn{
+                    width: 100% !important;
+                    font-size: 12px !important;
+                }
+            }
+        }
     }
     .section-info{
         display: flex;
@@ -161,6 +245,24 @@
         background: url('../../public/images/infos/image-background2.jpg');     
         background-repeat: no-repeat;     
         background-size: 100% 100vh;
+
+        @media screen and (max-width: $screen-xs) {
+            display: block;
+            .information{
+                width: 100% !important;
+                h1{
+                    font-size: 2rem;
+                }
+
+                p{
+                    font-size: 1.25rem !important;;
+                }
+            }
+
+            .image-info{
+                display: none;
+            }
+        }
 
         .information{
             width: 50%;
@@ -194,12 +296,27 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @media screen and (max-width: $screen-xs) {
+            margin-bottom: 30px;
+            padding: 0 10px;
+            display: block;
+            height: auto !important;
+            .section-btns{
+                height: auto !important;
+                .section{
+                    width: 100% !important;
+                    margin-top: 10px;
+                }
+            }
+        }
+
         .section-btns{     
             margin-top: 30px;
             height: 300px;
             .section{
-                width: 200px;
-                height: 200px;
+                width: 400px;
+                height: 250px;
                 border:3px solid $color-action;
                 border-radius: 30px;
                 margin-right: 20px;
@@ -207,7 +324,7 @@
                 color:white;
                 opacity: 0.8;
                 box-shadow: 5px 6px 10px 1px #888888;
-                padding-top: 30px;
+                padding-top: 60px;
                 font-weight: 600;
                 &:hover{
                     background-color: $color-soccer-coach-hover;
