@@ -51,7 +51,7 @@
       </div> 
       <div class="outil-design left">
         <div class="image-section">
-          <img src="../../public/images/infos/outil-design-custom.png" alt="essoccercoach-outil-design">
+          <img src="../../public/images/infos/outil-seance-custom.png" alt="essoccercoach-outil-design">
         </div> 
         <div class="text-section">
           <div class="text">     
@@ -70,7 +70,7 @@
           </div> 
         </div>
         <div class="image-section">
-          <img src="../../public/images/infos/outil-design-custom.png" alt="essoccercoach-outil-design">
+          <img src="../../public/images/infos/outil-alignement-custom.png" alt="essoccercoach-outil-design">
         </div> 
       </div> 
     </div>
@@ -114,7 +114,7 @@ export default {
   },
   data(){
     return{
-      lstImagesInfos:['exercice.png', 'exercice.png', 'exercice.png'],
+      lstImagesInfos:['exercice.png', 'seance.png', 'alignement.png'],
       lstTextInfos:['Créez vos exercices d\'une façon rapide ...', 'Télécharger votre séance en format pdf ...',
                   'Créez l\'alignement du prochain match ...'],
       sourceImageInfos:'/images/infos/',

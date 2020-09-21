@@ -39,7 +39,7 @@
         position: absolute;
         left: -320px;
         background-color: $color-action;
-        transition: all 1s;
+        transition: all 0.5s;
         padding: 10px 0;
         font-family: 'Montserrat', sans-serif;
         letter-spacing: 1px;
@@ -81,7 +81,7 @@
             }
             li{
                 box-shadow: 5px 0 $color-action-margin-bottom inset;
-                transition: all .5s;
+                transition: all .3s;
                 list-style: none;
                 padding-left: 5px;
                 margin-bottom: 5px;
@@ -117,7 +117,7 @@
                     text-transform: uppercase;
                     cursor: pointer;
                     background: url(../../public/images/icons-menu.png) no-repeat left top;
-                    transition: all .5s;
+                    transition: all .3s;
                     text-decoration: none;
 
                     &.home{
