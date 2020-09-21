@@ -2,14 +2,14 @@
     <div class="header-page">
         <div class="header-div-1">
             <div class="actions">
-                <a @click="showMenuLeft()" class="navicon"><i class="fa fa-navicon"></i></a>
+                <a @click="canShowMenuLeft()" class="navicon"><i class="fa fa-navicon"></i></a>
                 <a href="/"><img class="logo" src="images/logo.png"></a>
             </div>
             <div class="actions-header" :title="textTitle" v-if="showModePresentation" :class="{'mode-presentation':modePresentation}" @click="setModePresentation()">
                 <i class="fa fa-desktop"></i>
             </div>
         </div>
-        <div class="menu-left" :class="{'show-menu':isShowMenuLeft}">
+        <div class="menu-left" :class="{'show-menu':isShowMenuLeft}" id="menu-left">
             <div>
                 <div class="imet-menu">
                     <ul>
@@ -24,6 +24,17 @@
                         <li><a @click="gotToExercices()">EXERCICE</a></li>
                         <li><a @click="goToSeances()">SÉANCE</a></li>
                         <li><a @click="goToAlignements()">ALIGNEMENT</a></li>
+                    </ul>
+                </div>
+                <div class="imet-menu informations">
+                    <h5>INFORMATIONS</h5>
+                    <ul>
+                        <li>
+                            <a @click="goToHelp()">Aide</a>
+                        </li>
+                        <li>
+                            <a href="/#contactUs">Contactez-nous</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -41,7 +52,12 @@ export default {
         }
     },
     computed:{
-        ...mapState(['modePresentation', 'showModePresentation'])
+        ...mapState(['modePresentation', 'showModePresentation', 'showMenuLeft'])
+    },
+    watch:{
+        showMenuLeft(){
+            this.isShowMenuLeft = this.showMenuLeft;
+        }
     },
     methods:{
         setModePresentation(){
@@ -55,22 +71,33 @@ export default {
                 this.setModePresentationStore(true);
             }
         },
-        showMenuLeft(){
+        canShowMenuLeft(){
             this.isShowMenuLeft = this.isShowMenuLeft ? false : true;
+            
+            //set store object
+            this.setShowMenuLeft(this.isShowMenuLeft);
         },
         gotToExercices(){
-            this.showMenuLeft();
+            this.canShowMenuLeft();
             this.$router.push({path: '/create-exercice'});
         },
         goToSeances(){
-            this.showMenuLeft();
+            this.canShowMenuLeft();
             this.$router.push({path: '/create-seance'});
         },
         goToAlignements(){
-            this.showMenuLeft();
+            this.canShowMenuLeft();
             this.$router.push({path: '/create-alignement'});
         },
-        ...mapMutations(['setModePresentationStore'])
+        goToHelp(){
+            this.canShowMenuLeft();
+            this.$router.push({path: '/help'});
+        },
+        ...mapMutations(['setModePresentationStore', 'setShowMenuLeft'])
+    },
+    mounted(){
+        
+    
     }
 }
 </script>

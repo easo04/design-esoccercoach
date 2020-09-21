@@ -178,6 +178,7 @@ export default new Vuex.Store({
       textSpinner:'Téléchargement de l\'image en cours ...',
     },
     imageBase64:undefined,
+    showMenuLeft:false,
   },
   getters:{
   },
@@ -196,6 +197,9 @@ export default new Vuex.Store({
     },
     setImageBase64(store, image){
       store.imageBase64 = image;
+    },
+    setShowMenuLeft(store, value){
+      store.showMenuLeft = value;
     }
   },
   actions: {

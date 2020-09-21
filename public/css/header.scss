@@ -50,6 +50,21 @@
             text-align: left;
             padding-left: 0;
             line-height: 42px;
+
+            &.informations{
+                li{
+                    a{
+                        background: url(../../public/images/icons-menu-informations.png) no-repeat left top;
+                    }
+
+                    &:nth-child(2){
+                        a{
+                            background-position: 0 -42px;
+                        }
+                    }
+                }
+            }
+
             h5{
                 background-color: $color-action-margin-bottom;
                 height: 50px;

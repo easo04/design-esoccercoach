@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" id="home-div">
     <div class="section-info">
       <div class="information">
         <h1>Bienvenue à ESSoccerCoach, le créateur d'exercices pour les entraîneurs de soccer.</h1>
@@ -92,7 +92,7 @@
         </div> 
       </div> 
     </div> 
-    <div class="contact">    
+    <div class="contact" id=contactUs>    
       <h2>CONTACTEZ-NOUS</h2>
       <span>Écrivez-nous à l'adresse courriel: <span class="email"><a href="mailto:essoccercoach@gmail.com">essoccercoach@gmail.com</a></span></span>
       <div class="reseaux-sociaux">
@@ -105,6 +105,7 @@
 // @ is an alias to /src
 import HelloWorld from '@/components/HelloWorld.vue'
 import Carousel from '@/components/Carousel.vue'
+import {mapState, mapMutations} from 'vuex';
 
 export default {
   name: 'Home',
@@ -128,8 +129,17 @@ export default {
     },
     goToAlignements(){
       this.$router.push({path: '/create-alignement'});
-    }
-  }
+    },
+    ...mapMutations(['setShowMenuLeft'])
+  },
+  mounted(){
+    let globalThis = this;
+      $('#home-div').click(event =>{
+          if(event.target.id !== 'menu-left'){
+              globalThis.setShowMenuLeft(false);  
+          }
+      });
+  },
 }
 </script>
 <style lang="scss" scoped>
