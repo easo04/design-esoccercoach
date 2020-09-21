@@ -19,19 +19,19 @@
             <div class="create-exercice img-div">
               <img src="../../public/images/exercices-logo.png" alt="créer exercice">
             </div> 
-            <div>Exercice</div>
+            <div class="titre">Exercice</div>
           </a>
           <a class="btn section" @click="goToSeances()">
             <div class="create-seance img-div"> 
               <img src="../../public/images/seance-logo.png" alt="créer séance">
             </div>
-            <div>Séance</div>
+            <div class="titre">Séance</div>
           </a> 
           <a class="btn section" @click="goToAlignements()">
             <div class="create-seance img-div"> 
               <img src="../../public/images/alignement-logo.png" alt="créer alignement">
             </div>
-            <div>Alignement</div>
+            <div class="titre">Alignement</div>
           </a> 
         </div>
       </div>
@@ -78,7 +78,8 @@
       <div class="message">
         <h2>UN OUTIL OFFERT À DES <br><span>ENTRAÎNEURS DE SOCCER</span> PASSIONÉS!</h2>
         <p>
-          Il est déjà pas mal d’utiliser le meilleur produit pour l’organisation de son équipe de foot… Mais pouvoir intégrer des centaines d’exercices publics à ses propres entrainements, c’est simplement le délire ! Fais partie de notre communauté qui regroupe des entraineurs actifs et professionnels.
+          Il arrive souvent que le seule outil que nous avons pour créer un exercice est un papier et un crayon. 
+          Nous vous offrons un outil conçu par un entrâineur de soccer pour aider tous les entrâineurs qui ont besoin de créer leurs exercice d'une façon facile et rapide.
         </p>
         <div class="compteur">
           <div class="exercices-compteur">      

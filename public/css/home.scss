@@ -3,6 +3,7 @@
 .home{
     font-family: "Lato",sans-serif;
     min-height: 500px;
+    margin-top: 45px;
     
     h2{
         text-align: center;
@@ -16,7 +17,8 @@
         background-color: $color-action;
         border-bottom: 5px solid $color-action-margin-bottom;
         color: white;
-        font-family: "Lato",sans-serif;
+        //font-family: "Lato",sans-serif;
+        font-family: 'Montserrat', sans-serif;
         letter-spacing: 1px;
         font-weight: 700;
         font-size: 15px; 
@@ -317,15 +319,21 @@
             .section{
                 width: 400px;
                 height: 250px;
-                border:3px solid $color-action;
-                border-radius: 30px;
+                //border:1px solid $color-soccer-coach-hover;
                 margin-right: 20px;
                 background-color: $color-soccer-coach;
                 color:white;
-                opacity: 0.8;
+                //opacity: 0.8;
                 box-shadow: 5px 6px 10px 1px #888888;
                 padding-top: 60px;
                 font-weight: 600;
+                border-bottom: 10px solid $color-soccer-coach-hover;
+                border-radius: .25rem;
+                transition: all .5s;
+                .titre{
+                    text-transform: uppercase;
+                    font-family: 'Montserrat', sans-serif;
+                }
                 &:hover{
                     background-color: $color-soccer-coach-hover;
                 }

@@ -132,23 +132,23 @@
                                 <div class="infos-exercices">
                                     <div class="input-control">
                                         <label for="nome">* Nom: </label> 
-                                        <input type="text" placeholder="Nom séance" name="nome" v-model="exercice.nom">
+                                        <input type="text" placeholder="Nom séance" name="nome" v-model="exercice.nom" autocomplete="off">
                                     </div>
                                     <div class="input-control">
                                         <label for="time">Durée: </label> 
-                                        <input type="text" placeholder="Nom séance" name="time" v-model="exercice.time">
+                                        <input type="text" placeholder="Nom séance" name="time" v-model="exercice.time" autocomplete="off">
                                     </div>
                                     <div class="input-control">
                                         <label for="objectif">Objectif: </label> 
-                                        <textarea rows="4" cols="50" placeholder="Nom séance" name="objectif" v-model="exercice.objectif"></textarea>
+                                        <textarea rows="4" cols="50" placeholder="Nom séance" name="objectif" v-model="exercice.objectif" autocomplete="off"></textarea>
                                     </div>
                                     <div class="input-control">
                                         <label for="disposition">Disposition: </label> 
-                                        <textarea rows="4" cols="50" placeholder="Nom séance" name="disposition" v-model="exercice.disposition"></textarea>
+                                        <textarea rows="4" cols="50" placeholder="Nom séance" name="disposition" v-model="exercice.disposition" autocomplete="off"></textarea>
                                     </div>
                                     <div class="input-control">
                                         <label for="consignes">Consignes: </label> 
-                                        <textarea rows="4" cols="50" placeholder="Nom séance" name="consignes" v-model="exercice.consignes"></textarea>
+                                        <textarea rows="4" cols="50" placeholder="Nom séance" name="consignes" v-model="exercice.consignes" autocomplete="off"></textarea>
                                     </div>
                                     <div class="input-control">
                                         <label for="image">Image: </label>

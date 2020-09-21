@@ -2,7 +2,7 @@
 @import 'variables';
 
 .design-component{
-    margin-top: 5px;
+    margin-top: 50px;
 
     h5{
         color: #3d3b3b;
@@ -278,7 +278,7 @@
             &.nav-tabs{  
                 border-top-left-radius: 0.25rem;
                 border-top-right-radius: 0.25rem;
-                background-color: $color-soccer-coach-opacy;
+                background-color: $color-soccer-coach;
                 color:white;
                 .nav-item{
                     border-right: 1px solid white;
@@ -293,7 +293,7 @@
                         
                         &:first-child{
                             &.active{  
-                                border-top-left-radius: 0.25rem !important;
+                                border-top-left-radius: 0;
                             }
                         }
                         &.active{                           
@@ -324,6 +324,7 @@
             cursor: pointer;
             font-size: 20px;
             color: $color-action;
+            transition: all 0.5s;
             &:hover{
                 color: $color-action-selected;
                 font-size: 21px;
@@ -479,8 +480,9 @@
             img{
                 height: 50px;
                 height: 50px;
+                transition: all 0.5s;
+                cursor: pointer;
                 &:hover{
-                    cursor: pointer;
                     width: 51px;
                     height: 51px;
                 }

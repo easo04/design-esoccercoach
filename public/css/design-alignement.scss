@@ -44,6 +44,7 @@
             height: 50px;
             position: relative;
             border-bottom: 1px solid $color-border;
+            line-height: 2.5;
             span{
                 color:$color-text-p;
                 font-weight: 600;
@@ -175,7 +176,9 @@
             padding: 10px;
             background-color: #8a2539;
             color: white;
-            font-family: "Lato", sans-serif;
+            //font-family: "Lato", sans-serif;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
             font-size: 13px;
