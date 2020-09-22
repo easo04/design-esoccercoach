@@ -106,7 +106,7 @@
                             <p v-if="exe.time"><span class="titre"><i class="fas fa-clock"></i> {{exe.time}}</span>
                             <p v-if="exe.objectif"><span class="titre">Objectif: </span> {{exe.objectif}}</p>
                             <p v-if="exe.disposition"><span class="titre">Disposition: </span> {{exe.disposition}}</p>
-                            <p v-if="exe.objectif"><span class="titre">Consignes: </span> {{exe.objectif}}</p>
+                            <p v-if="exe.consignes"><span class="titre">Consignes: </span> {{exe.consignes}}</p>
                         </div>
                         <div class="no-exercice">
                             <span>{{i+1}}</span>

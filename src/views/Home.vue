@@ -65,7 +65,7 @@
         <div class="text-section">
           <div class="text">     
             <h2>ALIGNEMENTS</h2>
-            <p>Faites l'alignement de votre équipe d'une façon <strong>simple</strong> et <strong>rapide</strong> <br><br> Choisisez votre système, ajoutez vos joueurs et téléchargez votre alignement.</p>
+            <p>Faites l'alignement de votre équipe d'une façon <strong>simple</strong> et <strong>rapide</strong> <br><br> Choisissez votre système, ajoutez vos joueurs et téléchargez votre alignement.</p>
             <a class="btn" @click="goToAlignements()">CRÉEZ VOTRE ALIGNEMENT</a>
           </div> 
         </div>
@@ -78,7 +78,6 @@
       <div class="message">
         <h2>UN OUTIL OFFERT À DES <br><span>ENTRAÎNEURS DE SOCCER</span> PASSIONÉS!</h2>
         <p>
-          Il arrive souvent que le seule outil que nous avons pour créer un exercice est un papier et un crayon. 
           Nous vous offrons un outil conçu par un entrâineur de soccer pour aider tous les entrâineurs qui ont besoin de créer leurs exercice d'une façon facile et rapide.
         </p>
         <div class="compteur">
@@ -88,7 +87,7 @@
           </div> 
         </div> 
         <div class="message-btn">    
-          <a class="btn" @click="gotToExercices()">CRÉÉZ VOTRE EXERCICE</a>
+          <a class="btn" @click="gotToExercices()">CRÉEZ VOTRE EXERCICE</a>
         </div> 
       </div> 
     </div> 
@@ -116,7 +115,7 @@ export default {
     return{
       lstImagesInfos:['exercice.png', 'seance.png', 'alignement.png'],
       lstTextInfos:['Créez vos exercices d\'une façon rapide ...', 'Télécharger votre séance en format pdf ...',
-                  'Créez l\'alignement du prochain match ...'],
+                  'Créez l\'alignement de votre prochain match ...'],
       sourceImageInfos:'/images/infos/',
     }
   },
