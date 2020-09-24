@@ -278,6 +278,15 @@ export default {
                     size:undefined,
                 }
             };
+
+            let isObjectExist = this.lstObjectsDraggable.find(o=>o.id === object.id);
+
+            if(isObjectExist){
+                console.log('onject exist');
+                noObject++;
+                object = type + '-' + noObject; 
+            }
+
             this.lstObjectsDraggable.push(object);
 
             this.deselectionner();
@@ -565,7 +574,7 @@ export default {
             }
 
             this.objectSelected.remove();
-            this.lstObjectsDraggable.splice(this.lastIndexObjectSelected, 1);
+            //this.lstObjectsDraggable.splice(this.lastIndexObjectSelected, 1);
             this.objectSelected = undefined;
             this.lastIndexObjectSelected =undefined;
             this.initButtons();
