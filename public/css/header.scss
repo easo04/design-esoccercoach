@@ -14,6 +14,9 @@
         align-items: center;
         .actions{
             width: 50%;
+            @media screen and (max-width: $screen-xs) {
+                width: 100%;
+            }
             a{
                 margin-right: 10px;
                 font-size: 15px;

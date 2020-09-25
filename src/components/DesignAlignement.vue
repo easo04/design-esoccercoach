@@ -215,7 +215,7 @@
                 nameTeam:'Nom d\'équipe',
                 nameRemplacant:'',
                 gardienName:'Nom',
-                playerTypeSelect:'player1.png'
+                playerTypeSelect:'player10.png'
             }
         },
         computed:{

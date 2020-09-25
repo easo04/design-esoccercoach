@@ -353,7 +353,9 @@ export default {
 
             //vérifier s'il y a un objet sélectionné
             if(this.objectSelected && this.objectSelected[0]){
-                this.showActionForms = this.objectSelected.hasClass('drag-forme');
+                let idImg = this.objectSelected[0].children[0].id;
+                this.showActionForms = this.objectSelected.hasClass('drag-forme') 
+                && (!idImg.includes('arrow') && !idImg.includes('line'));
             }else{
                 this.showActionsObject = false;
                 this.showActionForms = false;
