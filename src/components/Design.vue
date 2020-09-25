@@ -208,6 +208,8 @@
 <script>
 
 import { mapState, mapGetters, mapMutations } from 'vuex';
+import {analytic} from '@/main'
+
 export default {
     name:"Design",
     components: {
@@ -527,6 +529,8 @@ export default {
             this.lastIndexObjectSelected = undefined;
         },
         savePNG(){
+            analytic.logEvent('save_png_exercice');
+            
             this.deselectionner();
             this.setTextSpinner('Téléchargement de l\'image en cours ...');
             this.setShowSpinner(true);
@@ -544,6 +548,8 @@ export default {
             }, 5 * 1000);
         },
         saveImage(){
+            analytic.logEvent('save_image_exercice');
+
             this.deselectionner();
             let globalThis = this;
 

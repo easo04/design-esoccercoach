@@ -182,6 +182,7 @@
 </template>
 <script>
 import { mapMutations, mapState } from 'vuex';
+import {analytic} from '@/main'
 export default {
     props:['fromDesign'],
     data(){
@@ -257,6 +258,8 @@ export default {
             $("#modalAddExercice").modal("hide");
         },
         telechargerPDF(){
+            analytic.logEvent('dowload_seance_pdf');
+
             let globalThis = this;
 
             setTimeout(() => {

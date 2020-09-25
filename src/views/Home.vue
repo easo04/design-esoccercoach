@@ -105,6 +105,7 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 import Carousel from '@/components/Carousel.vue'
 import {mapState, mapMutations} from 'vuex';
+import {analytic} from '@/main'
 
 export default {
   name: 'Home',
@@ -121,12 +122,15 @@ export default {
   },
   methods:{
     gotToExercices(){
+        analytic.logEvent('go_to_exercice');
         this.$router.push({path: '/create-exercice'});
     },
     goToSeances(){
+      analytic.logEvent('go_to_seances');
       this.$router.push({path: '/create-seance'});
     },
     goToAlignements(){
+      analytic.logEvent('go_to_alignements');
       this.$router.push({path: '/create-alignement'});
     },
     ...mapMutations(['setShowMenuLeft'])

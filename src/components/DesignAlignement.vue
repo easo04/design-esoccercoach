@@ -179,6 +179,7 @@
 </template>
 <script>
     import { mapState, mapGetters, mapMutations } from 'vuex';
+    import {analytic} from '@/main'
     export default {
         data() {
             return{
@@ -309,6 +310,10 @@
                 this.changeSysteme();
             },
             savePNG(){
+                analytic.logEvent('save_alignement_png');
+
+                this.setTextSpinner('Création de l\'alignement en cours ...');
+                this.setShowSpinner(true);
                 let globalThis = this;
 
                 setTimeout(() => {
@@ -316,10 +321,12 @@
                     html2canvas(domElement, {
                         onrendered: function(canvas) {
                             Canvas2Image.saveAsPNG(canvas); 
+                            globalThis.setShowSpinner(false);
                         }
                     });
                 }, 5 * 1000);
             },
+            ...mapMutations(['setShowSpinner', 'setTextSpinner'])
         },
         mounted(){
             this.changeSysteme();
