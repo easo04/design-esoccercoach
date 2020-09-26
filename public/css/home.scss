@@ -230,7 +230,7 @@
 
         @media screen and (max-width: $screen-xs) {
             height: auto;
-            background-size: 100% 730px;
+            background-size: 100% 740px;
             &.message-services{
                 height: auto;   
                 background-size: 100% 665px;
@@ -358,7 +358,7 @@
 
     .contact{
         text-align: center;
-        height: 150px;
+        height: auto;
         background-color:$color-action;
         color:$gris-soccer-coach;
         padding:20px 0;
@@ -378,6 +378,15 @@
 
         .reseaux-sociaux{
             color:white;
+            a{
+                color:white;
+                i{
+                    font-size: 20px;
+                    &:hover{
+                        font-size: 21px;
+                    }
+                }
+            }
         }
     }
 
