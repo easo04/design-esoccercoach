@@ -109,7 +109,7 @@
       <h2>CONTACTEZ-NOUS</h2>
       <span>Écrivez-nous à l'adresse courriel <span class="email"><a href="mailto:essoccercoach@gmail.com">essoccercoach@gmail.com</a></span></span>
       <div class="reseaux-sociaux">
-        Suivez nous sur instagram<br>
+        Suivez-nous sur instagram<br>
         <a href="https://www.instagram.com/essoccercoach/" target="_blanc"><i class="fab fa-instagram"></i></a>
       </div> 
     </div> 
