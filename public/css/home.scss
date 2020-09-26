@@ -155,6 +155,16 @@
         background: url('../../public/images/infos/soccer3.jpg');     
         background-repeat: no-repeat;     
         background-size: 100% 650px;
+
+        &.message-services{
+            height: 550px;
+            background: url('../../public/images/infos/soccer.jpg'); 
+            background-repeat: no-repeat;     
+            background-size: 100% 550px;
+            .message{
+                background-color: rgba($color: #193045, $alpha: 0.8);
+            }
+        }
         
         .message{
             height: 100%;

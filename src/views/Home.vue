@@ -2,13 +2,24 @@
   <div class="home" id="home-div">
     <div class="section-info">
       <div class="information">
-        <h1>Bienvenue à ESSoccerCoach, le créateur d'exercices pour les entraîneurs de soccer.</h1>
+        <h1>Bienvenue à <strong>ESSoccerCoach</strong>, le créateur d'exercices pour les entraîneurs de soccer.</h1>
         <div class="division"></div>
         <p>Vous pouvez créer vos exercices, vos séances et votre alignement en utilisant un de nos services</p>
         <a class="btn" href="#services">CHOISIR UN DE NOS SERVICES</a>
       </div> 
       <div class="image-info">
           <Carousel :lst-images="lstImagesInfos" :source="sourceImageInfos"  :infos="lstTextInfos" :show-text="true"/>
+      </div> 
+    </div> 
+    <div class="section-message message-services">    
+      <div class="message">
+        <h2>PROFITEZ DE NOS OUTILS <strong>100% GRATUITS</strong></h2>
+        <p>
+          Souvent, les entraîneurs ne disposons pas les outils nécessaires pour bien préparer nos séances d'entraînement. Le papier et le crayon deviennent rapidement nos meilleurs amis lors que nous voulons planifier
+          nos entraînements ou nos exercices.
+          <br><br><strong>ESSoccerCoach</strong> vous offre plusieurs outils pour vous permettre de créer d'une façon très simple vos <strong>exercices</strong>, vos <strong>séances d'entraînement</strong> et vos <strong>alignements</strong>.
+          <br><br>Profitez-en bien!
+        </p>
       </div> 
     </div> 
     <div class="services" id="services">
@@ -78,7 +89,10 @@
       <div class="message">
         <h2>UN OUTIL OFFERT À DES <br><span>ENTRAÎNEURS DE SOCCER</span> PASSIONÉS!</h2>
         <p>
-          Nous vous offrons un outil conçu par un entrâineur de soccer pour aider tous les entrâineurs qui ont besoin de créer leurs exercice d'une façon facile et rapide.
+          Nous vous offrons un outil conçu par un entrâineur de soccer pour aider tous 
+          les entrâineurs qui ont besoin de créer leurs exercices d'une façon simple et rapide.<br><br>
+          Profitez de notre outil <strong>100% gratuit</strong> pour commencer à créer les exercices de votre prochaine 
+          séance d'entraînement.
         </p>
         <div class="compteur">
           <div class="exercices-compteur">      
