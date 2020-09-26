@@ -230,6 +230,11 @@
 
         @media screen and (max-width: $screen-xs) {
             height: auto;
+            background-size: 100% 730px;
+            &.message-services{
+                height: auto;   
+                background-size: 100% 665px;
+            }
             .message{
                 padding: 15px;
                 h2{
