@@ -107,7 +107,7 @@
     </div> 
     <div class="contact" id=contactUs>    
       <h2>CONTACTEZ-NOUS</h2>
-      <span>Écrivez-nous à l'adresse courriel: <span class="email"><a href="mailto:essoccercoach@gmail.com">essoccercoach@gmail.com</a></span></span>
+      <span>Écrivez-nous à l'adresse courriel <span class="email"><a href="mailto:essoccercoach@gmail.com">essoccercoach@gmail.com</a></span></span>
       <div class="reseaux-sociaux">
       </div> 
     </div> 
