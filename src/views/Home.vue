@@ -15,9 +15,13 @@
       <div class="message">
         <h2>PROFITEZ DE NOS OUTILS <strong>100% GRATUITS</strong></h2>
         <p>
-          Souvent, les entraîneurs ne disposons pas les outils nécessaires pour bien préparer nos séances d'entraînement. Le papier et le crayon deviennent rapidement nos meilleurs amis lors que nous voulons planifier
+          Souvent, les entraîneurs ne disposons pas des outils nécessaires pour bien préparer nos 
+          séances d'entraînement. Le papier et le crayon deviennent rapidement nos meilleurs amis 
+          lorsque nous voulons planifier
           nos entraînements ou nos exercices.
-          <br><br><strong>ESSoccerCoach</strong> vous offre plusieurs outils pour vous permettre de créer d'une façon très simple vos <strong>exercices</strong>, vos <strong>séances d'entraînement</strong> et vos <strong>alignements</strong>.
+          <br><br><strong>ESSoccerCoach</strong> vous offre plusieurs outils pour vous permettre de 
+          créer de façon très simple vos <strong>exercices</strong>, vos <strong>séances d'entraînement</strong>
+          et vos <strong>alignements</strong>.
           <br><br>Profitez-en bien!
         </p>
       </div> 
@@ -52,7 +56,7 @@
         <div class="text-section">
           <div class="text">     
             <h2>EXERCICES</h2>
-            <p>La préparation des exercices est très importante dans la <strong>planification</strong> d'une séance d'entraînement. <br><br>Avec notre <strong>créateur d'exercices</strong>, vous pouvez créer vos exercices d'une façon très simple et les télécharger en image.</p>
+            <p>La préparation des exercices est très importante dans la <strong>planification</strong> d'une séance d'entraînement. <br><br>Avec notre <strong>créateur d'exercices</strong>, vous pouvez créer vos exercices de façon très simple et les télécharger en image.</p>
             <a class="btn" @click="gotToExercices()">CRÉEZ VOTRE EXERCICE</a>
           </div> 
         </div> 
@@ -67,7 +71,7 @@
         <div class="text-section">
           <div class="text">     
             <h2>SÉANCES</h2>
-            <p>Vous avez un entraînement aujourd'hui?<br><br> Planifiez votre <strong>séance d'entraînement</strong> avec notre créateur de séances.</p>
+            <p>Avez-vous un entraînement aujourd'hui?<br><br> Planifiez votre <strong>séance d'entraînement</strong> avec notre créateur de séances.</p>
             <a class="btn" @click="goToSeances()">CRÉEZ VOTRE SÉANCE</a>
           </div> 
         </div>
@@ -76,7 +80,7 @@
         <div class="text-section">
           <div class="text">     
             <h2>ALIGNEMENTS</h2>
-            <p>Faites l'alignement de votre équipe d'une façon <strong>simple</strong> et <strong>rapide</strong> <br><br> Choisissez votre système, ajoutez vos joueurs et téléchargez votre alignement.</p>
+            <p>Faites l'alignement de votre équipe de façon <strong>simple</strong> et <strong>rapide</strong> <br><br> Choisissez votre système, ajoutez vos joueurs et téléchargez votre alignement.</p>
             <a class="btn" @click="goToAlignements()">CRÉEZ VOTRE ALIGNEMENT</a>
           </div> 
         </div>
@@ -90,7 +94,7 @@
         <h2>UN OUTIL OFFERT À DES <br><span>ENTRAÎNEURS DE SOCCER</span> PASSIONÉS!</h2>
         <p>
           Nous vous offrons un outil conçu par un entrâineur de soccer pour aider tous 
-          les entrâineurs qui ont besoin de créer leurs exercices d'une façon simple et rapide.<br><br>
+          les entraîneurs qui ont besoin de créer leurs exercices de façon simple et rapide.<br><br>
           Profitez de notre outil <strong>100% gratuit</strong> pour commencer à créer les exercices de votre prochaine 
           séance d'entraînement.
         </p>
