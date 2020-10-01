@@ -30,10 +30,7 @@
                     <h5>INFORMATIONS</h5>
                     <ul>
                         <li>
-                            <a @click="goToHelp()">Aide</a>
-                        </li>
-                        <li>
-                            <a href="/#contactUs">Contactez-nous</a>
+                            <a href="/#contactUs" @click="canShowMenuLeft()">Contactez-nous</a>
                         </li>
                     </ul>
                 </div>
