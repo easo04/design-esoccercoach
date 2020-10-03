@@ -2,10 +2,10 @@
   <div class="home" id="home-div">
     <div class="section-info">
       <div class="information">
-        <h1>Bienvenue à <strong>ESSoccerCoach</strong>, le créateur d'exercices pour les entraîneurs de soccer.</h1>
+        <h1>Bienvenue à <strong>ESSoccerCoach</strong>, le créateur d'exercices gratuit pour les entraîneurs de soccer.</h1>
         <div class="division"></div>
-        <p>Vous pouvez créer vos exercices, vos séances et votre alignement en utilisant un de nos services.</p>
-        <a class="btn" href="#services">CHOISIR UN DE NOS SERVICES</a>
+        <p>Vous pouvez créer vos exercices, vos séances et votre alignement en utilisant un de nos outils.</p>
+        <a class="btn" href="#services">CHOISIR UN DE NOS OUTILS</a>
       </div> 
       <div class="image-info">
           <Carousel :lst-images="lstImagesInfos" :source="sourceImageInfos"  :infos="lstTextInfos" :show-text="true"/>
@@ -28,7 +28,7 @@
     </div> 
     <div class="services" id="services">
       <div class="service-infos">
-        <h2>NOS SERVICES</h2>
+        <h2>NOS OUTILS</h2>
         <div class="section-btns">
           <a class="btn section" @click="gotToExercices()">
             <div class="create-exercice img-div">
