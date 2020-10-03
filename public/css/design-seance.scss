@@ -113,6 +113,10 @@
         grid-column-gap: 5px;
         margin-bottom: 10px;
 
+        @media screen and (max-width: $screen-xs) {
+            display:block;
+        }
+
         .image-exercice{
             display: grid;
             grid-template-columns: 50% 50%;
@@ -193,6 +197,9 @@
                 float: right;
                 font-family: 'Montserrat', sans-serif;
                 letter-spacing: 1px;
+                @media screen and (max-width: $screen-xs) {
+                    width: 100%;
+                }
             }
         }
         .infos-base{
@@ -202,6 +209,10 @@
             grid-row-gap: 5px;
             grid-column-gap: 5px;
             margin-bottom: 10px;
+
+            @media screen and (max-width: $screen-xs) {
+                display:block;
+            }
         }
 
         .infos-exercices-list{
@@ -227,6 +238,21 @@
                     position: relative;
                     background-color: white;
                     min-height: 100px;
+
+                    @media screen and (max-width: $screen-xs) {
+                        display:block;
+                        .infos, .img{
+                            width: 100%!important;
+                        }
+
+                        .img{
+                            img{
+                                height: 200px;
+                                object-fit: none !important;
+                            }
+                        }
+                    }
+
                     &:first-child{
                         border-top:none;
                     }

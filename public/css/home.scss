@@ -28,6 +28,10 @@
             font-size: 12px;
         }  
 
+        @media screen and (max-width: $screen-xs-s) {
+            font-size: 10px;
+        }  
+
         &:hover{
             background-color: $color-action-selected;
             border-bottom: 5px solid $color-action-selected;
@@ -83,6 +87,7 @@
             .text-section, .image-section{
                 width: 50%;
             }
+
             .text-section{
                 display: flex;
                 justify-content: center;
@@ -99,6 +104,32 @@
                 }
                 padding: 100px;
                 border-right: 2px solid $gris-soccer-coach;
+            }
+
+            @media screen and (max-width: $screen-sm) {
+                .text-section{
+                    //padding: 15px;
+                    //height: 350px;
+                    .text{
+                        position: relative;
+                        height: inherit;
+                        padding-top: 5px;
+                        h2{
+                            font-size: 2rem;
+                        }
+                        p{
+                            padding-left: 0;
+                            padding-right: 0;
+                            font-size: 1.25rem;
+                        }
+                    }
+                }
+
+                .image-section{
+                    img{
+                        height: 80%;
+                    }
+                }
             }
 
             @media screen and (max-width: $screen-xs) {
@@ -136,6 +167,21 @@
                 }
                 .image-section{
                     display: none;
+                }
+            }
+
+            @media screen and (max-width: $screen-xs-s) {
+                min-height: 360px;
+                .text-section{
+                    height: 360px;
+                    .text{
+                        h2{
+                            font-size: 1.8rem;
+                        }
+                        p{
+                            font-size: 1.2rem;
+                        }
+                    }
                 }
             }
 
@@ -228,12 +274,28 @@
             }
         }
 
+        @media screen and (max-width: $screen-sm) {
+            height: auto;
+            background-size: 100% 615px;
+            .message{
+                padding: 15px;
+                h2{
+                    font-size: 2rem;
+                }
+                p{
+                    padding-left: 50px;
+                    padding-right: 50px;
+                    font-size: 1.25rem;
+                }
+            }
+        }
+
         @media screen and (max-width: $screen-xs) {
             height: auto;
-            background-size: 100% 740px;
+            background-size: 100% 815px;
             &.message-services{
                 height: auto;   
-                background-size: 100% 665px;
+                background-size: 100% 680px;
             }
             .message{
                 padding: 15px;
@@ -252,6 +314,22 @@
                 }
             }
         }
+
+        @media screen and (max-width: $screen-xs-s) {
+            background-size: 100% 815px;
+            &.message-services{
+                background-size: 100% 700px;
+            }
+            .message{
+                h2{
+                    font-size: 1.8rem;
+                }
+                p{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
     }
     .section-info{
         display: flex;
@@ -263,7 +341,8 @@
         background-repeat: no-repeat;     
         background-size: 100% 100vh;
 
-        @media screen and (max-width: $screen-xs) {
+
+        @media screen and (max-width: $screen-sm) {
             display: block;
             .information{
                 width: 100% !important;
@@ -272,12 +351,25 @@
                 }
 
                 p{
-                    font-size: 1.25rem !important;;
+                    font-size: 1.25rem !important;
                 }
             }
 
             .image-info{
                 display: none;
+            }
+        }
+
+        @media screen and (max-width: $screen-xs-s) {
+            height: auto;
+            .information{
+                h1{
+                    font-size: 1.8rem !important;
+                }
+
+                p{
+                    font-size: 1.2rem !important;
+                }
             }
         }
 
@@ -314,7 +406,7 @@
         justify-content: center;
         align-items: center;
 
-        @media screen and (max-width: $screen-xs) {
+        @media screen and (max-width: $screen-sm) {
             margin-bottom: 30px;
             padding: 0 10px;
             display: block;
@@ -327,6 +419,20 @@
                 }
             }
         }
+
+        // @media screen and (max-width: $screen-sm) {
+        //     margin-bottom: 30px;
+        //     padding: 0 10px;
+        //     display: block;
+        //     height: auto !important;
+        //     .section-btns{
+        //         height: auto !important;
+        //         .section{
+        //             width: 100% !important;
+        //             margin-top: 10px;
+        //         }
+        //     }
+        // }
 
         .section-btns{     
             margin-top: 30px;

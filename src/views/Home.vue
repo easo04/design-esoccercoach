@@ -4,7 +4,7 @@
       <div class="information">
         <h1>Bienvenue à <strong>ESSoccerCoach</strong>, le créateur d'exercices pour les entraîneurs de soccer.</h1>
         <div class="division"></div>
-        <p>Vous pouvez créer vos exercices, vos séances et votre alignement en utilisant un de nos services</p>
+        <p>Vous pouvez créer vos exercices, vos séances et votre alignement en utilisant un de nos services.</p>
         <a class="btn" href="#services">CHOISIR UN DE NOS SERVICES</a>
       </div> 
       <div class="image-info">
