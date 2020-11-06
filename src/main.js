@@ -32,6 +32,21 @@ export const analytic = firebase.analytics();
 
 Vue.config.productionTip = false
 
+
+import VueTranslate from 'vue-translate-plugin';
+
+Vue.use(VueTranslate);
+
+import localeEspanol from './locales/es'
+import localeFrancais from './locales/fr'
+import localeAnglais from './locales/en'
+
+Vue.locales({
+  fr : localeFrancais,
+  es : localeEspanol,
+  en : localeAnglais
+});
+
 new Vue({
   router,
   store,

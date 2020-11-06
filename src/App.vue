@@ -1,10 +1,10 @@
 <template>
 <div id="app" class="app">
     <div class="spinner" v-if="spinner.showSpinner">
-      <h2 class="spinner-title">Merci d'avoir utilisé ESSoccerCoach!</h2>
+      <h2 class="spinner-title">{{ t('common.design.modal.spinner.title') }}</h2>
       <div class="spinner-load">
           <pulse-loader color="#8a2539"></pulse-loader>  
-          <h4 class="texte-spinner">{{spinner.textSpinner}}</h4>
+          <h4 class="texte-spinner">{{ t(spinner.textSpinner) }}</h4>
       </div>
     </div>
     <HeaderPage/>

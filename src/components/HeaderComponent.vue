@@ -4,9 +4,22 @@
             <div class="actions">
                 <a @click="canShowMenuLeft()" class="navicon"><i class="fa fa-navicon"></i></a>
                 <a href="/"><img class="logo" src="images/logo.png"></a>
-            </div>
-            <div class="actions-header" :title="textTitle" v-if="showModePresentation" :class="{'mode-presentation':modePresentation}" @click="setModePresentation()">
-                <i class="fa fa-desktop"></i>
+                
+                <div class="actions-header">
+                    <div class="action-langues" id="select-langues">
+                        <a class="langue language" @click="setShowLangue()"><i class="fa fa-globe"></i> Language ({{langueSelected}})</a>
+                        <div class="options-langue" v-if="showLstLangues">
+                            <ul>
+                                <li :class="{'langue-selected' : langueSelected === 'fr'}"><a class="langue" @click="setLangue('fr')">Français</a></li>
+                                <li :class="{'langue-selected' : langueSelected === 'en'}"><a class="langue" @click="setLangue('en')">English</a></li>
+                                <li :class="{'langue-selected' : langueSelected === 'es'}"><a class="langue" @click="setLangue('es')">Español</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="action-presentation" :title="textTitle" v-if="showModePresentation" :class="{'mode-presentation':modePresentation}" @click="setModePresentation()">
+                        <i class="fa fa-desktop"></i>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="menu-left" :class="{'show-menu':isShowMenuLeft}" id="menu-left">
@@ -46,6 +59,8 @@ export default {
         return{
             textTitle:'Activer le mode présentation',
             isShowMenuLeft:false,
+            showLstLangues:false,
+            langueSelected:'fr'
         }
     },
     computed:{
@@ -90,11 +105,36 @@ export default {
             this.canShowMenuLeft();
             this.$router.push({path: '/help'});
         },
+        setShowLangue(){
+            this.showLstLangues = this.showLstLangues ? false : true;
+        },
+        setLangue(lang){
+            switch (lang) {
+                case 'fr':
+                    this.langueSelected = 'fr';
+                    break;
+                case 'en':
+                    this.langueSelected = 'en';
+                    break;
+                case 'es':
+                    this.langueSelected = 'es';
+                    break;
+                default:
+                    this.langueSelected = 'fr';
+                    break;
+            }
+            this.$translate.setLang(this.langueSelected);
+            this.setShowLangue();
+        },
         ...mapMutations(['setModePresentationStore', 'setShowMenuLeft'])
     },
     mounted(){
-        
-    
+        // let globalThis = this;
+        // $('#home-div').click(event =>{
+        //     if(event.target.id !== 'select-langues'){
+        //         globalThis.setShowLangue(); 
+        //     }
+        // });
     }
 }
 </script>

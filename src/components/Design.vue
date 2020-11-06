@@ -5,7 +5,7 @@
             <div class="content-design">
                 <div class="outils">
                     <div class="outils-joueurs"> 
-                        <h5>Joueurs</h5>
+                        <h5>{{ t('common.design.outil.players') }}</h5>
                         <div class="list-joueur-add">  
                             <div class="joueur-add">
                                 <img id="player1" src="../../public/images/joueurs/player1-red.png" @click="addPlayerByColor('red')">
@@ -53,7 +53,7 @@
                         </div>  
                     </div>
                     <div class="outils-terrains">
-                        <h5>Terrains</h5>
+                        <h5>{{ t('common.design.outil.terrains') }}</h5>
                         <div class="list-terrain-add">
                             <div class="list-group-item terrain-li" v-for="(terrain, index) in listeTerrains" :key="index">
                                 <div class="terrain-li-div" @click="changerTerrainImg(terrain.image, terrain.name)">
@@ -120,13 +120,13 @@
                     <div class="outils-onglets-content">
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#outilsDiv" @click="initButtons();initButtonsFormes(false);">Outils</a>
+                                <a class="nav-link active" data-toggle="tab" href="#outilsDiv" @click="initButtons();initButtonsFormes(false);">{{ t('common.design.outil.outils') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#lignesDiv" @click="initButtons();">Lignes</a>
+                                <a class="nav-link" data-toggle="tab" href="#lignesDiv" @click="initButtons();">{{ t('common.design.outil.lignes') }}</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#formsDiv" @click="initButtons();initButtonsFormes(true);">Formes</a>
+                                <a class="nav-link" data-toggle="tab" href="#formsDiv" @click="initButtons();initButtonsFormes(true);">{{ t('common.design.outil.formes') }}</a>
                             </li>
                         </ul>
 
@@ -171,7 +171,7 @@
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title">Ajouter le nom du joueur</h4>
+                            <h4 class="modal-title">{{ t('common.design.modal.add-player-name') }}</h4>
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="modal-body">
@@ -532,7 +532,7 @@ export default {
             analytic.logEvent('save_png_exercice');
             
             this.deselectionner();
-            this.setTextSpinner('Téléchargement de l\'image en cours ...');
+            this.setTextSpinner('common.design.modal.spinner.exercice.text');
             this.setShowSpinner(true);
 
             let globalThis = this;

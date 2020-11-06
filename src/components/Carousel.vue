@@ -1,7 +1,7 @@
 <template>
     <div class="carousel">
         <div class="slide-text" v-if="showText">
-            {{textSlice}}
+            {{ t(textSlice) }}
         </div>
         <div class="slide">    
             <img id="img-slide" :src="source + image">
