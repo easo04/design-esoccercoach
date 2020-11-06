@@ -1,6 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Design from '../components/Design.vue'
+import DesignAlignement from '../components/DesignAlignement.vue'
+import DesignSeance from '../components/DesignSeance.vue'
 
 Vue.use(VueRouter)
 
@@ -9,6 +12,23 @@ Vue.use(VueRouter)
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/create-exercice',
+    name: 'Design',
+    component: Design,
+    props: true
+  },
+  {
+    path: '/create-alignement',
+    name: 'DesignAlignement',
+    component: DesignAlignement
+  },
+  {
+    path: '/create-seance',
+    name: 'DesignSeance',
+    component: DesignSeance,
+    props: true
   },
   {
     path: '/about',

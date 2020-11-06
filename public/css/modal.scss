@@ -1,7 +1,21 @@
 @import 'variables';
 
 .modal{
+    .modal-dialog{
+        margin-top: 10px;
+        &.modal-lg{
+            max-width: 1000px;
+        }
+    }
     .modal-content{
+        
+        background-color: $gris-soccer-coach;
+        border-radius: 0;
+        border:none;
+
+        .close{
+            color:white
+        }
 
         button{
             &:focus{
@@ -9,28 +23,40 @@
             }
         }
 
+        .modal-header{
+            color:white;
+            background-color: $color-soccer-coach-opacy;    
+            border-radius: 0;
+        }
+
         .modal-body{
+            background-color: $gris-soccer-coach;
             .form-control{
                 border: none;
-                border-bottom: 2px solid $color-soccer-coach;
-                border-right: 1px solid $gris-soccer-coach ;
-                border-left:1px solid $gris-soccer-coach;
+                border-bottom: 3px solid $color-soccer-coach-opacy;
+                border-right: 1px solid $color-soccer-coach-opacy;
+                border-left:1px solid $color-soccer-coach-opacy;
                 border-radius: 0;
 
                 &:focus{
                     outline:none;
-                    box-shadow:0 0 0 0.1rem rgba(3, 172, 164, .2)
+                    box-shadow:0 0 0 0.1rem $color-soccer-coach-opacy;
                 }
             }
         }
         .modal-footer{
+            background-color: $gris-soccer-coach;
+            color:white;
             .btn{
                 background-color: $color-action;
+                border-bottom: 5px solid $color-action-margin-bottom;
                 color:white;     
-                border-radius: 1.2rem;
+                border-radius: 0.25rem;
                 width: 100px;
+                text-transform : uppercase;
                 &:hover{
                     background-color: $color-action-selected;
+                    border-bottom: 5px solid $color-action-selected;
                 }
 
                 &:focus{

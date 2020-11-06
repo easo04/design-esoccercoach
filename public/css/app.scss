@@ -1,0 +1,35 @@
+
+@import 'variables';
+
+.app{
+    width: 100%;
+    .spinner{
+        background-color: rgba(0,0,0, 0.7);
+        //opacity: 0.5;
+        color:white;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 500;
+        position: absolute;
+        width: 100%;
+        flex-wrap: wrap;
+    
+        .spinner-title{
+            position: absolute;
+            top:200px;
+        }
+
+        .texte-spinner{
+            margin-top:10px;
+            color:$gris-obscur-soccer-coach;
+        }
+    
+        .v-spinner{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }   
+    }
+}

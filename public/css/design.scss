@@ -2,6 +2,34 @@
 @import 'variables';
 
 .design-component{
+    margin-top: 50px;
+
+    h5{
+        color: #3d3b3b;
+    }
+
+    ::-webkit-scrollbar {
+        width: 10px;
+    
+    }
+        /* Track */
+    ::-webkit-scrollbar-track {
+        //background: #f1f1f1; 
+        background:$gris-clair-soccer-coach;
+        //background: rgba($color: #193045, $alpha: 0.7);
+        border-radius: 10px;
+    }
+    
+    /* Handle */
+    ::-webkit-scrollbar-thumb {
+        background: $color-action;    
+        border-radius: 10px;
+    }
+    
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: $color-action-selected; 
+    }
 
     .block-p{
         background-color: white;
@@ -17,26 +45,6 @@
         width: auto;
         background-color: white;
         position: relative;
-
-        .spinner{
-            background-color: black;
-            opacity: 0.5;
-            color:white;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 500;
-            position: absolute;
-            width: 100%;
-            flex-wrap: wrap;
-
-            .v-spinner{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }   
-        }
 
         .content-design{
             z-index: 300;
@@ -108,20 +116,6 @@
         }
     }
 
-    .nav-tabs{
-        .nav-link {
-            border-top-left-radius: 0;
-            border-top-right-radius: 0;
-            font-size: 1rem;
-            &.active{
-                font-weight: 500;
-            }
-            &:focus, &:hover{
-                border-color: transparent;   
-            }
-        }
-    }
-
     .drag-outil{ 
         position: absolute;
         -webkit-transform: translate(0px, 0px);
@@ -137,6 +131,39 @@
         outline: none;
     }
 
+    .drag-number{
+        position: absolute;
+        -webkit-transform: translate(0px, 0px);
+        transform: translate(0px, 0px);
+        z-index: 35;
+        .number-object{
+            padding-top: 3px;
+            .add-number{
+                position: relative;
+                color:$color-soccer-coach;
+                font-size: 22px;
+                span{
+                    color:white;
+                    font-size: 15px;
+                    margin-top: 2px;
+                }
+            }
+        }
+    }
+
+    .text-input{
+        input{
+            background: transparent;
+            border:none;
+            text-align:center;
+            &:focus {
+                outline: none;
+                border:1px solid black;
+                background-color: rgba(170, 170, 170, 0.2);
+            }
+        } 
+    }
+
     .drag-text{
         position: absolute;
         -webkit-transform: translate(0px, 0px);
@@ -147,25 +174,12 @@
             width: 200px;
             height: 50px;
         }
-
-        .text-input{
-            input{
-                background: transparent;
-                border:none;
-                text-align:center;
-                &:focus {
-                    outline: none;
-                    border:1px solid black;
-                    background-color: rgba(170, 170, 170, 0.2);
-                }
-            } 
-        }
         
     }
 
     .drag-rotate{
-        width: 100px;
-        height: 100px;
+        width: 80px;
+        height: 80px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -186,6 +200,26 @@
 
             &:hover{
                 background-color: rgba(170, 170, 170, 0.8);
+            }
+        }
+    }
+
+    .drag-joueur-img{
+        position: absolute;
+        -webkit-transform: translate(0px, 0px);
+                transform: translate(0px, 0px);
+        z-index: 30;
+
+        height: 85px;
+        width: 85px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img{
+            &:hover{
+                width: inherit + 1;
+                height: inherit + 1;
             }
         }
     }
@@ -225,14 +259,66 @@
         border: 1px solid black;
         padding: 5px;
         width: 60%;
+        background-color: $color-soccer-coach-opacy;
     }
 
     .outils{
         border: 1px solid black;
-        padding-right: 5px;
-        padding-left: 5px;
+        padding:5px;
         width: 20%;
+        background-color: $color-border;
     }
+
+    .outils-joueurs, .outils-terrains{
+        background-color: white;
+        padding: 3px;
+        border-radius: 0.25rem;
+    }
+
+    .outils-onglets-content{
+        .nav{     
+            &.nav-tabs{  
+                border-top-left-radius: 0.25rem;
+                border-top-right-radius: 0.25rem;
+                background-color: $color-soccer-coach;
+                color:white;
+                .nav-item{
+                    border-right: 1px solid white;
+                    &:last-child{     
+                        border-right: none;
+                    }
+                    .nav-link{       
+                        border-top-left-radius: 0;
+                        border-top-right-radius: 0;  
+                        font-size: 1rem;      
+                        color: white;
+                        
+                        &:first-child{
+                            &.active{  
+                                border-top-left-radius: 0;
+                            }
+                        }
+                        &.active{                           
+                            font-weight: 500;
+                            color:$color-text-p;   
+                            border-color: transparent;  
+                        }
+                        
+                        &:focus, &:hover{
+                            border-color: transparent;   
+                        }
+                    }
+                }
+            }
+        } 
+        .tab-content{  
+            padding: 3px;
+            background-color: white;
+            border-bottom-left-radius: 0.25rem;
+            border-bottom-right-radius: 0.25rem;
+        }
+    }
+
 
     .icons-soccer{
         margin-top: 10px;
@@ -240,6 +326,7 @@
             cursor: pointer;
             font-size: 20px;
             color: $color-action;
+            transition: all 0.5s;
             &:hover{
                 color: $color-action-selected;
                 font-size: 21px;
@@ -251,7 +338,7 @@
         .slider{
             -webkit-appearance: none;  /* Override default CSS styles */
             appearance: none;
-            background: #d3d3d3;        
+            background: white;        
             height: 10px;      
             border-radius: 5px;  
             outline: none; /* Remove outline */
@@ -288,10 +375,21 @@
         i{
             padding-left: 10px;
         }
+
+        .add-number{
+            position: relative;
+            span{
+                color:white;
+                margin-left: 5px;
+                font-size: 15px;
+                margin-top: 2px;
+            }
+        }
     }
 
     .color-icons{
         float: left;
+        margin-left: 10px;
         width: 50%;
     }
 
@@ -326,11 +424,22 @@
         width: 100%;
         padding-right: 20px;
         padding-left: 24px;
+        background-color:$color-border;
+        border-top:1px solid black;
+        border-left: 1px solid black;
+        border-right: 1px solid black;
+
+        .back{
+            float: left;
+        }
     }
 
     .content-design{
         display: flex;
         height: 532px;
+        @media screen and (min-width: $screen-lg-x) {
+            height: 700px
+        }
     }
     
     
@@ -345,6 +454,11 @@
         background-repeat: no-repeat;
         /*background-size: cover;*/
         background-size: 100% 472px;
+
+        @media screen and (min-width: $screen-lg-x) {
+            height: 637px;
+            background-size: 100% 100%;
+        }
     }
 
     .list-joueur-add{
@@ -361,6 +475,31 @@
         }
     }
 
+    .list-joueurs-img{
+        display: flex;     
+        flex-wrap: wrap;
+        height: 150px;
+        overflow: scroll;
+        overflow-x: hidden;
+        border-top: 1px solid $color-border;
+        padding-top: 5px;
+        margin-top:5px;
+
+        .joueur-add-img{
+            border-bottom: 1px solid rgba($color: #ced4da, $alpha: 0.3);
+            img{
+                height: 50px;
+                height: 50px;
+                transition: all 0.5s;
+                cursor: pointer;
+                &:hover{
+                    width: 51px;
+                    height: 51px;
+                }
+            }
+        }
+    }
+    
     .with-text{
         display: flex;
         justify-content: center;
@@ -373,17 +512,20 @@
     }
 
     .outils-terrains{
-        margin-top:10px;
+        margin-top:5px;
         border-top:1px solid $color-border;
-        padding-top: 5px;
     }
     
     .list-terrain-add{
         padding-left: 0px;
         padding-right: 0px;
         overflow: scroll;
-        height: 380px;
+        height: 222px;
         overflow-x: hidden;
+
+        @media screen and (min-width: $screen-lg-x) {
+            height: 390px;
+        }
     }
     
     .list-group-custom{
@@ -403,8 +545,11 @@
         padding-left: 0px;
         padding-right: 0px;
         overflow: scroll;
-        height: 475px;
+        height: 471px;
         overflow-x: hidden;
+        @media screen and (min-width: $screen-lg-x) {  
+            height: 639px;
+        }
     }
     
     .center {
@@ -423,6 +568,14 @@
             img{
                 width: inherit;
                 height: 178px;
+                object-fit: cover;
+            }
+
+            @media screen and (min-width: $screen-lg-x) {  
+                height: 200px;
+                img{
+                    height: 100%;
+                }
             }
         }
     }
@@ -444,18 +597,21 @@
 
     .outil-li-div{
         cursor: pointer;
+        border-bottom: 1px solid rgba($color: #ced4da, $alpha: 0.3);
     }
 
     .drag-outil-list{
         margin: 1%;
-        margin-top: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         margin-left: auto;
         margin-right: auto;
     }
     
     .drag-forme-list{
         margin: 1%;
-        margin-top: 15px;
+        padding-top: 5px;
+        padding-bottom: 5px;
         margin-left: auto;
         margin-right: auto;
     }
@@ -469,6 +625,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+        border-bottom: 1px solid rgba($color: #ced4da, $alpha: 0.3);
     }
 
     .ligne-li-div{

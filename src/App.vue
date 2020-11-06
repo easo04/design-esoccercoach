@@ -1,16 +1,32 @@
 <template>
-  <div id="app">
-      <Design/>
-  </div>
+<div id="app" class="app">
+    <div class="spinner" v-if="spinner.showSpinner">
+      <h2 class="spinner-title">Merci d'avoir utilisé ESSoccerCoach!</h2>
+      <div class="spinner-load">
+          <pulse-loader color="#8a2539"></pulse-loader>  
+          <h4 class="texte-spinner">{{spinner.textSpinner}}</h4>
+      </div>
+    </div>
+    <HeaderPage/>
+    <router-view></router-view>
+</div>
 </template>
 <script>
-import Design from './components/Design'
-export default {
+  import { mapState, mapGetters, mapMutations } from 'vuex'
+  import HeaderPage from './components/HeaderComponent'
+  import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
+  export default {
   name:"app",
   components:{
-    Design,
-  }
+    HeaderPage,
+    PulseLoader
+  },
+  computed:{
+    ...mapState(['spinner'])
+  },
 }
 </script>
 <style lang="scss">
+
+    @import '../public/css/app';  
 </style>

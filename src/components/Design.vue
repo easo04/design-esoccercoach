@@ -2,12 +2,6 @@
     <div class="design-component">
         <div class="block-p" v-if="showPubSection"></div>
         <div class="conteneur">
-            <div class="spinner" v-if="showSpinner">
-                <div class="spinner-load">
-                    <pulse-loader color="#8a2539"></pulse-loader>  
-                    <h3 class="texte-spinner">{{textSpinner}}</h3>
-                </div>
-            </div>
             <div class="content-design">
                 <div class="outils">
                     <div class="outils-joueurs"> 
@@ -52,6 +46,11 @@
                                 </div> 
                             </div>
                         </div>  
+                        <div class="list-joueur-add list-joueurs-img">  
+                            <div class="joueur-add joueur-add-img" v-for="(playerImg, indexPlayerIndex) in listeJoueurs" :key="indexPlayerIndex">
+                                <img :id="'player-img-' + playerImg.name" :src="'images/joueurs/' + playerImg.image" @click="addPlayerImg(playerImg.image, playerImg.name)">
+                            </div> 
+                        </div>  
                     </div>
                     <div class="outils-terrains">
                         <h5>Terrains</h5>
@@ -66,6 +65,9 @@
                 </div> 
                 <div class="terrain">
                     <div class="terrain-act action">
+                        <div class="back icons-soccer" v-if="!isSavePNG">
+                            <i class="fa fa-arrow-left" @click="back()" title="Retourner"></i>
+                        </div>
                         <div class="color-icons icons-soccer" v-if="showColorActions">
                             <div class="color-outil color-red action-outil" id="color-red" @click="changerCouleurOutil('red');"></div>
                             <div class="color-outil color-blue-claro action-outil" id="color-blue-claro" @click="changerCouleurOutil('bleu');"></div>
@@ -78,23 +80,33 @@
                         </div>
 
                         <div class="actions-icons icons-soccer">
-                            <i class="fas fa-font" id="addText" @click="addText()"></i>
-                            <i class="fas fa-plus action-outil" id="btnZoomPlus" @click="zoomPlus()" v-if="showActionForms"></i>
-                            <i class="fas fa-minus action-outil" id="btnZoomMoins" @click="zoomMoins()" v-if="showActionForms"></i>
-                            <i class="fas fa-fill-drip action-outil" id="btnColor" @click="setShowColorActions()"  v-if="showBtnRemplir"></i>
-                            <i class="fa fa-file-image-o" id=savePng @click="savePNG()"></i>
-                            <i class="fa fa-file-pdf-o" id=savePdf @click="savePdf()"></i>
-                            <i class="fa fa-eraser" @click="deleteObject()" id="supprimerObject" v-if="showActionsObject"></i>
-                            <i class="fa fa-trash" data-toggle="modal" data-target="#modalDeleteAll" id="deleteAll" v-if="showDeleteAll"></i>
+                            <i class="fas fa-plus action-outil" id="btnZoomPlus" @click="zoomPlus()" title="Zoom +" v-if="showActionForms"></i>
+                            <i class="fas fa-minus action-outil" id="btnZoomMoins" @click="zoomMoins()" title="Zoom -" v-if="showActionForms"></i>
+                            <i class="fas fa-fill-drip action-outil" id="btnColor" @click="setShowColorActions()" title="Remplir avec couleur" v-if="showBtnRemplir"></i>
+                            <i class="fa fa-eraser" @click="deleteObject()" id="supprimerObject" title="Effacer" v-if="showActionsObject"></i>
+                            <i class="fa fa-trash" data-toggle="modal" data-target="#modalDeleteAll" id="deleteAll" title="Tout supprimer" v-if="showDeleteAll"></i>
+                            <i class="fas fa-font" id="addText" @click="addText()" title="Ajouter texte"></i>
+                            <i class="fa fa-circle add-number" id="addNumber" @click="addNumber()" title="Ajouter compteur">
+                                <span class="fa-stack-1x">1</span>
+                            </i>
+                            <i class="fa fa-download" id=savePng @click="savePNG()" v-if="isSavePNG" title="Télécharger"></i>
+                            <i class="fas fa-save" id=savePng @click="saveImage()" v-else title="Sauvegarder"></i>
+                            <!--<i class="fa fa-file-pdf-o" id=savePdf @click="savePdf()"></i>-->
                         </div>
                     </div>
                     <div class="row terrain-space" id="terrainSoccer">
                         <div v-for="(object, indexObj) in lstObjectsDraggable" :key="indexObj" :id="object.id" class="draggable" :class="object.class"  @click="selectObject(object.id, indexObj)">
-                            <img :id="object.image.id" :src="object.image.src" v-if="object.type !== 'drag-text' && (!object.forme || object.forme === '')">
+                            <img :id="object.image.id" :src="object.image.src" v-if="object.type !== 'drag-text' && object.type !== 'drag-number' && (!object.forme || object.forme === '')">
                             <div class="text-input" v-if="object.type === 'drag-text'">
                                 <input type="text" :id="'input-text' + indexObj" v-model="object.text" name="name" autocomplete="off" @blur="verifyText(indexObj)">
                             </div>
-                            <div :id="object.image.id" :class="object.forme" v-if="object.forme && object.forme !== ''"></div>
+                            <div :id="object.image.id" :class="object.forme" v-if="object.forme && object.forme !== ''">        
+                            </div>
+                            <div class="number-object" v-if="object.type === 'drag-number'">
+                                <i class="fa fa-circle add-number" :id="'i-number-'+indexObj">
+                                    <span class="fa-stack-1x">{{object.number}}</span>
+                                </i>
+                            </div>
                             <div class="rotate" v-if="indexObj === lastIndexObjectSelected && object.canRotate" @click="rotate()">
                                 <i class="fa fa-rotate-right"></i>
                             </div>
@@ -108,13 +120,13 @@
                     <div class="outils-onglets-content">
                         <ul class="nav nav-tabs">
                             <li class="nav-item">
-                                <a class="nav-link active" data-toggle="tab" href="#outilsDiv" @click="initButtons(false);initButtonsFormes(false);">Outils</a>
+                                <a class="nav-link active" data-toggle="tab" href="#outilsDiv" @click="initButtons();initButtonsFormes(false);">Outils</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#lignesDiv" @click="initButtons(false);">Lignes</a>
+                                <a class="nav-link" data-toggle="tab" href="#lignesDiv" @click="initButtons();">Lignes</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-toggle="tab" href="#formsDiv" @click="initButtons(false);initButtonsFormes(true);">Formes</a>
+                                <a class="nav-link" data-toggle="tab" href="#formsDiv" @click="initButtons();initButtonsFormes(true);">Formes</a>
                             </li>
                         </ul>
 
@@ -196,17 +208,17 @@
 <script>
 
 import { mapState, mapGetters, mapMutations } from 'vuex';
-import PulseLoader from 'vue-spinner/src/PulseLoader.vue';
+import {analytic} from '@/main'
+
 export default {
     name:"Design",
     components: {
-        PulseLoader
     },
+    props:['fromCreateSeance'],
     data(){
         return{
             terrainSelected:'terrain11',
             lstObjectsDraggable:[],
-            formeSelected:undefined,
             typeFormeSelected:undefined,
             objectSelected:undefined,
             lastIndexObjectSelected:undefined,
@@ -217,13 +229,12 @@ export default {
             showActionForms:false,
             showActionsObject:false,
             showBtnRemplir:false,
-            showSpinner:false,
-            textSpinner:'',
             textPlayer:undefined,
             colorPlayer:undefined,
             rangeOpacity:100,
             lstFormes : ['square', 'rectangle', 'triangle', 'circle'],
-
+            numberSuite:0,
+            isSavePNG: this.fromCreateSeance ? false : true,
         }
     },
     computed:{
@@ -243,12 +254,12 @@ export default {
         showDeleteAll(){
             return this.lstObjectsDraggable.length > 0;
         },
-        ...mapState(['listeTerrains', 'listeJoueurs', 'listeOutils', 'listeLignes', 'listeFormes'])
+        ...mapState(['listeTerrains', 'listeJoueurs', 'listeOutils', 'listeLignes', 'listeFormes', 'modePresentation'])
     },
     watch:{
     },
     methods:{
-        addObjectToList(type, idImage, srcImage, canRotate, textObject, formeObject){
+        addObjectToList(type, idImage, srcImage, canRotate, textObject, formeObject, numberObject){
             let noObject = this.lstObjectsDraggable.length + 1;
             let object = {
                 id:type + '-' + noObject,
@@ -262,18 +273,31 @@ export default {
                 text:'Text ...',
                 textObject:textObject,
                 forme:formeObject,
+                number:numberObject,
                 image:{
                     id:idImage + '-' + noObject,
                     src:srcImage,
                     size:undefined,
                 }
             };
+
+            let isObjectExist = this.lstObjectsDraggable.find(o=>o.id === object.id);
+
+            if(isObjectExist){
+                console.log('onject exist');
+                noObject++;
+                object = type + '-' + noObject; 
+            }
+
             this.lstObjectsDraggable.push(object);
 
             this.deselectionner();
         },
-        addPlayerByColor(color){
+        addPlayerByColor(color, ){
             this.addObjectToList('drag-joueur', color, 'images/joueurs/player1-' + color + '.png', false);
+        },
+        addPlayerImg(img, name){
+            this.addObjectToList('drag-joueur-img', name, 'images/joueurs/' + img, false);
         },
         addPlayerWithTextByColor(color){
             this.colorPlayer = color;
@@ -288,7 +312,6 @@ export default {
             this.addObjectToList('drag-outil', outilName, 'images/outils/' + outilImage, canRotate);
         },
         ajouterForm(formeName, formeImage, formeObject) {
-            this.formeSelected = formeName;
             let canRotate = formeName.includes('arrow');
             this.addObjectToList('drag-forme', formeName, 'images/formes/' + formeImage, canRotate, undefined, formeObject);
         },
@@ -325,14 +348,16 @@ export default {
             $('#btnMakeCopy').removeClass('action-selected-form');
             $('#btnSquare').addClass('action-selected-form');
         },
-        initButtons(showColors) {
+        initButtons() {
             
             this.showActionsObject = true;
             this.showColorActions = false;
 
             //vérifier s'il y a un objet sélectionné
             if(this.objectSelected && this.objectSelected[0]){
-                this.showActionForms = this.objectSelected.hasClass('drag-forme');
+                let idImg = this.objectSelected[0].children[0].id;
+                this.showActionForms = this.objectSelected.hasClass('drag-forme') 
+                && (!idImg.includes('arrow') && !idImg.includes('line'));
             }else{
                 this.showActionsObject = false;
                 this.showActionForms = false;
@@ -359,7 +384,6 @@ export default {
                     break;
             }
             image.style.backgroundColor = colorBackground;
-            //image.src = 'images/formes/' + this.typeFormeSelected + '-' + color + '.png';
         },
         zoomPlus(){
             if(this.objectSelected){
@@ -394,7 +418,7 @@ export default {
 
                     height = height !== '' ? parseInt(height) : 200;
                     width = width !== '' ? parseInt(width) : this.widthFormeInit;
-                    if(height < 300){
+                    if(width < 300){
                         image.style.height = (height + 10) + 'px'; 
                         image.style.width = (width + 10) + 'px'; 
                     }
@@ -438,7 +462,7 @@ export default {
 
                     height = height !== '' ? parseInt(height) : 200;
                     width = width !== '' ? parseInt(width) : this.widthFormeInit;
-                    if(height > 180){
+                    if(width > 180){
                         image.style.height = (height - 10) + 'px'; 
                         image.style.width = (width - 10) + 'px'; 
                     }
@@ -450,10 +474,15 @@ export default {
             this.lastIndexObjectSelected = indexObj;
 
             //INITALISER LES BOUTONS D'ACTIONS
-            this.initButtons(true);
+            this.initButtons();
 
             //TOUT DESELECTIONNER
             let lastObjectSelected = $('.object-selected-outil');
+
+            //vérifier si c'est un objet joueur avec image
+            //let isPlayerImg = this.lstObjectsDraggable[indexObj].isPlayerImg;
+            //let className = isPlayerImg ? 'object-selected-outil-img' : 'object-selected-outil';
+
             lastObjectSelected?.removeClass('object-selected-outil');
 
             let lastObject = this.lstObjectsDraggable.find(o => o.select);
@@ -463,8 +492,10 @@ export default {
 
             this.lstObjectsDraggable[indexObj].select = true;
 
-            //ADD CLASS OBJECT-SELECT
-            this.objectSelected.addClass('object-selected-outil');
+            //add class object-select-outil si ce n'est pas mode presentation
+            if(!this.modePresentation){
+                this.objectSelected.addClass('object-selected-outil');
+            }
 
             if(dragId.includes('drag-text')){
                 document.getElementById('input-text' + indexObj).focus();
@@ -485,8 +516,10 @@ export default {
             image.style.opacity = this.rangeOpacity / 100;
         },
         deselectionner(){
-            let lastObjectSelected = $('.object-selected-outil');
-            lastObjectSelected?.removeClass('object-selected-outil');
+            if(!this.modePresentation){
+                let lastObjectSelected = $('.object-selected-outil');
+                lastObjectSelected?.removeClass('object-selected-outil');
+            }
 
             this.objectSelected = null;
             this.showActionForms = false;
@@ -496,49 +529,72 @@ export default {
             this.lastIndexObjectSelected = undefined;
         },
         savePNG(){
+            analytic.logEvent('save_png_exercice');
+            
             this.deselectionner();
-            this.textSpinner = 'Téléchargement de l\'image en cours';
-            this.showSpinner = true;
-            const dowloadImage = new Promise((resolve, reject) => {    
+            this.setTextSpinner('Téléchargement de l\'image en cours ...');
+            this.setShowSpinner(true);
+
+            let globalThis = this;
+
+            setTimeout(() => {
                 let domElement = document.getElementById("terrainSoccer");
                 html2canvas(domElement, {
                     onrendered: function(canvas) {
                         Canvas2Image.saveAsPNG(canvas); 
+                        globalThis.setShowSpinner(false);
+                    }
+                });
+            }, 5 * 1000);
+        },
+        saveImage(){
+            analytic.logEvent('save_image_exercice');
+
+            this.deselectionner();
+            let globalThis = this;
+
+            const dowloadImage = new Promise((resolve) => {    
+                let domElement = document.getElementById("terrainSoccer");
+                html2canvas(domElement, {
+                    onrendered: function(canvas) {
+                        var img = canvas.toDataURL('image/png');
+                        globalThis.setImageBase64(img);
                         resolve("Create");
                     }
                 });
             });
 
             dowloadImage.then(val=>{
-                this.showSpinner = false;
+
+                 //goToDesignSeance
+                this.$router.push({name: 'DesignSeance', params:{'fromDesign' : true}});
             });
         },
-        savePdf(){
-            html2canvas(document.getElementById("terrainSoccer"), {
-                onrendered: function(canvas) {
-                    //canvas.height = 600;
-                    //canvas.width = 600;
-                    var img = canvas.toDataURL('image/png');
-                    var doc = new jsPDF();
-                    doc.text("Exercice 1 - ESCoach", 10, 10);
-                    doc.addImage(img, 'JPEG', 20, 20);
-                    doc.addHTML(canvas);
-                    doc.save('exercice.pdf');
-                }
-            });
+        back(){
+
+            //go To DesignSeance
+            this.$router.push({name: 'DesignSeance', params:{'fromDesign' : true}});
         },
         deleteObject() {
+            //vérifier si l'objet est de type number
+            if(this.lstObjectsDraggable[this.lastIndexObjectSelected].type === 'drag-number'){
+                this.numberSuite--;
+            }
+
             this.objectSelected.remove();
-            this.lstObjectsDraggable.splice(this.lastIndexObjectSelected, 1);
+            //this.lstObjectsDraggable.splice(this.lastIndexObjectSelected, 1);
             this.objectSelected = undefined;
-            this.initButtons(false);
+            this.lastIndexObjectSelected =undefined;
+            this.initButtons();
         },
         deleteAll(){
             $('.terrain-space').empty();
             this.objectSelected = null;
-            this.initButtons(false);
+            this.initButtons();
             this.initButtonsFormes(true);
             this.lstObjectsDraggable = [];
+            this.lastIndexObjectSelected = undefined;
+            this.numberSuite = 0;
         },
         rotate(){
             if(this.objectSelected){
@@ -556,19 +612,25 @@ export default {
         addText(){
             this.addObjectToList('drag-text', undefined, undefined, true);
         },
+        addNumber(){
+            this.numberSuite++;
+            this.addObjectToList('drag-number', undefined, undefined, false, undefined, undefined, this.numberSuite);
+        },
         verifyText(indexObj){
             let value = this.lstObjectsDraggable[indexObj].text;
             if(!value || value === ''){
                 this.deleteObject();
             }
         },
+        ...mapMutations(['setShowSpinner', 'setTextSpinner', 'setShowModePresentation', 'setImageBase64'])
     },
     created(){
     },
     mounted(){
         let globalThis = this;
-        this.initButtons(false);
+        this.initButtons();
         this.initButtonsFormes(false);
+        this.setShowModePresentation(true);
 
         //detecter tous les clicks qui se font dans terrainSoccer
         $('#terrainSoccer').click(event =>{
@@ -576,7 +638,16 @@ export default {
                 globalThis.deselectionner();  
             }
         });
-    }
+
+        //vérifier s'il y a une seance dans le locale storage
+        if(localStorage.getItem('isCreateSeance')){
+            this.isSavePNG = false;
+        }
+    },
+    beforeDestroy(){   
+        this.setShowModePresentation(false);
+        localStorage.removeItem('isCreateSeance');
+    },
 }
 </script>
 <style lang="scss" scoped>

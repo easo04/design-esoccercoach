@@ -1,0 +1,499 @@
+@import 'variables';
+
+.home{
+    font-family: "Lato",sans-serif;
+    min-height: 500px;
+    margin-top: 45px;
+    
+    h2{
+        text-align: center;
+        color:$color-action;
+        //font-weight: 500;
+    }
+    .btn{
+        height: auto;
+        width: auto;
+        padding: 15px;
+        background-color: $color-action;
+        border-bottom: 5px solid $color-action-margin-bottom;
+        color: white;
+        //font-family: "Lato",sans-serif;
+        font-family: 'Montserrat', sans-serif;
+        letter-spacing: 1px;
+        font-weight: 700;
+        font-size: 15px; 
+
+        @media screen and (max-width: $screen-xs) {
+            width: 100%;
+            font-size: 12px;
+        }  
+
+        @media screen and (max-width: $screen-xs-s) {
+            font-size: 10px;
+        }  
+
+        &:hover{
+            background-color: $color-action-selected;
+            border-bottom: 5px solid $color-action-selected;
+            color:white;
+        }
+        &:focus{
+            box-shadow: none
+        }
+    }
+
+    .section-outil-design{
+        .outil-design{
+            display: flex;
+            min-height: 670px;
+            background-color: #d9d9d9;
+
+            &.left{
+                
+                .image-section{
+                    border-right: 2px solid $gris-soccer-coach;
+                }
+                .text-section{    
+                    border-right: none;
+                    .text{
+                        h2{
+                            text-align: right;
+                        }
+                        p{
+                            text-align: right;
+                        }
+                        .btn{
+                            float: right;
+                        }
+                    }
+                }
+
+                @media screen and (max-width: $screen-xs) {
+                    .text-section{    
+                        .text{
+                            h2{
+                                text-align: left;
+                            }
+                            p{
+                                text-align: left;
+                            }
+                            .btn{
+                                float: left;
+                            }
+                        }
+                    }
+                }
+            }
+            .text-section, .image-section{
+                width: 50%;
+            }
+
+            .text-section{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .text{
+                    h2{
+                        text-align: left;
+                        font-size: 3rem;
+                    }
+                    p{
+                        color:$color-text-p;
+                        font-size: 24px;
+                    }
+                }
+                padding: 100px;
+                border-right: 2px solid $gris-soccer-coach;
+            }
+
+            @media screen and (max-width: $screen-sm) {
+                .text-section{
+                    //padding: 15px;
+                    //height: 350px;
+                    .text{
+                        position: relative;
+                        height: inherit;
+                        padding-top: 5px;
+                        h2{
+                            font-size: 2rem;
+                        }
+                        p{
+                            padding-left: 0;
+                            padding-right: 0;
+                            font-size: 1.25rem;
+                        }
+                    }
+                }
+
+                .image-section{
+                    img{
+                        height: 80%;
+                    }
+                }
+            }
+
+            @media screen and (max-width: $screen-xs) {
+                display: block;
+                min-height: 350px;
+                border-bottom: 2px solid $gris-soccer-coach;
+                
+                /*background: url('../../public/images/infos/outil-design-custom.png');     
+                background-repeat: no-repeat;     
+                background-size: 100% 650px;
+                opacity: 0.5;*/
+
+                .text-section, .image-section{
+                    width: 100% !important;
+                }
+
+                .text-section{
+                    padding: 15px;
+                    height: 350px;
+                    .text{
+                        position: relative;
+                        height: inherit;
+                        padding-top: 5px;
+                        h2{
+                            font-size: 2rem;
+                        }
+                        p{
+                            font-size: 20px;
+                        }
+                        .btn{
+                            position: absolute;
+                            bottom: 5px;
+                        }
+                    }
+                }
+                .image-section{
+                    display: none;
+                }
+            }
+
+            @media screen and (max-width: $screen-xs-s) {
+                min-height: 360px;
+                .text-section{
+                    height: 360px;
+                    .text{
+                        h2{
+                            font-size: 1.8rem;
+                        }
+                        p{
+                            font-size: 1.2rem;
+                        }
+                    }
+                }
+            }
+
+            .image-section{
+                padding: 20px;
+                img{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 0.25rem;
+                }
+            }
+        }
+    }
+    .section-message{
+        height: 650px;
+        width: 100%;
+        background: url('../../public/images/infos/soccer3.jpg');     
+        background-repeat: no-repeat;     
+        background-size: 100% 650px;
+
+        &.message-services{
+            height: auto;
+            background: url('../../public/images/infos/soccer.jpg'); 
+            background-repeat: no-repeat;     
+            background-size: 100% 100%;
+            .message{
+                background-color: rgba($color: #193045, $alpha: 0.8);
+            }
+        }
+        
+        .message{
+            height: 100%;
+            width: 100%;
+            padding: 60px;
+            background-color: rgba($color: #193045, $alpha: 0.7);
+            h2{
+                color:white;
+                font-size: 3rem;
+                span{
+                    font-weight: bold;
+                }
+            }
+            p{
+                color:white;
+                padding-left: 150px;
+                padding-right: 150px;
+                font-size: 1.5rem;         
+                text-align: center;      
+                margin-top: 50px;
+            }
+
+            
+            .compteur{
+                color:white;
+                font-family: "Lato",sans-serif;
+                .exercices-compteur{
+                    span{
+                        font-size: 1.5rem;
+                        &.number{
+                            font-weight: 500;
+                            font-size: 3rem;
+                        }
+                    }
+                    
+                    text-align: center;
+                }
+            }
+
+            .message-btn{
+                margin-top: 20px;
+                display: flex;
+                justify-content: center;
+                .btn{
+                    font-family: "Lato",sans-serif;
+                    height: auto;
+                    width: auto;
+                    padding: 15px;
+                    background-color: $color-action;
+                    color: white;
+                    letter-spacing: 1px;
+                    font-weight: 700;
+                    font-size: 15px;   
+                    &:hover{
+                        background-color: $color-action-selected;
+                    }
+                    &:focus{
+                        box-shadow: none
+                    }
+                }
+            }
+        }
+
+        @media screen and (max-width: $screen-sm) {
+            height: auto;
+            background-size: 100% 615px;
+            .message{
+                padding: 15px;
+                h2{
+                    font-size: 2rem;
+                }
+                p{
+                    padding-left: 50px;
+                    padding-right: 50px;
+                    font-size: 1.25rem;
+                }
+            }
+        }
+
+        @media screen and (max-width: $screen-xs) {
+            height: auto;
+            background-size: 100% 815px;
+            &.message-services{
+                height: auto;   
+                background-size: 100% 680px;
+            }
+            .message{
+                padding: 15px;
+                h2{
+                    font-size: 2rem;
+                }
+                p{
+                    padding-left: 0;
+                    padding-right: 0;
+                    font-size: 1.25rem;
+                }
+
+                .btn{
+                    width: 100% !important;
+                    font-size: 12px !important;
+                }
+            }
+        }
+
+        @media screen and (max-width: $screen-xs-s) {
+            background-size: 100% 815px;
+            &.message-services{
+                background-size: 100% 700px;
+            }
+            .message{
+                h2{
+                    font-size: 1.8rem;
+                }
+                p{
+                    font-size: 1.2rem;
+                }
+            }
+        }
+
+    }
+    .section-info{
+        display: flex;
+        width: 100%;
+        height: 100vh;
+        padding: 50px;
+        //background-color: lawngreen;
+        background: url('../../public/images/infos/image-background2.jpg');     
+        background-repeat: no-repeat;     
+        background-size: 100% 100vh;
+
+
+        @media screen and (max-width: $screen-sm) {
+            display: block;
+            .information{
+                width: 100% !important;
+                h1{
+                    font-size: 2rem;
+                }
+
+                p{
+                    font-size: 1.25rem !important;
+                }
+            }
+
+            .image-info{
+                display: none;
+            }
+        }
+
+        @media screen and (max-width: $screen-xs-s) {
+            height: auto;
+            .information{
+                h1{
+                    font-size: 1.8rem !important;
+                }
+
+                p{
+                    font-size: 1.2rem !important;
+                }
+            }
+        }
+
+        .information{
+            width: 50%;
+            color:white;
+
+            .division{
+                width: 60px;
+                height: 4px;
+                background-color: $color-action;
+                margin-bottom: 10px;
+            }
+
+            p{
+                font-family: Georgia, serif;
+                font-style: italic;
+                font-size: 1.5rem;
+            }
+        }
+
+        .image-info{
+            width: 50%;
+
+            img{
+                width: 100%;
+            }
+        }
+    }
+    .services{
+        margin-top:30px;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        @media screen and (max-width: $screen-sm) {
+            margin-bottom: 30px;
+            padding: 0 10px;
+            display: block;
+            height: auto !important;
+            .section-btns{
+                height: auto !important;
+                .section{
+                    width: 100% !important;
+                    margin-top: 10px;
+                }
+            }
+        }
+
+        // @media screen and (max-width: $screen-sm) {
+        //     margin-bottom: 30px;
+        //     padding: 0 10px;
+        //     display: block;
+        //     height: auto !important;
+        //     .section-btns{
+        //         height: auto !important;
+        //         .section{
+        //             width: 100% !important;
+        //             margin-top: 10px;
+        //         }
+        //     }
+        // }
+
+        .section-btns{     
+            margin-top: 30px;
+            height: 300px;
+            .section{
+                width: 400px;
+                height: 250px;
+                //border:1px solid $color-soccer-coach-hover;
+                margin-right: 20px;
+                background-color: $color-soccer-coach;
+                color:white;
+                //opacity: 0.8;
+                box-shadow: 5px 6px 10px 1px #888888;
+                padding-top: 60px;
+                font-weight: 600;
+                border-bottom: 10px solid $color-soccer-coach-hover;
+                border-radius: .25rem;
+                transition: all .5s;
+                .titre{
+                    text-transform: uppercase;
+                    font-family: 'Montserrat', sans-serif;
+                }
+                &:hover{
+                    background-color: $color-soccer-coach-hover;
+                }
+            }
+        }
+    }
+
+    .contact{
+        text-align: center;
+        height: auto;
+        background-color:$color-action;
+        color:$gris-soccer-coach;
+        padding:20px 0;
+        h2{
+            color:$gris-soccer-coach;
+        }
+        span{
+            font-family: Georgia, serif;
+            font-size: 1.25rem;
+            &.email{   
+                font-style: italic;
+            }
+            a{
+                color:$gris-soccer-coach;
+            }
+        }
+
+        .reseaux-sociaux{
+            color:white;
+            a{
+                color:white;
+                i{
+                    font-size: 20px;
+                    &:hover{
+                        font-size: 21px;
+                    }
+                }
+            }
+        }
+    }
+
+}
