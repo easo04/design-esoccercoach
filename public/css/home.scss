@@ -203,10 +203,10 @@
         background-size: 100% 650px;
 
         &.message-services{
-            height: 550px;
+            height: auto;
             background: url('../../public/images/infos/soccer.jpg'); 
             background-repeat: no-repeat;     
-            background-size: 100% 550px;
+            background-size: 100% 100%;
             .message{
                 background-color: rgba($color: #193045, $alpha: 0.8);
             }

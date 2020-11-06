@@ -437,6 +437,9 @@
     .content-design{
         display: flex;
         height: 532px;
+        @media screen and (min-width: $screen-lg-x) {
+            height: 700px
+        }
     }
     
     
@@ -451,6 +454,11 @@
         background-repeat: no-repeat;
         /*background-size: cover;*/
         background-size: 100% 472px;
+
+        @media screen and (min-width: $screen-lg-x) {
+            height: 637px;
+            background-size: 100% 100%;
+        }
     }
 
     .list-joueur-add{
@@ -514,6 +522,10 @@
         overflow: scroll;
         height: 222px;
         overflow-x: hidden;
+
+        @media screen and (min-width: $screen-lg-x) {
+            height: 390px;
+        }
     }
     
     .list-group-custom{
@@ -535,6 +547,9 @@
         overflow: scroll;
         height: 471px;
         overflow-x: hidden;
+        @media screen and (min-width: $screen-lg-x) {  
+            height: 639px;
+        }
     }
     
     .center {
@@ -554,6 +569,13 @@
                 width: inherit;
                 height: 178px;
                 object-fit: cover;
+            }
+
+            @media screen and (min-width: $screen-lg-x) {  
+                height: 200px;
+                img{
+                    height: 100%;
+                }
             }
         }
     }
